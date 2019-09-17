@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         m_PlayerGunPoint = GameObject.FindGameObjectWithTag("GunPoint");
         m_GunInstance = Instantiate(m_GunPreFab, m_PlayerGunPoint.transform.position, Quaternion.identity);
+        m_GunInstance.transform.forward = m_PlayerGunPoint.transform.forward;
         m_GunInstance.transform.position = m_PlayerGunPoint.transform.position;
         m_GunInstance.transform.SetParent(m_PlayerGunPoint.transform);
 
