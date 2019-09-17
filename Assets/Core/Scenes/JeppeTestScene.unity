@@ -571,7 +571,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1251244869
+--- !u!1001 &788236360
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -591,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 6173133016675627143, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6173133016675627143, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
         type: 3}
@@ -637,10 +637,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2075415279, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c, type: 3}
-      propertyPath: m_GunPreFab
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c, type: 3}
