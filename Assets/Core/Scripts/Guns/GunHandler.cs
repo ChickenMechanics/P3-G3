@@ -41,6 +41,7 @@ public class GunHandler : MonoBehaviour
     {
         CreateGunInstances();
 
+        m_ActiveGunIdx = m_DefaultGun;
         m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
         m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();

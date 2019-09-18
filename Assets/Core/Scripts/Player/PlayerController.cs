@@ -140,10 +140,4 @@ public class PlayerController : MonoBehaviour
     {
         FixedMove();
     }
-
-
-    private void LateUpdate()
-    {
-        
-    }
 }
