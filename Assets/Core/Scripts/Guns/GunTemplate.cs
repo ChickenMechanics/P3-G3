@@ -18,7 +18,10 @@ public class GunTemplate : MonoBehaviour
     private Vector3 m_Rotation = Vector3.zero;
 
     [Header("Bullet Properties")]
+    public GameObject m_BulletModelPrefab;
+    public float m_FireRate;
     public float m_Speed;
+    public float m_Gravity;
     // bullet
     // vfx
     #endregion
@@ -28,6 +31,8 @@ public class GunTemplate : MonoBehaviour
     private GunData m_GunData;
 
     // Bullet things
+    private List<GameObject> m_BulletInstances;
+    private BulletBehaviour m_BulletBehaviour;
     private Transform m_BulletSpawnPoint;
 
     public struct GunData
@@ -53,12 +58,13 @@ public class GunTemplate : MonoBehaviour
 
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
 
-        InitBullet();
+        InitBullets();
     }
 
 
-    private void InitBullet()
+    private void InitBullets()
     {
+        //m_BulletInstances.Add(Instantiate(m_BulletModelPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation));
         m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
     }
 
@@ -85,11 +91,11 @@ public class GunTemplate : MonoBehaviour
     private void Update()
     {
         m_GunModel.transform.rotation = m_GunData.RootTransform.rotation;
-        
-        Vector3 nextOffsetpos = (m_GunData.RootTransform.right * m_PositionOffset.x) +
+
+        Vector3 offsetPos = (m_GunData.RootTransform.right * m_PositionOffset.x) +
             (m_GunData.RootTransform.up * m_PositionOffset.y) +
             (m_GunData.RootTransform.forward * m_PositionOffset.z);
 
-        m_GunModel.transform.position = m_GunData.RootTransform.position + nextOffsetpos;
+        m_GunModel.transform.position = m_GunData.RootTransform.position + offsetPos;
     }
 }

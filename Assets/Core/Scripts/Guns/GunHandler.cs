@@ -12,7 +12,7 @@ public class GunHandler : MonoBehaviour
 
     [Header("Gun Locker")]
     public int m_DefaultGun;
-    public GameObject[] m_ProjectileGunVariantPrefabs;
+    public GameObject[] m_ProjectileGunVariantPrefab;
     #endregion
 
     private GameObject[] m_ProjectileGunClones;
@@ -25,15 +25,15 @@ public class GunHandler : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
 
 
-    public int GetNumOfGuns()
-    {
-        return m_NumOfGuns;
-    }
-
-
     public GameObject GetActiveGun()
     {
         return m_ActiveGun;
+    }
+
+
+    public int GetNumOfGuns()
+    {
+        return m_NumOfGuns;
     }
 
 
@@ -64,10 +64,10 @@ public class GunHandler : MonoBehaviour
 
     private void CreateGunInstances()
     {
-        m_ProjectileGunClones = new GameObject[m_ProjectileGunVariantPrefabs.Length];
-        for(int i = 0; i < m_ProjectileGunVariantPrefabs.Length; ++i)
+        m_ProjectileGunClones = new GameObject[m_ProjectileGunVariantPrefab.Length];
+        for(int i = 0; i < m_ProjectileGunVariantPrefab.Length; ++i)
         {
-            m_ProjectileGunClones[i] = Instantiate(m_ProjectileGunVariantPrefabs[i], Vector3.zero, Quaternion.identity);
+            m_ProjectileGunClones[i] = Instantiate(m_ProjectileGunVariantPrefab[i], Vector3.zero, Quaternion.identity);
             m_ProjectileGunClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
             m_ProjectileGunClones[i].SetActive(false);
         }
