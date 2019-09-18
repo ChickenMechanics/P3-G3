@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     // Lazy test gun
     private GunHandler m_Gunhandler;
-    private int gunIdx = 0;
+    private int m_CurrentGunIdx = 0;
 
 
     void Start()
@@ -129,9 +129,9 @@ public class PlayerController : MonoBehaviour
         // Lazy test gun
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0.0f)
         {
-            ++gunIdx;
-            if (gunIdx > m_Gunhandler.GetNumOfGuns() - 1) gunIdx = 0;
-            m_Gunhandler.SetActiveGun(gunIdx);
+            ++m_CurrentGunIdx;
+            if (m_CurrentGunIdx > m_Gunhandler.GetNumOfGuns() - 1) m_CurrentGunIdx = 0;
+            m_Gunhandler.SetActiveGun(m_CurrentGunIdx);
         }
     }
 
