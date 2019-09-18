@@ -17,7 +17,7 @@ public class GunHandler : MonoBehaviour
 
     private GameObject[] m_ProjectileGunClones;
     private GameObject m_ActiveGun;
-    private GunTemplate m_ActiveGunData;
+    private GunTemplate m_ActiveGunScr;
     private int m_ActiveGunIdx;
 
 
@@ -36,7 +36,13 @@ public class GunHandler : MonoBehaviour
 
         m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
-        m_ActiveGunData = m_ActiveGun.GetComponent<GunTemplate>();
+        m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
+
+
+        //CreateGunInstances();
+
+        //m_ProjectileGunClones[m_ActiveGunIdx].SetActive(true);
+        //m_ActiveGunScr = m_ProjectileGunClones[m_ActiveGunIdx].GetComponent<GunTemplate>();
     }
 
 
@@ -49,8 +55,18 @@ public class GunHandler : MonoBehaviour
             m_ActiveGun.SetActive(false);
             m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
             m_ActiveGun.SetActive(true);
-            m_ActiveGunData = m_ActiveGun.GetComponent<GunTemplate>();
+            m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
         }
+
+        //if (idx != m_ActiveGunIdx)
+        //{
+        //    m_ProjectileGunClones[m_ActiveGunIdx].SetActive(false);
+
+        //    m_ActiveGunIdx = idx;
+
+        //    m_ProjectileGunClones[m_ActiveGunIdx].SetActive(true);
+        //    m_ActiveGunScr = m_ProjectileGunClones[m_ActiveGunIdx].GetComponent<GunTemplate>();
+        //}
     }
 
 
@@ -70,10 +86,4 @@ public class GunHandler : MonoBehaviour
     {
         Init();
     }
-
-
-    //void Update()
-    //{
-
-    //}
 }

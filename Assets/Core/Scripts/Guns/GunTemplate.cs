@@ -53,14 +53,33 @@ public class GunTemplate : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        if(m_GunModel != null)
+        {
+            m_GunModel.SetActive(true);
+        }
+    }
+
+
+    private void OnDisable()
+    {
+        if (m_GunModel != null)
+        {
+            m_GunModel.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_GunModel.SetActive(false);
+        }
+    }
+
+
     private void Update()
     {
         m_GunModel.transform.rotation = m_GunData.RootTransform.rotation;
+        
+        Vector3 nextOffsetpos = (m_GunData.RootTransform.right * m_PositionOffset.x) +
+            (m_GunData.RootTransform.up * m_PositionOffset.y) +
+            (m_GunData.RootTransform.forward * m_PositionOffset.z);
 
-        Vector3 right = m_GunData.RootTransform.right * m_PositionOffset.x;
-        Vector3 up = m_GunData.RootTransform.up * m_PositionOffset.y;
-        Vector3 forward = m_GunData.RootTransform.forward * m_PositionOffset.z;
-
-        m_GunModel.transform.position = m_GunData.RootTransform.position + right + up + forward;
+        m_GunModel.transform.position = m_GunData.RootTransform.position + nextOffsetpos;
     }
 }
