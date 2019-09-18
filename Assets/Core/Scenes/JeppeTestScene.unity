@@ -571,6 +571,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &636840932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6173133017477013598, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1352175889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &636840939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636840932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e6db92c58200b4fb05124440ee75c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CameraTransform: {fileID: 621986974}
+  m_DefaultGun: 1
+  m_ProjectileGunVariantPrefabs:
+  - {fileID: 5323138225672100435, guid: a8774ef10dcf0494cb875d7bdffcac31, type: 3}
+  - {fileID: 1126388341864239195, guid: f8299a3da94c34a42a97227ca08854ac, type: 3}
 --- !u!1001 &1352175889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,6 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173133017477013598, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c, type: 3}
