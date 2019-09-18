@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GunHandler : MonoBehaviour
 {
-    GunHandler() { m_ActiveGunIdx = -1; }
+    GunHandler() { m_ActiveGunIdx = 0; }
 
     #region design vars
     public Transform m_CameraTransform;     // Acts as weapon root transform
@@ -30,15 +30,23 @@ public class GunHandler : MonoBehaviour
     }
 
 
+    public void Init()
+    {
+        CreateGunInstances();
+
+        m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
+        m_ActiveGun.SetActive(true);
+        m_ActiveGunData = m_ActiveGun.GetComponent<GunTemplate>();
+    }
+
+
     public void SetActiveGun(int idx)
     {
-        if(idx != m_ActiveGunIdx)
+        if (idx != m_ActiveGunIdx)
         {
             m_ActiveGunIdx = idx;
 
-            if(m_ActiveGun != null)
-                m_ActiveGun.SetActive(false);
-
+            m_ActiveGun.SetActive(false);
             m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
             m_ActiveGun.SetActive(true);
             m_ActiveGunData = m_ActiveGun.GetComponent<GunTemplate>();
@@ -52,6 +60,7 @@ public class GunHandler : MonoBehaviour
         for(int i = 0; i < m_ProjectileGunVariantPrefabs.Length; ++i)
         {
             m_ProjectileGunClones[i] = Instantiate(m_ProjectileGunVariantPrefabs[i], Vector3.zero, Quaternion.identity);
+            m_ProjectileGunClones[i].GetComponent<GunTemplate>().Init(m_CameraTransform);
             m_ProjectileGunClones[i].SetActive(false);
         }
     }
@@ -59,14 +68,12 @@ public class GunHandler : MonoBehaviour
 
     void Start()
     {
-        CreateGunInstances();
-        SetActiveGun(m_DefaultGun);
+        Init();
     }
 
 
-    void Update()
-    {
-        m_ActiveGunData.m_GunData.Rotation = m_CameraTransform.rotation;
-        m_ActiveGunData.m_GunData.Position = m_CameraTransform.position;
-    }
+    //void Update()
+    //{
+
+    //}
 }

@@ -5,22 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody m_Rb;
-    Camera m_CameraPoint;
-    GameObject m_PlayerCameraPoint;
-    GameObject m_GunPoint;
-
-    Vector3 m_MoveDir;
-    Vector3 m_ForwardForce;
-    Vector3 m_StrafeForce;
-
-    Vector2 m_NextLookRotation;
-    Vector2 m_CurrentLookRotation;
-
-    float m_ForwardSpeed;
-    float m_StrafeSpeed;
-    float m_SpeedScaler;
-
     #region design vars
     [Header("Movement")]
     public float m_AccelerationForce = 100.0f;
@@ -36,6 +20,26 @@ public class PlayerController : MonoBehaviour
     public float m_LookPitchMax = -98.0f;
     #endregion
 
+    Rigidbody m_Rb;
+    Camera m_CameraPoint;
+    GameObject m_PlayerEyePoint;
+    GameObject m_GunPoint;
+
+    Vector3 m_MoveDir;
+    Vector3 m_ForwardForce;
+    Vector3 m_StrafeForce;
+
+    Vector2 m_NextLookRotation;
+    Vector2 m_CurrentLookRotation;
+
+    float m_ForwardSpeed;
+    float m_StrafeSpeed;
+    float m_SpeedScaler;
+
+    // Lazy test gun
+    private GunHandler m_Gunhandler;
+    private int gunIdx = 0;
+
 
     void Start()
     {
@@ -43,10 +47,10 @@ public class PlayerController : MonoBehaviour
 
         m_Rb = GetComponent<Rigidbody>();
 
-        m_PlayerCameraPoint = GameObject.FindGameObjectWithTag("CameraPoint");
+        m_PlayerEyePoint = GameObject.FindGameObjectWithTag("CameraPoint");
         m_CameraPoint = Camera.main;
-        m_CameraPoint.transform.position = m_PlayerCameraPoint.transform.position;
-        m_CameraPoint.transform.SetParent(m_PlayerCameraPoint.transform);
+        m_CameraPoint.transform.position = m_PlayerEyePoint.transform.position;
+        m_CameraPoint.transform.SetParent(m_PlayerEyePoint.transform);
 
         m_MoveDir = Vector3.zero;
         m_ForwardForce = Vector3.zero;
@@ -61,6 +65,9 @@ public class PlayerController : MonoBehaviour
         m_SpeedScaler = 50.0f;
         m_ForwardSpeed *= m_SpeedScaler;
         m_StrafeSpeed *= m_SpeedScaler;
+
+        // Lazy test gun
+        m_Gunhandler = GetComponent<GunHandler>();
     }
 
 
@@ -117,6 +124,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        // Lazy test gun
+        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0.0f)
+        {
+            ++gunIdx;
+            if (gunIdx > 1) gunIdx = 0;
+            m_Gunhandler.SetActiveGun(gunIdx);
+        }
     }
 
 
