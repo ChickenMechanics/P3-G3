@@ -6,7 +6,7 @@ using UnityEngine;
 public class GunTemplate : MonoBehaviour
 {
     #region design vars
-    [Header("Object Data")]
+    [Header("Gun Properties")]
     public GameObject m_GunModelPrefab;
     public Vector3 m_PositionOffset;
     [Range(-1.0f, 1.0f)]
@@ -17,16 +17,18 @@ public class GunTemplate : MonoBehaviour
     public float m_RotationZ;
     private Vector3 m_Rotation = Vector3.zero;
 
-    [Header("Properties")]
+    [Header("Bullet Properties")]
     public float m_Speed;
     // bullet
     // vfx
     #endregion
 
+    // Gun thingss
     private GameObject m_GunModel;
-    [HideInInspector]
-    public GunData m_GunData;
+    private GunData m_GunData;
 
+    // Bullet things
+    private Transform m_BulletSpawnPoint;
 
     public struct GunData
     {
@@ -44,12 +46,20 @@ public class GunTemplate : MonoBehaviour
     }
 
 
-    public void Init(Transform root)
+    public void InitGun(Transform root)
     {
         m_GunData.RootTransform = root;
         m_GunData.Speed = m_Speed;
 
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
+
+        InitBullet();
+    }
+
+
+    private void InitBullet()
+    {
+        m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
     }
 
 
