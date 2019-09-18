@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1796519740106304080
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8749727740502736658}
-  m_Layer: 0
-  m_Name: GunPoint
-  m_TagString: GunPoint
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8749727740502736658
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796519740106304080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6173133017477013599}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6173133016675627142
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +45,7 @@ GameObject:
   - component: {fileID: 6173133017477013595}
   - component: {fileID: 6173133017477013590}
   - component: {fileID: 2075415279}
+  - component: {fileID: 7513966817599881030}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Untagged
@@ -94,7 +65,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6237033431594310668}
-  - {fileID: 8749727740502736658}
   m_Father: {fileID: 6173133016675627143}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,10 +162,20 @@ MonoBehaviour:
   m_MouseSmooth: 0.4
   m_LookPitchMin: 98
   m_LookPitchMax: -98
-  m_GunPreFab: {fileID: 5372270634108018531, guid: 8c2e3c2a2a898c948beb58bbd7fe7a07,
+--- !u!114 &7513966817599881030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173133017477013598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e6db92c58200b4fb05124440ee75c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GunVariantPrefab: {fileID: 5309622901360772628, guid: dabf0f09a1549744593ef4b3ebc015db,
     type: 3}
-  m_PositionOffset: {x: 0.2, y: 0.2, z: 0.5}
-  m_Rotation: -5
 --- !u!1 &6743543962614658949
 GameObject:
   m_ObjectHideFlags: 0

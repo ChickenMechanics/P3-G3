@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody m_Rb;
-    Camera m_PlayerCam;
+    Camera m_CameraPoint;
     GameObject m_PlayerCameraPoint;
-    GameObject m_PlayerGunPoint;
+    GameObject m_GunPoint;
 
     Vector3 m_MoveDir;
     Vector3 m_ForwardForce;
@@ -34,14 +34,16 @@ public class PlayerController : MonoBehaviour
     public float m_LookPitchMin = 98.0f;
     [Range(-100.0f, 0.0f)]
     public float m_LookPitchMax = -98.0f;
-
-    [Header("Gun")]
-    public GameObject m_GunPreFab;
-    public Vector3 m_PositionOffset = new Vector3(0.2f, 0.2f, 0.5f);
-    public float m_Rotation = -5;
     #endregion
 
-    GameObject m_GunInstance;
+
+
+    //[Header("Gun")]
+    //public GameObject m_GunPreFab;
+    ////public Vector3 m_PositionOffset = new Vector3(0.2f, 0.2f, 0.5f);
+    ////public float m_Rotation = -5;
+
+    //GameObject m_GunInstance;
 
 
     void Start()
@@ -51,15 +53,25 @@ public class PlayerController : MonoBehaviour
         m_Rb = GetComponent<Rigidbody>();
 
         m_PlayerCameraPoint = GameObject.FindGameObjectWithTag("CameraPoint");
-        m_PlayerCam = Camera.main;
-        m_PlayerCam.transform.position = m_PlayerCameraPoint.transform.position;
-        m_PlayerCam.transform.SetParent(m_PlayerCameraPoint.transform);
+        m_CameraPoint = Camera.main;
+        m_CameraPoint.transform.position = m_PlayerCameraPoint.transform.position;
+        m_CameraPoint.transform.SetParent(m_PlayerCameraPoint.transform);
 
-        m_PlayerGunPoint = GameObject.FindGameObjectWithTag("GunPoint");
-        m_GunInstance = Instantiate(m_GunPreFab, m_PlayerGunPoint.transform.position, Quaternion.identity);
-        m_GunInstance.transform.forward = m_PlayerGunPoint.transform.forward;
-        m_GunInstance.transform.position = m_PlayerGunPoint.transform.position;
-        m_GunInstance.transform.SetParent(m_PlayerGunPoint.transform);
+
+
+        //m_GunPoint = GameObject.FindGameObjectWithTag("GunPoint");
+        //Gun gunScript = m_GunPreFab.GetComponent<Gun>();
+        //gunScript.SetCameraPoint(m_CameraPoint.transform);
+
+
+
+        //m_PlayerGunPoint = GameObject.FindGameObjectWithTag("GunPoint");
+        //m_GunInstance = Instantiate(m_GunPreFab, m_PlayerGunPoint.transform.position, Quaternion.identity);
+        //m_GunInstance.transform.forward = m_PlayerGunPoint.transform.forward;
+        //m_GunInstance.transform.position = m_PlayerGunPoint.transform.position;
+        //m_GunInstance.transform.SetParent(m_PlayerGunPoint.transform);
+
+
 
         m_MoveDir = Vector3.zero;
         m_ForwardForce = Vector3.zero;
@@ -79,12 +91,12 @@ public class PlayerController : MonoBehaviour
 
     private void Gun()
     {
-        m_PlayerGunPoint.transform.eulerAngles = m_PlayerCam.transform.eulerAngles;
+        //m_GunPoint.transform.eulerAngles = m_CameraPoint.transform.eulerAngles;
 
-        m_PlayerGunPoint.transform.position = m_PlayerCam.transform.position +
-            ((m_PlayerCam.transform.right * m_PositionOffset.x) +
-            (-m_PlayerCam.transform.up * m_PositionOffset.y) +
-            (m_PlayerCam.transform.forward * m_PositionOffset.z));
+        //m_GunPoint.transform.position = m_CameraPoint.transform.position +
+        //    ((m_CameraPoint.transform.right * m_PositionOffset.x) +
+        //    (-m_CameraPoint.transform.up * m_PositionOffset.y) +
+        //    (m_CameraPoint.transform.forward * m_PositionOffset.z));
     }
 
 
@@ -118,11 +130,11 @@ public class PlayerController : MonoBehaviour
 
         m_CurrentLookRotation.y = Mathf.Clamp(m_CurrentLookRotation.y, m_LookPitchMax, m_LookPitchMin);
 
-        m_PlayerCam.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
-        m_PlayerCam.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
+        m_CameraPoint.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
+        m_CameraPoint.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
 
         transform.eulerAngles = new Vector3(0.0f, m_CurrentLookRotation.x, 0.0f);
-        m_PlayerCam.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
+        m_CameraPoint.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
     }
 
 
