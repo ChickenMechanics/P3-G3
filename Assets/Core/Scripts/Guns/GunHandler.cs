@@ -19,9 +19,16 @@ public class GunHandler : MonoBehaviour
     private GameObject m_ActiveGun;
     private GunTemplate m_ActiveGunScr;
     private int m_ActiveGunIdx;
+    private int m_NumOfGuns;
 
 
     //----------------------------------------------------------------------------------------------------
+
+
+    public int GetNumOfGuns()
+    {
+        return m_NumOfGuns;
+    }
 
 
     public GameObject GetActiveGun()
@@ -37,12 +44,6 @@ public class GunHandler : MonoBehaviour
         m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
         m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
-
-
-        //CreateGunInstances();
-
-        //m_ProjectileGunClones[m_ActiveGunIdx].SetActive(true);
-        //m_ActiveGunScr = m_ProjectileGunClones[m_ActiveGunIdx].GetComponent<GunTemplate>();
     }
 
 
@@ -57,16 +58,6 @@ public class GunHandler : MonoBehaviour
             m_ActiveGun.SetActive(true);
             m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
         }
-
-        //if (idx != m_ActiveGunIdx)
-        //{
-        //    m_ProjectileGunClones[m_ActiveGunIdx].SetActive(false);
-
-        //    m_ActiveGunIdx = idx;
-
-        //    m_ProjectileGunClones[m_ActiveGunIdx].SetActive(true);
-        //    m_ActiveGunScr = m_ProjectileGunClones[m_ActiveGunIdx].GetComponent<GunTemplate>();
-        //}
     }
 
 
@@ -79,6 +70,8 @@ public class GunHandler : MonoBehaviour
             m_ProjectileGunClones[i].GetComponent<GunTemplate>().Init(m_CameraTransform);
             m_ProjectileGunClones[i].SetActive(false);
         }
+
+        m_NumOfGuns = m_ProjectileGunClones.Length;
     }
 
 

@@ -124,12 +124,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        Look();
 
         // Lazy test gun
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0.0f)
         {
             ++gunIdx;
-            if (gunIdx > 1) gunIdx = 0;
+            if (gunIdx > m_Gunhandler.GetNumOfGuns() - 1) gunIdx = 0;
             m_Gunhandler.SetActiveGun(gunIdx);
         }
     }
@@ -143,6 +144,6 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Look();
+        
     }
 }
