@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     float m_StrafeSpeed;
     float m_SpeedScaler;
 
-    #region DesignerVariables
+    #region design vars
     [Header("Movement")]
     public float m_AccelerationForce = 100.0f;
     public float m_Speed = 10.0f;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [Header("Look")]
     public float m_LookSensitivity = 4;
     [Range(0.0f, 1.0f)]
-    public float m_MouseSmooth = 0.4f;
+    public float m_LookSmooth = 0.4f;
     [Range(0.0f, 100.0f)]
     public float m_LookPitchMin = 98.0f;
     [Range(-100.0f, 0.0f)]
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     private void Look()
     {
         Vector2 mouseLook = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * m_LookSensitivity;  // Y is pitch, x is yaw
-        m_NextLookRotation = Vector2.Lerp(m_NextLookRotation, mouseLook, m_MouseSmooth);
+        m_NextLookRotation = Vector2.Lerp(m_NextLookRotation, mouseLook, m_LookSmooth);
         m_CurrentLookRotation += m_NextLookRotation;
 
         if (m_CurrentLookRotation.x > 360.0f) m_CurrentLookRotation.x = 0.0f;
