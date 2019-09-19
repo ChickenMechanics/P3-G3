@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1140613929829535091, guid: 497428f1a95f52941aebcfffd1dcb001,
         type: 3}
       propertyPath: m_Name
-      value: BulletTemplate
+      value: StickGunBullet
       objectReference: {fileID: 0}
     - target: {fileID: 1140613929829535090, guid: 497428f1a95f52941aebcfffd1dcb001,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 5763680578345443234, guid: 497428f1a95f52941aebcfffd1dcb001,
         type: 3}
       propertyPath: m_Speed
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 497428f1a95f52941aebcfffd1dcb001, type: 3}

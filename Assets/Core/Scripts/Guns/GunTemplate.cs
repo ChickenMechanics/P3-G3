@@ -21,9 +21,11 @@ public class GunTemplate : MonoBehaviour
     // Gun things
     private GameObject m_GunModel;
     private GunData m_GunData;
+    private Transform m_BulletSpawnPoint;
     // Ammunition things
-    private List<GameObject> m_BulletClones;
-    private List<BulletBehaviour> m_BulletCloneBehaviourScrs;
+    private List<GameObject> m_BulletPrefabClones;
+    private List<BulletBehaviour> m_BulletBehaviourScripts;
+    private int m_NextFreeBullet;
 
 
     public struct GunData
@@ -33,6 +35,13 @@ public class GunTemplate : MonoBehaviour
 
 
     //----------------------------------------------------------------------------------------------------
+
+
+    private void Awake()
+    {
+        m_BulletPrefabClones = new List<GameObject>();
+        m_BulletBehaviourScripts = new List<BulletBehaviour>();
+    }
 
 
     public GameObject GetGunModel()
@@ -45,31 +54,53 @@ public class GunTemplate : MonoBehaviour
     {
         m_GunData.RootTransform = root;
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
+        m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
 
         InitMagazine();
-
-
-        //// Test
-        //m_GunData.RootTransform = root;
-        //m_GunData.Speed = m_Speed;
-        //m_GunModel = Instantiate(m_GunModelPrefab, Vector3.zero, Quaternion.identity);
-        //m_GunModel.transform.SetParent(gameObject.transform);
-        //InitBullets();
     }
-
+    
 
     private void InitMagazine()
     {
-        m_BulletClones = new List<GameObject>();
-        m_BulletCloneBehaviourScrs = new List<BulletBehaviour>();
-        Vector3 spawnPos = m_GunModel.transform.GetChild(0).transform.position;
+        if(m_BulletBehaviourScripts.Count > 0)  m_BulletBehaviourScripts.Clear();
+        if (m_BulletPrefabClones.Count > 0)     m_BulletPrefabClones.Clear();
 
-        //for (int i = 0; i < m_MagazineSize; ++i)
-        //{
-        //    m_BulletClones.Add(Instantiate(m_BulletModelPrefab, spawnPos, Quaternion.identity));
-        //    m_BulletCloneBehaviourScrs.Add(m_BulletCloneBehaviourScrs[i].GetComponent<BulletBehaviour>());
-        //    m_BulletCloneBehaviourScrs[i].InitBullet();
-        //}
+        Vector3 spawnPos = m_GunModel.transform.GetChild(0).transform.position;
+        Quaternion spawnRot = m_GunModel.transform.GetChild(0).rotation;
+
+        for (int i = 0; i < m_MagazineSize; ++i)
+        {
+            GameObject bulletClone = Instantiate(m_BulletModelPrefab, spawnPos, spawnRot);
+            BulletBehaviour bulletScr = bulletClone.GetComponent<BulletBehaviour>();
+
+            bulletScr.InitBullet();
+            bulletClone.SetActive(false);
+
+            m_BulletPrefabClones.Add(bulletClone);
+            m_BulletBehaviourScripts.Add(bulletScr);
+        }
+
+        m_NextFreeBullet = m_MagazineSize - 1;
+    }
+
+
+    public void Fire(Vector3 dir)
+    {
+        if(m_BulletBehaviourScripts.Count == 0)
+        {
+            if(m_BulletBehaviourScripts[0] == null) return;
+            Debug.LogError("GunTemplate::Fire(): No bollit clones in magazine!");
+        }
+
+        BulletBehaviour bulletScr = m_BulletBehaviourScripts[m_NextFreeBullet];
+        GameObject bulletClone = m_BulletPrefabClones[m_NextFreeBullet];
+
+        bulletScr.Fire(m_BulletSpawnPoint, dir);
+        m_BulletBehaviourScripts.Remove(bulletScr);
+        m_BulletPrefabClones.Remove(bulletClone);
+
+        if (m_NextFreeBullet == 0) return;
+        --m_NextFreeBullet;
     }
 
 

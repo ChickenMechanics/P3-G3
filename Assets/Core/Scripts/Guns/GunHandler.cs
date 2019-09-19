@@ -15,7 +15,7 @@ public class GunHandler : MonoBehaviour
     public GameObject[] m_ProjectileGunPrefab;
     #endregion
 
-    private GameObject[] m_gunClones;
+    private GameObject[] m_GunPrefabClones;
     private GameObject m_ActiveGun;
     private GunTemplate m_ActiveGunScr;
     private int m_ActiveGunIdx;
@@ -42,7 +42,7 @@ public class GunHandler : MonoBehaviour
         CreateGunInstances();
 
         m_ActiveGunIdx = m_DefaultGun;
-        m_ActiveGun = m_gunClones[m_ActiveGunIdx];
+        m_ActiveGun = m_GunPrefabClones[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
         m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
     }
@@ -55,7 +55,7 @@ public class GunHandler : MonoBehaviour
             m_ActiveGunIdx = idx;
 
             m_ActiveGun.SetActive(false);
-            m_ActiveGun = m_gunClones[m_ActiveGunIdx];
+            m_ActiveGun = m_GunPrefabClones[m_ActiveGunIdx];
             m_ActiveGun.SetActive(true);
             m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
         }
@@ -64,15 +64,21 @@ public class GunHandler : MonoBehaviour
 
     private void CreateGunInstances()
     {
-        m_gunClones = new GameObject[m_ProjectileGunPrefab.Length];
+        m_GunPrefabClones = new GameObject[m_ProjectileGunPrefab.Length];
         for (int i = 0; i < m_ProjectileGunPrefab.Length; ++i)
         {
-            m_gunClones[i] = Instantiate(m_ProjectileGunPrefab[i], Vector3.zero, Quaternion.identity);
-            m_gunClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
-            m_gunClones[i].SetActive(false);
+            m_GunPrefabClones[i] = Instantiate(m_ProjectileGunPrefab[i], Vector3.zero, Quaternion.identity);
+            m_GunPrefabClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
+            m_GunPrefabClones[i].SetActive(false);
         }
 
-        m_NumOfGuns = m_gunClones.Length;
+        m_NumOfGuns = m_GunPrefabClones.Length;
+    }
+
+
+    public void Fire(Vector3 dir)
+    {
+        m_ActiveGunScr.Fire(dir);
     }
 
 
