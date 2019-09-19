@@ -15,9 +15,15 @@ public class BulletBehaviour : MonoBehaviour
     #endregion
 
     // Bullet things
-    private List<GameObject> m_BulletInstances;
+    private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
     private Transform m_BulletSpawnPoint;
+
+
+    private void InitBullet()
+    {
+        m_BulletModel = Instantiate(m_BulletModelPrefab, Vector3.zero, Quaternion.identity);
+    }
 
 
     // Start is called before the first frame update
@@ -30,5 +36,12 @@ public class BulletBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    private void OnDestroy()
+    {
+        Destroy(m_BulletModel);
+        Destroy(this);
     }
 }

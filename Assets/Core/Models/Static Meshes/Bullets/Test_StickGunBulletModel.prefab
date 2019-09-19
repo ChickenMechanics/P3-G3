@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8684942991686254619}
   - component: {fileID: 3174118326353614678}
   - component: {fileID: 3852598939157420671}
-  - component: {fileID: 8583092025810049770}
   m_Layer: 0
   m_Name: Casing
   m_TagString: Untagged
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8583092025810049770
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2944152440624361850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5739132833334473553
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5574942681205683751}
+  - component: {fileID: 3388049514579435000}
   m_Layer: 0
   m_Name: Test_TommyBulletModel
   m_TagString: Untagged
@@ -125,6 +111,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3388049514579435000
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739132833334473553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!1 &7272464688644167514
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +135,6 @@ GameObject:
   - component: {fileID: 8435425036396957730}
   - component: {fileID: 3778422131845556472}
   - component: {fileID: 356756041265943174}
-  - component: {fileID: 9092831883420789370}
   m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
@@ -204,16 +202,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &9092831883420789370
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7272464688644167514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

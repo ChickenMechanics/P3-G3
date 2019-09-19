@@ -16,16 +16,13 @@ public class GunTemplate : MonoBehaviour
     [Range(-1.0f, 1.0f)]
     public float m_RotationZ;
     private Vector3 m_Rotation = Vector3.zero;
+
+    [Header("Bullet Prefab")]
     #endregion
 
-    // Gun thingss
     private GameObject m_GunModel;
     private GunData m_GunData;
 
-    // Bullet things
-    private List<GameObject> m_BulletInstances;
-    private BulletBehaviour m_BulletBehaviour;
-    private Transform m_BulletSpawnPoint;
 
     public struct GunData
     {
@@ -48,7 +45,7 @@ public class GunTemplate : MonoBehaviour
 
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
 
-        InitBullets();
+        //InitBullets();
 
 
         //// Test
@@ -66,7 +63,7 @@ public class GunTemplate : MonoBehaviour
     private void InitBullets()
     {
         //m_BulletInstances.Add(Instantiate(m_BulletModelPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation));
-        m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
+        //m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
     }
 
 
