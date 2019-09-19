@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -276,7 +276,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 040096adde8dbfb47ac14fccd53284aa, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7b5c569847e298c45b05163d7eb11045, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraTransform: {fileID: 621986974}
-  m_DefaultGun: 0
+  m_DefaultGun: 2
   m_ProjectileGunVariantPrefab:
   - {fileID: 8678613932508494780, guid: dbc616c19f0f5754d9ff7e11d74eeda4, type: 3}
   - {fileID: 5323138225672100435, guid: a8774ef10dcf0494cb875d7bdffcac31, type: 3}
@@ -603,6 +603,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6173133016675627142, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerPlaceholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173133017477013598, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6173133016675627143, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -657,16 +667,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173133016675627142, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerPlaceholder
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173133017477013598, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6237033431594310668, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c,
         type: 3}
