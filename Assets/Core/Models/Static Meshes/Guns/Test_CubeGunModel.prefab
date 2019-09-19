@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8540790459683469515}
   - component: {fileID: 7476999043628387717}
   - component: {fileID: 3241765031932103018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Test_CubeGunModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

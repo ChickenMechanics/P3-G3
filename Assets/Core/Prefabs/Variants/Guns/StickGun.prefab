@@ -67,46 +67,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_GunModelPrefab
-      value: 
-      objectReference: {fileID: 5073771882693359517, guid: 8c2e3c2a2a898c948beb58bbd7fe7a07,
-        type: 3}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Rotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Position.y
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Position.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Position.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.y
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.z
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 289dddbc950e31a44bd6a2d2ac87e056, type: 3}
