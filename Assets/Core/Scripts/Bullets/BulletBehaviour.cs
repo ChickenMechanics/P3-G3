@@ -57,15 +57,17 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        transform.position += ((m_Dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f)) * Time.deltaTime;
-    }
-
-
     private void OnDestroy()
     {
         //Destroy(m_BulletModel);
         Destroy(this);
+    }
+
+
+    private void FixedUpdate()
+    {
+        transform.position += ((m_Dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f)) * Time.deltaTime;
+
+        //TODO: Destroy after max range and walls and enemies and all that
     }
 }
