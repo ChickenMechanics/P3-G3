@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3699964495512172307}
   - component: {fileID: 8622357711075521616}
   - component: {fileID: 6628616476939862035}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Test_StickGunModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

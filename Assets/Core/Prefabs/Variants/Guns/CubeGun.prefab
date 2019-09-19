@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubeGun
       objectReference: {fileID: 0}
+    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
+        type: 3}
+      propertyPath: m_GunModelPrefab
+      value: 
+      objectReference: {fileID: 8061520891324914738, guid: 066ef0885ec3b9145ba30acd8ff63467,
+        type: 3}
     - target: {fileID: 6534874803871990342, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,37 +72,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_GunModelPrefab
-      value: 
-      objectReference: {fileID: 8061520891324914738, guid: 066ef0885ec3b9145ba30acd8ff63467,
-        type: 3}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Rotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_Position.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.y
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 289dddbc950e31a44bd6a2d2ac87e056, type: 3}

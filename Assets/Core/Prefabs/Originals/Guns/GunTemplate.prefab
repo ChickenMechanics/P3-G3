@@ -43,9 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0b181a1dcebbc49a656434bf8b5ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GunModelPrefab: {fileID: 0}
-  m_PositionOffset: {x: 0, y: 0, z: 0}
+  m_GunModelPrefab: {fileID: 5073771882693359517, guid: 8c2e3c2a2a898c948beb58bbd7fe7a07,
+    type: 3}
+  m_PositionOffset: {x: 0.3, y: -0.3, z: 0.5}
   m_RotationX: 0
   m_RotationY: 0
   m_RotationZ: 0
+  m_BulletModelPrefab: {fileID: 0}
+  m_FireRate: 0
   m_Speed: 0
+  m_Gravity: 0
