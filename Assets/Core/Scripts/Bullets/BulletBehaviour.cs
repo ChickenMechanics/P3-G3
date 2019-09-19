@@ -20,17 +20,17 @@ public class BulletBehaviour : MonoBehaviour
     private Transform m_BulletSpawnPoint;
 
 
-    private void InitBullet()
+    public void InitBullet()
     {
         m_BulletModel = Instantiate(m_BulletModelPrefab, Vector3.zero, Quaternion.identity);
     }
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void Ignite()
     {
-        
+
     }
+
 
     // Update is called once per frame
     void Update()

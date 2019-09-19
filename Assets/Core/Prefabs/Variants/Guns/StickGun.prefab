@@ -17,6 +17,22 @@ PrefabInstance:
       propertyPath: m_PositionOffset.z
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
+        type: 3}
+      propertyPath: m_BulletModelPrefab
+      value: 
+      objectReference: {fileID: 8529337610761379439, guid: 1a1dcb53e2f419245a90cd9cfd0fecf5,
+        type: 3}
+    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
+        type: 3}
+      propertyPath: m_FireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
+        type: 3}
+      propertyPath: m_MagazineSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6534874803871990342, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_LocalPosition.x

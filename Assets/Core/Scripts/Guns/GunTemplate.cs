@@ -6,22 +6,24 @@ using UnityEngine;
 public class GunTemplate : MonoBehaviour
 {
     #region design vars
-    [Header("Gun Properties")]
+    [Header("Model")]
     public GameObject m_GunModelPrefab;
     public Vector3 m_PositionOffset;
-    [Range(-1.0f, 1.0f)]
-    public float m_RotationX;
-    [Range(-1.0f, 1.0f)]
-    public float m_RotationY;
-    [Range(-1.0f, 1.0f)]
-    public float m_RotationZ;
-    private Vector3 m_Rotation = Vector3.zero;
+
+    [Header("Properties")]
+    public int m_FireRate;
+    public int m_MagazineSize;
 
     [Header("Bullet Prefab")]
+    public GameObject m_BulletModelPrefab;
     #endregion
 
+    // Gun things
     private GameObject m_GunModel;
     private GunData m_GunData;
+    // Ammunition things
+    private List<GameObject> m_BulletClones;
+    private List<BulletBehaviour> m_BulletCloneBehaviourScrs;
 
 
     public struct GunData
@@ -42,28 +44,32 @@ public class GunTemplate : MonoBehaviour
     public void InitGun(Transform root)
     {
         m_GunData.RootTransform = root;
-
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
 
-        //InitBullets();
+        InitMagazine();
 
 
         //// Test
         //m_GunData.RootTransform = root;
         //m_GunData.Speed = m_Speed;
-
         //m_GunModel = Instantiate(m_GunModelPrefab, Vector3.zero, Quaternion.identity);
-
         //m_GunModel.transform.SetParent(gameObject.transform);
-
         //InitBullets();
     }
 
 
-    private void InitBullets()
+    private void InitMagazine()
     {
-        //m_BulletInstances.Add(Instantiate(m_BulletModelPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation));
-        //m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
+        m_BulletClones = new List<GameObject>();
+        m_BulletCloneBehaviourScrs = new List<BulletBehaviour>();
+        Vector3 spawnPos = m_GunModel.transform.GetChild(0).transform.position;
+
+        //for (int i = 0; i < m_MagazineSize; ++i)
+        //{
+        //    m_BulletClones.Add(Instantiate(m_BulletModelPrefab, spawnPos, Quaternion.identity));
+        //    m_BulletCloneBehaviourScrs.Add(m_BulletCloneBehaviourScrs[i].GetComponent<BulletBehaviour>());
+        //    m_BulletCloneBehaviourScrs[i].InitBullet();
+        //}
     }
 
 

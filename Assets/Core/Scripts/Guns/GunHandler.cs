@@ -15,7 +15,7 @@ public class GunHandler : MonoBehaviour
     public GameObject[] m_ProjectileGunPrefab;
     #endregion
 
-    private GameObject[] m_ProjectileGunClones;
+    private GameObject[] m_gunClones;
     private GameObject m_ActiveGun;
     private GunTemplate m_ActiveGunScr;
     private int m_ActiveGunIdx;
@@ -42,7 +42,7 @@ public class GunHandler : MonoBehaviour
         CreateGunInstances();
 
         m_ActiveGunIdx = m_DefaultGun;
-        m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
+        m_ActiveGun = m_gunClones[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
         m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
     }
@@ -55,7 +55,7 @@ public class GunHandler : MonoBehaviour
             m_ActiveGunIdx = idx;
 
             m_ActiveGun.SetActive(false);
-            m_ActiveGun = m_ProjectileGunClones[m_ActiveGunIdx];
+            m_ActiveGun = m_gunClones[m_ActiveGunIdx];
             m_ActiveGun.SetActive(true);
             m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
         }
@@ -64,18 +64,15 @@ public class GunHandler : MonoBehaviour
 
     private void CreateGunInstances()
     {
-        m_ProjectileGunClones = new GameObject[m_ProjectileGunPrefab.Length];
+        m_gunClones = new GameObject[m_ProjectileGunPrefab.Length];
         for (int i = 0; i < m_ProjectileGunPrefab.Length; ++i)
         {
-            m_ProjectileGunClones[i] = Instantiate(m_ProjectileGunPrefab[i], Vector3.zero, Quaternion.identity);
-            m_ProjectileGunClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
-            m_ProjectileGunClones[i].SetActive(false);
-
-            //// Test
-            //m_ProjectileGunClones[i].transform.SetParent(m_CameraTransform);
+            m_gunClones[i] = Instantiate(m_ProjectileGunPrefab[i], Vector3.zero, Quaternion.identity);
+            m_gunClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
+            m_gunClones[i].SetActive(false);
         }
 
-        m_NumOfGuns = m_ProjectileGunClones.Length;
+        m_NumOfGuns = m_gunClones.Length;
     }
 
 
