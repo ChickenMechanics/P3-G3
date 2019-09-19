@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GunModelPrefab: {fileID: 5073771882693359517, guid: 8c2e3c2a2a898c948beb58bbd7fe7a07,
     type: 3}
-  m_PositionOffset: {x: 0.3, y: -0.3, z: 0.5}
+  m_PositionOffset: {x: 0.49, y: -0.3, z: 0.5}
   m_RotationX: 0
   m_RotationY: 0
   m_RotationZ: 0
