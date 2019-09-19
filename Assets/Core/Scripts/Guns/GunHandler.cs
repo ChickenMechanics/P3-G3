@@ -65,11 +65,14 @@ public class GunHandler : MonoBehaviour
     private void CreateGunInstances()
     {
         m_ProjectileGunClones = new GameObject[m_ProjectileGunVariantPrefab.Length];
-        for(int i = 0; i < m_ProjectileGunVariantPrefab.Length; ++i)
+        for (int i = 0; i < m_ProjectileGunVariantPrefab.Length; ++i)
         {
             m_ProjectileGunClones[i] = Instantiate(m_ProjectileGunVariantPrefab[i], Vector3.zero, Quaternion.identity);
             m_ProjectileGunClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
             m_ProjectileGunClones[i].SetActive(false);
+
+            //// Test
+            //m_ProjectileGunClones[i].transform.SetParent(m_CameraTransform);
         }
 
         m_NumOfGuns = m_ProjectileGunClones.Length;

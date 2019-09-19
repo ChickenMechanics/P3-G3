@@ -16,14 +16,6 @@ public class GunTemplate : MonoBehaviour
     [Range(-1.0f, 1.0f)]
     public float m_RotationZ;
     private Vector3 m_Rotation = Vector3.zero;
-
-    [Header("Bullet Properties")]
-    public GameObject m_BulletModelPrefab;
-    public float m_FireRate;
-    public float m_Speed;
-    public float m_Gravity;
-    // bullet
-    // vfx
     #endregion
 
     // Gun thingss
@@ -38,7 +30,6 @@ public class GunTemplate : MonoBehaviour
     public struct GunData
     {
         public Transform RootTransform;
-        public float Speed;
     }
 
 
@@ -54,11 +45,21 @@ public class GunTemplate : MonoBehaviour
     public void InitGun(Transform root)
     {
         m_GunData.RootTransform = root;
-        m_GunData.Speed = m_Speed;
 
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
 
         InitBullets();
+
+
+        //// Test
+        //m_GunData.RootTransform = root;
+        //m_GunData.Speed = m_Speed;
+
+        //m_GunModel = Instantiate(m_GunModelPrefab, Vector3.zero, Quaternion.identity);
+
+        //m_GunModel.transform.SetParent(gameObject.transform);
+
+        //InitBullets();
     }
 
 
