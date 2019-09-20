@@ -8,6 +8,7 @@ TagManager:
   - GunPoint
   - CameraPoint
   - Enemy
+  - DestroyBullet
   layers:
   - Default
   - TransparentFX

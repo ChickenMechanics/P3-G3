@@ -8,7 +8,7 @@ public class BulletBehaviour : MonoBehaviour
     #region design vars
     [Header("Bullet Properties")]
     //public GameObject m_BulletModelPrefab;
-    public float m_FireRate;
+    //public float m_FireRate;
     public float m_Speed;
     public float m_Gravity;
     public float m_MaxLifetimeInSec;
@@ -37,9 +37,6 @@ public class BulletBehaviour : MonoBehaviour
         m_BulletSpawnPoint = spawnPoint;
         m_Dir = dir;
 
-        //m_BulletModel.transform.position = m_BulletSpawnPoint.position;
-        //m_BulletModel.transform.rotation = m_BulletSpawnPoint.rotation;
-
         transform.position = m_BulletSpawnPoint.position;
         transform.rotation = m_BulletSpawnPoint.rotation;
 
@@ -49,22 +46,12 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        //if (m_BulletModel != null)
-        //{
-        //    m_BulletModel.SetActive(true);
-        //}
-        
         gameObject.SetActive(true);
     }
 
 
     private void OnDisable()
     {
-        //if (m_BulletModel != null)
-        //{
-        //    m_BulletModel.SetActive(false);
-        //}
-
         gameObject.SetActive(false);
     }
 
@@ -81,6 +68,11 @@ public class BulletBehaviour : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(this);
+        }
+        else if(other.CompareTag("DestroyBullet"))
+        {
+            Destroy(this);
+            Destroy(other.gameObject);
         }
     }
 

@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
             m_Gunhandler.SetActiveGun(m_CurrentGunIdx);
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
             m_Gunhandler.Fire(m_CameraPoint.transform.forward);
         }
