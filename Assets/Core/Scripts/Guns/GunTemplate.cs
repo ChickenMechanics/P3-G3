@@ -163,19 +163,5 @@ public class GunTemplate : MonoBehaviour
             UpdateTransform();
             UpdateMagazine();
         }
-
-
-
-
-        //if (m_GunModel != null)
-        //{
-        //    m_GunModel.transform.rotation = m_GunData.RootTransform.rotation;
-
-        //    Vector3 offsetPos = (m_GunData.RootTransform.right * m_PositionOffset.x) +
-        //        (m_GunData.RootTransform.up * m_PositionOffset.y) +
-        //        (m_GunData.RootTransform.forward * m_PositionOffset.z);
-
-        //    m_GunModel.transform.position = m_GunData.RootTransform.position + offsetPos;
-        //}
     }
 }

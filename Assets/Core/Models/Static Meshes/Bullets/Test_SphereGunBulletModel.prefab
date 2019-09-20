@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6338238677575995443}
   - component: {fileID: 1582337314098431680}
+  - component: {fileID: -352030810737643676}
   m_Layer: 0
   m_Name: Test_SphereGunBulletModel
   m_TagString: Untagged
@@ -123,3 +124,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-352030810737643676
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483933563529327813}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1

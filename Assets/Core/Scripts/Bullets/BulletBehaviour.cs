@@ -69,10 +69,10 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(this);
         }
-        else if(other.CompareTag("DestroyBullet"))
+
+        if (other.CompareTag("DestroyBullet"))
         {
             Destroy(this);
-            Destroy(other.gameObject);
         }
     }
 
