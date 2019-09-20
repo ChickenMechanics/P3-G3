@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd2199b7705fc1448f8fba9c3b74023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletModelPrefab: {fileID: 0}
+  m_BulletModelPrefab: {fileID: 5739132833334473553, guid: bbe4d7993384b3a49b3e729e5a2c10d7,
+    type: 3}
   m_FireRate: 0
-  m_Speed: 0
+  m_Speed: 10
   m_Gravity: 0
+  m_MaxLifetimeInSec: 2
