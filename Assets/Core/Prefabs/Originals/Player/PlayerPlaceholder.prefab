@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6173133017477013590}
   - component: {fileID: 2075415279}
   - component: {fileID: 636840939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraTransform: {fileID: 0}
-  m_DefaultGun: 2
+  m_DefaultGun: 0
   m_ProjectileGunPrefab:
   - {fileID: 8678613932508494780, guid: dbc616c19f0f5754d9ff7e11d74eeda4, type: 3}
   - {fileID: 5323138225672100435, guid: a8774ef10dcf0494cb875d7bdffcac31, type: 3}
