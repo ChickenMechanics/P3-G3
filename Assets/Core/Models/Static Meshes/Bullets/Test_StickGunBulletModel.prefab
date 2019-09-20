@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5574942681205683751}
   - component: {fileID: 3388049514579435000}
   m_Layer: 0
-  m_Name: Test_TommyBulletModel
+  m_Name: Test_StickGunBulletModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

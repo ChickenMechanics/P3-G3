@@ -7,7 +7,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     #region design vars
     [Header("Bullet Properties")]
-    public GameObject m_BulletModelPrefab;
+    //public GameObject m_BulletModelPrefab;
     public float m_FireRate;
     public float m_Speed;
     public float m_Gravity;
@@ -16,7 +16,7 @@ public class BulletBehaviour : MonoBehaviour
     // vfx
     #endregion
     
-    private GameObject m_BulletModel;
+    //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
     private Transform m_BulletSpawnPoint;
     private Vector3 m_Dir;
@@ -25,8 +25,8 @@ public class BulletBehaviour : MonoBehaviour
 
     public void InitBullet()
     {
-        m_BulletModel = Instantiate(m_BulletModelPrefab, Vector3.zero, Quaternion.identity);
-        m_BulletModel.transform.SetParent(transform);
+        //m_BulletModel = Instantiate(m_BulletModelPrefab, Vector3.zero, Quaternion.identity);
+        //m_BulletModel.transform.SetParent(transform);
 
         m_CurrentLifeTime = 0.0f;
     }
@@ -37,8 +37,11 @@ public class BulletBehaviour : MonoBehaviour
         m_BulletSpawnPoint = spawnPoint;
         m_Dir = dir;
 
-        m_BulletModel.transform.position = m_BulletSpawnPoint.position;
-        m_BulletModel.transform.rotation = m_BulletSpawnPoint.rotation;
+        //m_BulletModel.transform.position = m_BulletSpawnPoint.position;
+        //m_BulletModel.transform.rotation = m_BulletSpawnPoint.rotation;
+
+        transform.position = m_BulletSpawnPoint.position;
+        transform.rotation = m_BulletSpawnPoint.rotation;
 
         gameObject.SetActive(true);
     }
@@ -46,26 +49,39 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        if (m_BulletModel != null)
-        {
-            m_BulletModel.SetActive(true);
-        }
+        //if (m_BulletModel != null)
+        //{
+        //    m_BulletModel.SetActive(true);
+        //}
+        
+        gameObject.SetActive(true);
     }
 
 
     private void OnDisable()
     {
-        if (m_BulletModel != null)
-        {
-            m_BulletModel.SetActive(false);
-        }
+        //if (m_BulletModel != null)
+        //{
+        //    m_BulletModel.SetActive(false);
+        //}
+
+        gameObject.SetActive(false);
     }
 
 
     private void OnDestroy()
     {
-        //Destroy(m_BulletModel);
         Destroy(this);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Destroy(this);
+        }
     }
 
 
@@ -78,7 +94,5 @@ public class BulletBehaviour : MonoBehaviour
         {
             Destroy(this);
         }
-
-        //TODO: Destroy after max range and walls and enemies and all that
     }
 }
