@@ -88,8 +88,8 @@ public class GunTemplate : MonoBehaviour
     {
         if(m_BulletBehaviourScripts.Count == 0)
         {
-            if(m_BulletBehaviourScripts[0] == null) return;
             Debug.LogError("GunTemplate::Fire(): No bollit clones in magazine!");
+            return;
         }
 
         BulletBehaviour bulletScr = m_BulletBehaviourScripts[m_NextFreeBullet];

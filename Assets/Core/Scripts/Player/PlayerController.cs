@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         m_Rb = GetComponent<Rigidbody>();
 
