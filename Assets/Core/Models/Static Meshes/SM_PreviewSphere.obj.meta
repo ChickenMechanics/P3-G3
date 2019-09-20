@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: PreviewSphere_PreviewSphereMat
-    second: {fileID: 2100000, guid: ce19b89e8f5d78343b984ad9aa7ce93f, type: 2}
+    second: {fileID: 2100000, guid: d248ec8bad1f72a40857445b325a9c8b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
