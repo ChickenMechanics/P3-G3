@@ -73,12 +73,9 @@ public class BulletBehaviour : MonoBehaviour
     {
         transform.position += ((m_Dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f)) * Time.deltaTime;
 
-        Debug.Log(m_CurrentLifeTime);
         m_CurrentLifeTime += Time.deltaTime;
-
         if (m_CurrentLifeTime > m_MaxLifetimeInSec)
         {
-            
             Destroy(this);
         }
 
