@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraTransform: {fileID: 0}
-  m_DefaultGun: 0
+  m_DefaultGun: 2
   m_ProjectileGunPrefab:
   - {fileID: 8678613932508494780, guid: dbc616c19f0f5754d9ff7e11d74eeda4, type: 3}
   - {fileID: 5323138225672100435, guid: a8774ef10dcf0494cb875d7bdffcac31, type: 3}
