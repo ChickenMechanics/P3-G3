@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+// TODO_ Make this a scriptable object and create it in player or wherever
 public class GunHandler : MonoBehaviour
 {
     GunHandler() { m_ActiveGunIdx = 0; }
 
     #region design vars
-    public Transform m_CameraTransform;     // Acts as weapon root transform
-
     [Header("Gun Locker")]
     public int m_DefaultGun;
     public GameObject[] m_ProjectileGunPrefab;
@@ -65,11 +64,15 @@ public class GunHandler : MonoBehaviour
     private void CreateGunInstances()
     {
         m_GunPrefabClones = new GameObject[m_ProjectileGunPrefab.Length];
+        Transform parent = GameObject.Find("Camera Point").transform;
         for (int i = 0; i < m_ProjectileGunPrefab.Length; ++i)
         {
             m_GunPrefabClones[i] = Instantiate(m_ProjectileGunPrefab[i], Vector3.zero, Quaternion.identity);
-            m_GunPrefabClones[i].GetComponent<GunTemplate>().InitGun(m_CameraTransform);
             m_GunPrefabClones[i].SetActive(false);
+            m_GunPrefabClones[i].transform.rotation = parent.transform.rotation;
+            m_GunPrefabClones[i].transform.position = parent.transform.position;
+            m_GunPrefabClones[i].transform.SetParent(parent);
+            m_GunPrefabClones[i].GetComponent<GunTemplate>().InitGun();
         }
 
         m_NumOfGuns = m_GunPrefabClones.Length;
@@ -79,11 +82,5 @@ public class GunHandler : MonoBehaviour
     public void Fire(Vector3 dir)
     {
         m_ActiveGunScr.Fire(dir);
-    }
-
-
-    void Start()
-    {
-        Init();
     }
 }

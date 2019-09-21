@@ -21,34 +21,18 @@ public class GunTemplate : MonoBehaviour
 
     // Gun things
     private GameObject m_GunModel;
-    private GunData m_GunData;
     private Transform m_BulletSpawnPoint;
     // Ammunition things
     private List<GameObject> m_BulletPrefabClones;
     private List<BulletBehaviour> m_BulletBehaviourScripts;
+    private GameObject m_BulletParent;
     private int m_NextFreeBullet;
 
-    private float m_FireRateInSec;
+    private float m_Rpm;
     private float m_TimePastSinceLastFire;
 
 
-    public struct GunData
-    {
-        public Transform RootTransform;
-    }
-
-
     //----------------------------------------------------------------------------------------------------
-
-
-    private void Awake()
-    {
-        m_BulletPrefabClones = new List<GameObject>();
-        m_BulletBehaviourScripts = new List<BulletBehaviour>();
-
-        m_FireRateInSec = 1.0f / m_FireRate;
-        m_TimePastSinceLastFire = m_FireRateInSec;
-    }
 
 
     public GameObject GetGunModel()
@@ -57,15 +41,26 @@ public class GunTemplate : MonoBehaviour
     }
 
 
-    public void InitGun(Transform root)
+    public void InitGun()
     {
-        m_GunData.RootTransform = root;
+        m_BulletPrefabClones = new List<GameObject>();
+        m_BulletBehaviourScripts = new List<BulletBehaviour>();
+
+        m_BulletParent = new GameObject("Bullets");
+        m_BulletParent.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
+
+        // TODO: Do actual firerate
+        m_Rpm = 1.0f / m_FireRate;
+        m_TimePastSinceLastFire = m_Rpm;
+
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
+        m_GunModel.transform.position = transform.position;
+        m_GunModel.transform.SetParent(transform);
         m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
 
         InitMagazine();
     }
-    
+
 
     private void InitMagazine()
     {
@@ -82,6 +77,7 @@ public class GunTemplate : MonoBehaviour
 
             bulletScr.InitBullet();
             bulletClone.SetActive(false);
+            bulletClone.transform.SetParent(m_BulletParent.transform);
 
             m_BulletPrefabClones.Add(bulletClone);
             m_BulletBehaviourScripts.Add(bulletScr);
@@ -95,20 +91,18 @@ public class GunTemplate : MonoBehaviour
     {
         // Time is resetted in fire
 
-        if (m_TimePastSinceLastFire < m_FireRateInSec)
+        if (m_TimePastSinceLastFire < m_Rpm)
             m_TimePastSinceLastFire += Time.deltaTime;
     }
 
 
     private void UpdateTransform()
     {
-        m_GunModel.transform.rotation = m_GunData.RootTransform.rotation;
+        Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
+            (transform.up * m_PositionOffset.y) +
+            (transform.forward * m_PositionOffset.z);
 
-        Vector3 offsetPos = (m_GunData.RootTransform.right * m_PositionOffset.x) +
-            (m_GunData.RootTransform.up * m_PositionOffset.y) +
-            (m_GunData.RootTransform.forward * m_PositionOffset.z);
-
-        m_GunModel.transform.position = m_GunData.RootTransform.position + offsetPos;
+        m_GunModel.transform.position = transform.position + offsetPos;
     }
 
 
@@ -120,7 +114,7 @@ public class GunTemplate : MonoBehaviour
             return;
         }
 
-        if (m_TimePastSinceLastFire >= m_FireRateInSec)
+        if (m_TimePastSinceLastFire >= m_Rpm)
         {
             m_TimePastSinceLastFire = 0.0f;
 
@@ -142,6 +136,8 @@ public class GunTemplate : MonoBehaviour
         if(m_GunModel != null)
         {
             m_GunModel.SetActive(true);
+            m_GunModel.transform.rotation = transform.rotation;
+            m_GunModel.transform.position = transform.position;
         }
     }
 
@@ -150,8 +146,8 @@ public class GunTemplate : MonoBehaviour
     {
         if (m_GunModel != null)
         {
-            m_GunModel.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
             m_GunModel.SetActive(false);
+            m_GunModel.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
         }
     }
 

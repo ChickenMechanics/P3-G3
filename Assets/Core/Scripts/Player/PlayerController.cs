@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float m_Speed = 10.0f;
 
     [Header("Look")]
+    public float m_EyeHeight = 0.5f;
     public float m_LookSensitivity = 4;
     [Range(0.0f, 1.0f)]
     public float m_LookSmooth = 0.4f;
@@ -20,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public float m_LookPitchMax = -98.0f;
     #endregion
 
-    private Camera m_CameraPoint;
+    private Camera m_MainCam;
+    private Camera m_FPSCam;
     private Rigidbody m_Rb;
     private GameObject m_PlayerEyePoint;
-    private GameObject m_GunPoint;
+    private GameObject m_EyePoint;
 
     private Vector3 m_MoveDir;
     private Vector3 m_ForwardForce;
@@ -32,28 +34,30 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_NextLookRotation;
     private Vector2 m_CurrentLookRotation;
 
-    float m_ForwardSpeed;
-    float m_StrafeSpeed;
-    float m_SpeedScaler;
+    private float m_ForwardSpeed;
+    private float m_StrafeSpeed;
+    private float m_SpeedScaler;
+
+    private float m_EyePointOffsetZ;
 
     // Lazy test gun
     private GunHandler m_Gunhandler;
     private int m_CurrentGunIdx = 0;
 
 
-    void Start()
+    void Awake()
     {
+        // Cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        m_CameraPoint = Camera.main;
-        m_PlayerEyePoint = GameObject.FindGameObjectWithTag("CameraPoint");
-        m_CameraPoint = Camera.main;
-        m_CameraPoint.transform.position = m_PlayerEyePoint.transform.position;
-        m_CameraPoint.transform.SetParent(m_PlayerEyePoint.transform);
+        // Camera
+        CameraSetup();
 
+        // Rb
         m_Rb = GetComponent<Rigidbody>();
 
+        // Transform
         m_MoveDir = Vector3.zero;
         m_ForwardForce = Vector3.zero;
         m_StrafeForce = Vector3.zero;
@@ -70,6 +74,36 @@ public class PlayerController : MonoBehaviour
 
         // Lazy test gun
         m_Gunhandler = GetComponent<GunHandler>();
+        m_Gunhandler.Init();
+    }
+
+
+    private void CameraSetup()
+    {
+        if (m_PlayerEyePoint == null)
+        {
+            m_EyePointOffsetZ = 0.4f;
+            m_PlayerEyePoint = new GameObject("Camera Point");
+            m_PlayerEyePoint.transform.rotation = transform.rotation;
+            m_PlayerEyePoint.transform.position = transform.position + new Vector3(0.0f, m_EyeHeight, m_EyePointOffsetZ);
+            m_PlayerEyePoint.transform.SetParent(transform);
+        }
+
+        if(m_MainCam == null)
+        {
+            m_MainCam = Camera.main;
+            m_MainCam.transform.rotation = m_PlayerEyePoint.transform.rotation;
+            m_MainCam.transform.position = m_PlayerEyePoint.transform.position;
+            m_MainCam.transform.SetParent(m_PlayerEyePoint.transform);
+        }
+
+        if(m_FPSCam == null)
+        {
+            m_FPSCam = GameObject.Find("FPS Camera").GetComponent<Camera>();
+            m_FPSCam.transform.rotation = m_PlayerEyePoint.transform.rotation;
+            m_FPSCam.transform.position = m_PlayerEyePoint.transform.position;
+            m_FPSCam.transform.SetParent(m_PlayerEyePoint.transform);
+        }
     }
 
 
@@ -108,11 +142,13 @@ public class PlayerController : MonoBehaviour
 
         m_CurrentLookRotation.y = Mathf.Clamp(m_CurrentLookRotation.y, m_LookPitchMax, m_LookPitchMin);
 
-        m_CameraPoint.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
-        m_CameraPoint.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
-
+        // PlayerCapsule
         transform.eulerAngles = new Vector3(0.0f, m_CurrentLookRotation.x, 0.0f);
-        m_CameraPoint.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
+
+        // Camera // Works, but I don't really know...
+        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
+        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
+        m_PlayerEyePoint.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
     }
 
 
@@ -130,8 +166,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Move();
         Look();
+        Move();
 
         // Lazy test gun
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0.0f)
@@ -143,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButton(0))
         {
-            m_Gunhandler.Fire(m_CameraPoint.transform.forward);
+            m_Gunhandler.Fire(m_PlayerEyePoint.transform.forward);
         }
     }
 
@@ -151,5 +187,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         FixedMove();
+    }
+
+
+    private void OnEnable()
+    {
+        CameraSetup();
     }
 }
