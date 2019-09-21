@@ -25,9 +25,6 @@ public class BulletBehaviour : MonoBehaviour
 
     public void InitBullet()
     {
-        //m_BulletModel = Instantiate(m_BulletModelPrefab, Vector3.zero, Quaternion.identity);
-        //m_BulletModel.transform.SetParent(transform);
-
         m_CurrentLifeTime = 0.0f;
     }
 

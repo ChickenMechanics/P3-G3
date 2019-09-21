@@ -49,8 +49,6 @@ public class GunTemplate : MonoBehaviour
         m_BulletParent = new GameObject("Bullets");
         m_BulletParent.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
 
-        // TODO: Do actual firerate
-        //m_Rpm = 1.0f / m_FireRate;
         m_Rpm = 60.0f / m_RoundsPerMinute;
         m_TimePastSinceLastFire = m_Rpm;
 
@@ -100,8 +98,8 @@ public class GunTemplate : MonoBehaviour
     private void UpdateTransform()
     {
         Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
-            (transform.up * m_PositionOffset.y) +
-            (transform.forward * m_PositionOffset.z);
+                            (transform.up * m_PositionOffset.y) +
+                            (transform.forward * m_PositionOffset.z);
 
         m_GunModel.transform.position = transform.position + offsetPos;
     }
@@ -137,8 +135,13 @@ public class GunTemplate : MonoBehaviour
         if(m_GunModel != null)
         {
             m_GunModel.SetActive(true);
+
+            Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
+                                (transform.up * m_PositionOffset.y) +
+                                (transform.forward * m_PositionOffset.z);
+
             m_GunModel.transform.rotation = transform.rotation;
-            m_GunModel.transform.position = transform.position;
+            m_GunModel.transform.position = transform.position + offsetPos;
         }
     }
 
