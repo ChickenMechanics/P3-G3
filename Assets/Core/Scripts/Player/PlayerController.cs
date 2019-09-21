@@ -20,17 +20,17 @@ public class PlayerController : MonoBehaviour
     public float m_LookPitchMax = -98.0f;
     #endregion
 
-    Rigidbody m_Rb;
-    Camera m_CameraPoint;
-    GameObject m_PlayerEyePoint;
-    GameObject m_GunPoint;
+    private Camera m_CameraPoint;
+    private Rigidbody m_Rb;
+    private GameObject m_PlayerEyePoint;
+    private GameObject m_GunPoint;
 
-    Vector3 m_MoveDir;
-    Vector3 m_ForwardForce;
-    Vector3 m_StrafeForce;
+    private Vector3 m_MoveDir;
+    private Vector3 m_ForwardForce;
+    private Vector3 m_StrafeForce;
 
-    Vector2 m_NextLookRotation;
-    Vector2 m_CurrentLookRotation;
+    private Vector2 m_NextLookRotation;
+    private Vector2 m_CurrentLookRotation;
 
     float m_ForwardSpeed;
     float m_StrafeSpeed;
@@ -46,12 +46,13 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        m_Rb = GetComponent<Rigidbody>();
-
+        m_CameraPoint = Camera.main;
         m_PlayerEyePoint = GameObject.FindGameObjectWithTag("CameraPoint");
         m_CameraPoint = Camera.main;
         m_CameraPoint.transform.position = m_PlayerEyePoint.transform.position;
         m_CameraPoint.transform.SetParent(m_PlayerEyePoint.transform);
+
+        m_Rb = GetComponent<Rigidbody>();
 
         m_MoveDir = Vector3.zero;
         m_ForwardForce = Vector3.zero;
@@ -82,6 +83,11 @@ public class PlayerController : MonoBehaviour
 
         if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
         {
+            if (m_MoveDir.x != 0.0f && m_MoveDir.z != 0.0f)
+            {
+                m_MoveDir /= Mathf.Sqrt(m_MoveDir.x * m_MoveDir.x + m_MoveDir.z * m_MoveDir.z);
+            }
+
             m_ForwardForce = transform.forward;
             m_ForwardForce *= m_ForwardSpeed * m_MoveDir.z * Time.deltaTime;
 
