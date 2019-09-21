@@ -12,7 +12,7 @@ public class GunTemplate : MonoBehaviour
 
     [Header("Properties")]
     //public bool m_AutoFire;
-    public int m_FireRate;
+    public int m_RoundsPerMinute;
     public int m_MagazineSize;
 
     [Header("Bullet Prefab")]
@@ -50,7 +50,8 @@ public class GunTemplate : MonoBehaviour
         m_BulletParent.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
 
         // TODO: Do actual firerate
-        m_Rpm = 1.0f / m_FireRate;
+        //m_Rpm = 1.0f / m_FireRate;
+        m_Rpm = 60.0f / m_RoundsPerMinute;
         m_TimePastSinceLastFire = m_Rpm;
 
         m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
@@ -116,8 +117,6 @@ public class GunTemplate : MonoBehaviour
 
         if (m_TimePastSinceLastFire >= m_Rpm)
         {
-            m_TimePastSinceLastFire = 0.0f;
-
             BulletBehaviour bulletScr = m_BulletBehaviourScripts[m_NextFreeBullet];
             GameObject bulletClone = m_BulletPrefabClones[m_NextFreeBullet];
 
@@ -126,7 +125,9 @@ public class GunTemplate : MonoBehaviour
             m_BulletPrefabClones.Remove(bulletClone);
 
             if (m_NextFreeBullet == 0) return;
+
             --m_NextFreeBullet;
+            m_TimePastSinceLastFire = 0.0f;
         }
     }
 

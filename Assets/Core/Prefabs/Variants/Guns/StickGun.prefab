@@ -26,12 +26,12 @@ PrefabInstance:
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_FireRate
-      value: 32
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_MagazineSize
-      value: 10000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
@@ -39,6 +39,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5073771882693359517, guid: 8c2e3c2a2a898c948beb58bbd7fe7a07,
         type: 3}
+    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
+        type: 3}
+      propertyPath: m_RoundsPerMinute
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 6534874803871990342, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_LocalPosition.x
