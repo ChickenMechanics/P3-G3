@@ -36,6 +36,12 @@ public class GunHandler : MonoBehaviour
     }
 
 
+    public int GetActiveGunIdx()
+    {
+        return m_ActiveGunIdx;
+    }
+
+
     public void Init()
     {
         CreateGunInstances();

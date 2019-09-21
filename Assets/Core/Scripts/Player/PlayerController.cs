@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     #region design vars
     [Header("Movement")]
-    public float m_AccelerationForce = 100.0f;
-    public float m_Speed = 10.0f;
+    public float m_MoveAcceleration = 100.0f;
+    public float m_MaxMoveSpeed = 10.0f;
 
     [Header("Look")]
     public float m_EyeHeight = 0.5f;
@@ -34,15 +34,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_NextLookRotation;
     private Vector2 m_CurrentLookRotation;
 
-    private float m_ForwardSpeed;
-    private float m_StrafeSpeed;
-    private float m_SpeedScaler;
-
+    private float m_ForwardAccel;
+    private float m_StrafeAccel;
+    private float m_AccelScaler;
     private float m_EyePointOffsetZ;
 
-    // Lazy test gun
+    // Lazy gun
     private GunHandler m_Gunhandler;
-    private int m_CurrentGunIdx = 0;
+    private int m_CurrentGunIdx;
 
 
     void Awake()
@@ -65,16 +64,14 @@ public class PlayerController : MonoBehaviour
         m_NextLookRotation = Vector2.zero;
         m_CurrentLookRotation = Vector2.zero;
 
-        m_ForwardSpeed = m_AccelerationForce;
-        m_StrafeSpeed = m_AccelerationForce;
-
-        m_SpeedScaler = 50.0f;
-        m_ForwardSpeed *= m_SpeedScaler;
-        m_StrafeSpeed *= m_SpeedScaler;
+        m_AccelScaler = 50.0f;
+        m_ForwardAccel = m_MoveAcceleration * m_AccelScaler;
+        m_StrafeAccel = m_MoveAcceleration * m_AccelScaler;
 
         // Lazy test gun
         m_Gunhandler = GetComponent<GunHandler>();
         m_Gunhandler.Init();
+        m_CurrentGunIdx = m_Gunhandler.GetActiveGunIdx();
     }
 
 
@@ -112,9 +109,6 @@ public class PlayerController : MonoBehaviour
         m_MoveDir.x = Input.GetAxisRaw("Horizontal");
         m_MoveDir.z = Input.GetAxisRaw("Vertical");
 
-        m_ForwardSpeed = m_AccelerationForce * m_SpeedScaler;
-        m_StrafeSpeed = m_AccelerationForce * m_SpeedScaler;
-
         if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
         {
             if (m_MoveDir.x != 0.0f && m_MoveDir.z != 0.0f)
@@ -123,10 +117,10 @@ public class PlayerController : MonoBehaviour
             }
 
             m_ForwardForce = transform.forward;
-            m_ForwardForce *= m_ForwardSpeed * m_MoveDir.z * Time.deltaTime;
+            m_ForwardForce *= m_ForwardAccel * m_MoveDir.z * Time.deltaTime;
 
             m_StrafeForce = transform.right;
-            m_StrafeForce *= m_StrafeSpeed * m_MoveDir.x * Time.deltaTime;
+            m_StrafeForce *= m_StrafeAccel * m_MoveDir.x * Time.deltaTime;
         }
     }
 
@@ -156,7 +150,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
         {
-            if (m_Rb.velocity.magnitude < m_Speed)
+            if (m_Rb.velocity.magnitude < m_MaxMoveSpeed)
             {
                 m_Rb.AddForce((m_ForwardForce + m_StrafeForce), ForceMode.Force);
             }
@@ -169,11 +163,24 @@ public class PlayerController : MonoBehaviour
         Look();
         Move();
 
-        // Lazy test gun
-        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0.0f)
+        // Lazy gun
+        float wheelDir = Input.GetAxisRaw("Mouse ScrollWheel");
+
+        if(wheelDir != 0.0f)
         {
-            ++m_CurrentGunIdx;
-            if (m_CurrentGunIdx > m_Gunhandler.GetNumOfGuns() - 1) m_CurrentGunIdx = 0;
+            if (wheelDir != 0.1f)
+            {
+                ++m_CurrentGunIdx;
+                if (m_CurrentGunIdx > m_Gunhandler.GetNumOfGuns() - 1)
+                    m_CurrentGunIdx = 0;
+            }
+            else
+            {
+                --m_CurrentGunIdx;
+                if (m_CurrentGunIdx < 0)
+                    m_CurrentGunIdx = m_Gunhandler.GetNumOfGuns() - 1;
+            }
+
             m_Gunhandler.SetActiveGun(m_CurrentGunIdx);
         }
 
