@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         m_ForwardAccel = m_MoveAcceleration * m_AccelScaler;
         m_StrafeAccel = m_MoveAcceleration * m_AccelScaler;
 
-        // Lazy test gun
+        // Temp gun
         m_Gunhandler = GetComponent<GunHandler>();
         m_Gunhandler.Init();
         m_CurrentGunIdx = m_Gunhandler.GetActiveGunIdx();
@@ -104,6 +104,27 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void Look()
+    {
+        Vector2 mouseLook = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * m_LookSensitivity;  // X is yaw, Y is pitch
+        m_NextLookRotation = Vector2.Lerp(m_NextLookRotation, mouseLook, m_LookSmooth);
+        m_CurrentLookRotation += m_NextLookRotation;
+
+        if (m_CurrentLookRotation.x > 360.0f) m_CurrentLookRotation.x = 0.0f;
+        else if (m_CurrentLookRotation.x < -360.0f) m_CurrentLookRotation.x = 0.0f;
+
+        m_CurrentLookRotation.y = Mathf.Clamp(m_CurrentLookRotation.y, m_LookPitchMax, m_LookPitchMin);
+
+        // PlayerCapsule
+        transform.eulerAngles = new Vector3(0.0f, m_CurrentLookRotation.x, 0.0f);
+
+        // Camera // Works, but I don't really know...
+        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
+        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
+        m_PlayerEyePoint.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
+    }
+
+
     private void  Move()
     {
         m_MoveDir.x = Input.GetAxisRaw("Horizontal");
@@ -125,27 +146,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Look()
-    {
-        Vector2 mouseLook = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * m_LookSensitivity;  // Y is pitch, x is yaw
-        m_NextLookRotation = Vector2.Lerp(m_NextLookRotation, mouseLook, m_LookSmooth);
-        m_CurrentLookRotation += m_NextLookRotation;
-
-        if (m_CurrentLookRotation.x > 360.0f) m_CurrentLookRotation.x = 0.0f;
-        else if (m_CurrentLookRotation.x < -360.0f) m_CurrentLookRotation.x = 0.0f;
-
-        m_CurrentLookRotation.y = Mathf.Clamp(m_CurrentLookRotation.y, m_LookPitchMax, m_LookPitchMin);
-
-        // PlayerCapsule
-        transform.eulerAngles = new Vector3(0.0f, m_CurrentLookRotation.x, 0.0f);
-
-        // Camera // Works, but I don't really know...
-        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(-m_CurrentLookRotation.y, Vector3.right);
-        m_PlayerEyePoint.transform.localRotation = Quaternion.AngleAxis(m_CurrentLookRotation.x, Vector3.up);
-        m_PlayerEyePoint.transform.eulerAngles = new Vector3(-m_CurrentLookRotation.y, m_CurrentLookRotation.x, 0.0f);
-    }
-
-
     private void FixedMove()
     {
         if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
@@ -163,9 +163,8 @@ public class PlayerController : MonoBehaviour
         Look();
         Move();
 
-        // Lazy gun
+        // Temp gun
         float wheelDir = Input.GetAxisRaw("Mouse ScrollWheel");
-
         if(wheelDir != 0.0f)
         {
             if (wheelDir != 0.1f)

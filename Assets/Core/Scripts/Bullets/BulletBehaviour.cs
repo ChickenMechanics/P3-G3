@@ -18,8 +18,7 @@ public class BulletBehaviour : MonoBehaviour
     
     //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
-    private Transform m_BulletSpawnPoint;
-    private Vector3 m_Dir;
+    private Vector3 m_Force;
     private float m_CurrentLifeTime;
 
 
@@ -31,11 +30,10 @@ public class BulletBehaviour : MonoBehaviour
 
     public void Fire(Transform spawnPoint, Vector3 dir)
     {
-        m_BulletSpawnPoint = spawnPoint;
-        m_Dir = dir;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
 
-        transform.position = m_BulletSpawnPoint.position;
-        transform.rotation = m_BulletSpawnPoint.rotation;
+        m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
 
         gameObject.SetActive(true);
     }
@@ -75,9 +73,9 @@ public class BulletBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += ((m_Dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f)) * Time.deltaTime;
+        transform.position += m_Force * Time.fixedDeltaTime;
 
-        m_CurrentLifeTime += Time.deltaTime;
+        m_CurrentLifeTime += Time.fixedDeltaTime;
         if (m_CurrentLifeTime > m_MaxLifetimeInSec)
         {
             Destroy(this);

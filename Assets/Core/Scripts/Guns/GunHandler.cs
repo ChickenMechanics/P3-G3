@@ -6,8 +6,6 @@ using UnityEngine;
 // TODO_ Make this a scriptable object and create it in player or wherever
 public class GunHandler : MonoBehaviour
 {
-    GunHandler() { m_ActiveGunIdx = 0; }
-
     #region design vars
     [Header("Gun Locker")]
     public int m_DefaultGun;
@@ -44,6 +42,8 @@ public class GunHandler : MonoBehaviour
 
     public void Init()
     {
+        m_NumOfGuns = 0;
+
         CreateGunInstances();
 
         m_ActiveGunIdx = m_DefaultGun;
@@ -79,9 +79,9 @@ public class GunHandler : MonoBehaviour
             m_GunPrefabClones[i].transform.position = parent.transform.position;
             m_GunPrefabClones[i].transform.SetParent(parent);
             m_GunPrefabClones[i].GetComponent<GunTemplate>().InitGun();
-        }
 
-        m_NumOfGuns = m_GunPrefabClones.Length;
+            ++m_NumOfGuns;
+        }
     }
 
 

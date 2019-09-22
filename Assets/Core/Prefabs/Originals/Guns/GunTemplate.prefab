@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GunModelPrefab: {fileID: 0}
   m_PositionOffset: {x: 0.49, y: -0.3, z: 0.5}
-  m_FireRate: 0
+  m_RoundsPerMinute: 0
   m_MagazineSize: 0
   m_BulletModelPrefab: {fileID: 0}
+  hej: {x: 0, y: 0, z: 7.62, w: 1}
