@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-// TODO: Make this singelton
 public class LevelManager : MonoBehaviour
 {
-    private Animator m_FadeAnim;
+    public static LevelManager Instance { get; private set;}
     private int m_NextSceneIdx;
     private int m_CurrentSceneIdx;
 
     public enum EScene
     {
         MAIN_MENU = 0,
+        OPTIONS,
         ARENA
     }
 
@@ -27,11 +27,14 @@ public class LevelManager : MonoBehaviour
         }
 
         m_NextSceneIdx = (int)scene;
-        m_FadeAnim.SetTrigger("FadeOut");
+        //GameObject.FindGameObjectWithTag("SceneTransitionFade").GetComponent<Animator>().SetTrigger("FadeOut");
+
+        // TODO: Fix the fading between scenes
+        FadeCompleteCallback();
     }
 
 
-    public void FadeSceneCallback()
+    public void FadeCompleteCallback()
     {
         SceneManager.LoadScene(m_NextSceneIdx);
         m_CurrentSceneIdx = m_NextSceneIdx;
@@ -40,22 +43,15 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        m_FadeAnim = GetComponent<Animator>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         m_NextSceneIdx = -1;
         m_CurrentSceneIdx = -1;
-    }
-
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ChangeScene(EScene.ARENA);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ChangeScene(EScene.MAIN_MENU);
-        }
     }
 }

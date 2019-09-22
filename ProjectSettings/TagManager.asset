@@ -9,6 +9,7 @@ TagManager:
   - CameraPoint
   - Enemy
   - DestroyBullet
+  - SceneTransitionFade
   layers:
   - Default
   - TransparentFX
