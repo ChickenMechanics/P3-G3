@@ -26,10 +26,11 @@ public class GunTemplate : MonoBehaviour
     private List<GameObject> m_BulletPrefabClones;
     private List<BulletBehaviour> m_BulletBehaviourScripts;
     private GameObject m_BulletParent;
-    private int m_NextFreeBullet;
-
+    private RaycastHit m_RaycastHit;
+    private float m_RayMaxDist;
     private float m_Rpm;
     private float m_TimePastSinceLastFire;
+    private int m_NextFreeBullet;
 
 
     //----------------------------------------------------------------------------------------------------
@@ -49,6 +50,9 @@ public class GunTemplate : MonoBehaviour
         m_BulletParent = new GameObject("Bullets");
         m_BulletParent.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
 
+        m_RaycastHit = new RaycastHit();
+
+        m_RayMaxDist = 1000.0f;
         m_Rpm = 60.0f / m_RoundsPerMinute;
         m_TimePastSinceLastFire = m_Rpm;
 
@@ -115,10 +119,17 @@ public class GunTemplate : MonoBehaviour
 
         if (m_TimePastSinceLastFire >= m_Rpm)
         {
+            Ray ray = new Ray(transform.position, dir);
+            Vector3 raycastedDir = dir;
+            if (Physics.Raycast(ray, out m_RaycastHit, m_RayMaxDist))
+            {
+                raycastedDir = (m_RaycastHit.point - m_BulletSpawnPoint.position).normalized;
+            }
+
             BulletBehaviour bulletScr = m_BulletBehaviourScripts[m_NextFreeBullet];
             GameObject bulletClone = m_BulletPrefabClones[m_NextFreeBullet];
 
-            bulletScr.Fire(m_BulletSpawnPoint, dir);
+            bulletScr.Fire(m_BulletSpawnPoint, raycastedDir);
             m_BulletBehaviourScripts.Remove(bulletScr);
             m_BulletPrefabClones.Remove(bulletClone);
 

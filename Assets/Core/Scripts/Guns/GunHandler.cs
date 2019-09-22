@@ -18,7 +18,6 @@ public class GunHandler : MonoBehaviour
     private int m_ActiveGunIdx;
     private int m_NumOfGuns;
 
-
     //----------------------------------------------------------------------------------------------------
 
 
@@ -85,7 +84,7 @@ public class GunHandler : MonoBehaviour
     }
 
 
-    public void Fire(Vector3 dir)
+    public void Fire(Vector3 dir)   // Dir equals player camera transform forward
     {
         m_ActiveGunScr.Fire(dir);
     }
