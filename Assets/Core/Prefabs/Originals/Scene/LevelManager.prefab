@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4688583962488113042}
   - component: {fileID: 4688583962488113041}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4688583962488113043
 Transform:
