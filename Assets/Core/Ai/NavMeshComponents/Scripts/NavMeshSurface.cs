@@ -4,7 +4,10 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+
+#if UNITY_EDITOR
 using static UnityEditor.PrefabUtility;
+#endif
 
 namespace Assets.Core.Ai.NavMeshComponents.Scripts
 {
