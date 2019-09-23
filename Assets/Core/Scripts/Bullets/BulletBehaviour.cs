@@ -79,7 +79,7 @@ public class BulletBehaviour : MonoBehaviour
 
 
             Destroy(other.gameObject);
-            //Destroy(this);
+            Destroy(this);
         }
         else if (other.CompareTag("DestroyBullet"))
         {
@@ -90,7 +90,7 @@ public class BulletBehaviour : MonoBehaviour
                 m_SurfaceCollisionParticle.Play();
             }
 
-            //Destroy(this);
+            Destroy(this);
         }
     }
 
