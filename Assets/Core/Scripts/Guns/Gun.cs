@@ -23,8 +23,9 @@ public class Gun : MonoBehaviour
     // Ammunition things
     private List<GameObject> m_BulletPrefabClones;
     private List<BulletBehaviour> m_BulletBehaviourScripts;
-    private GameObject m_BulletParent;
+    private GameObject m_BulletFolder;
     private RaycastHit m_RaycastHit;
+    private Vector3 m_SecretSpot;
     private float m_RayMaxDist;
     private float m_Rpm;
     private float m_TimePastSinceLastFire;
@@ -39,14 +40,21 @@ public class Gun : MonoBehaviour
         m_BulletPrefabClones = new List<GameObject>();
         m_BulletBehaviourScripts = new List<BulletBehaviour>();
 
-        m_BulletParent = new GameObject("Bullets");
-        m_BulletParent.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
+        m_BulletFolder = new GameObject("Bullets");
+        m_BulletFolder.transform.position = new Vector3(5.0f, -10.0f, 0.0f);
 
         m_RaycastHit = new RaycastHit();
+
+        m_SecretSpot = new Vector3(0.0f, -10.0f, 0.0f);
 
         m_RayMaxDist = 1000.0f;
         m_Rpm = 60.0f / m_RoundsPerMinute;
         m_TimePastSinceLastFire = m_Rpm;
+
+        //transform.position = m_PositionOffset;
+        //transform.rotation = Quaternion.identity;
+
+        m_BulletSpawnPoint = transform.GetChild(0);
 
         //m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
         //m_GunModel.transform.position = transform.position;
@@ -62,20 +70,21 @@ public class Gun : MonoBehaviour
         if (m_BulletBehaviourScripts.Count > 0) m_BulletBehaviourScripts.Clear();
         if (m_BulletPrefabClones.Count > 0) m_BulletPrefabClones.Clear();
 
-        //Vector3 spawnPos = m_GunModel.transform.GetChild(0).transform.position;
-        //Quaternion spawnRot = m_GunModel.transform.GetChild(0).rotation;
+        Transform tForm = transform.GetChild(0).transform;
+        Vector3 spawnPos = tForm.position;
+        Quaternion spawnRot = tForm.rotation;
 
         for (int i = 0; i < m_MagazineSize; ++i)
         {
-            //GameObject bulletClone = Instantiate(m_BulletModelPrefab, spawnPos, spawnRot);
-            //BulletBehaviour bulletScr = bulletClone.GetComponent<BulletBehaviour>();
+            GameObject bulletClone = Instantiate(m_BulletModelPrefab, spawnPos, spawnRot);
+            BulletBehaviour bulletScr = bulletClone.GetComponent<BulletBehaviour>();
 
-            //bulletScr.InitBullet();
-            //bulletClone.SetActive(false);
-            //bulletClone.transform.SetParent(m_BulletParent.transform);
+            bulletScr.InitBullet();
+            bulletClone.SetActive(false);
+            bulletClone.transform.SetParent(m_BulletFolder.transform);
 
-            //m_BulletPrefabClones.Add(bulletClone);
-            //m_BulletBehaviourScripts.Add(bulletScr);
+            m_BulletPrefabClones.Add(bulletClone);
+            m_BulletBehaviourScripts.Add(bulletScr);
         }
 
         m_NextFreeBullet = m_MagazineSize - 1;
@@ -97,17 +106,20 @@ public class Gun : MonoBehaviour
                             (transform.up * m_PositionOffset.y) +
                             (transform.forward * m_PositionOffset.z);
 
+        transform.position = transform.position + offsetPos;
         //m_GunModel.transform.position = transform.position + offsetPos;
     }
 
 
     public void Fire(Vector3 dir)
     {
+#if DEBUG
         if (m_BulletBehaviourScripts.Count == 0)
         {
             Debug.LogError("GunTemplate::Fire(): No bollit in clip!");
             return;
         }
+#endif
 
         if (m_TimePastSinceLastFire >= m_Rpm)
         {
@@ -135,36 +147,24 @@ public class Gun : MonoBehaviour
 
     private void OnEnable()
     {
-        //if (m_GunModel != null)
-        //{
-        //    m_GunModel.SetActive(true);
+        Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
+                            (transform.up * m_PositionOffset.y) +
+                            (transform.forward * m_PositionOffset.z);
 
-        //    Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
-        //                        (transform.up * m_PositionOffset.y) +
-        //                        (transform.forward * m_PositionOffset.z);
-
-        //    m_GunModel.transform.rotation = transform.rotation;
-        //    m_GunModel.transform.position = transform.position + offsetPos;
-        //}
+        transform.rotation = transform.rotation;
+        transform.position = transform.position + offsetPos;
     }
 
 
     private void OnDisable()
     {
-        //if (m_GunModel != null)
-        //{
-        //    m_GunModel.SetActive(false);
-        //    m_GunModel.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-        //}
+        transform.position = m_SecretSpot;
     }
 
 
     private void Update()
     {
-        //if (m_GunModel != null)
-        //{
-        //    UpdateTransform();
-        //    UpdateMagazine();
-        //}
+        //UpdateTransform();
+        UpdateMagazine();
     }
 }
