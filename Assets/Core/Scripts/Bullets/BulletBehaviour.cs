@@ -7,8 +7,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     #region design vars
     [Header("Bullet Properties")]
-    //public GameObject m_BulletModelPrefab;
-    //public float m_FireRate;
+    public GameObject m_VFXPrefab;
     public float m_Speed;
     public float m_Gravity;
     public float m_MaxLifetimeInSec;
@@ -66,6 +65,12 @@ public class BulletBehaviour : MonoBehaviour
         }
         else if (other.CompareTag("DestroyBullet"))
         {
+            if(m_VFXPrefab != null)
+            {
+                m_VFXPrefab.GetComponent<ParticleSystem>();
+
+            }
+
             Destroy(this);
         }
     }

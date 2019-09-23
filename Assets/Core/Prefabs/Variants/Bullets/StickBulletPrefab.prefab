@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd2199b7705fc1448f8fba9c3b74023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_VFXPrefab: {fileID: 7006343053202376606, guid: 3462cfab94cd3dd42b188a8c9ab8f048,
+    type: 3}
   m_Speed: 64
   m_Gravity: 0
   m_MaxLifetimeInSec: 5
