@@ -70,6 +70,8 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // TODO: Reusing spent bullets is an idea
+
         if (other.CompareTag("Enemy"))
         {
             // TODO: Move particles to better place
@@ -77,7 +79,6 @@ public class BulletBehaviour : MonoBehaviour
             {
                 m_SurfaceCollisionParticle.Play();
             }
-
 
             Destroy(other.gameObject);
             Destroy(this);

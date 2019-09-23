@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
         float wheelDir = Input.GetAxisRaw("Mouse ScrollWheel");
         if(wheelDir != 0.0f)
         {
-            if (wheelDir != 0.1f)
+            if (wheelDir != -0.1f)
             {
                 ++m_CurrentGunIdx;
                 if (m_CurrentGunIdx > m_Gunhandler.GetNumOfGuns() - 1)

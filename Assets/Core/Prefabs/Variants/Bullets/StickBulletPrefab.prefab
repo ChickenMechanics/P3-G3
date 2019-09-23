@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8347381247988360463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199609460778718432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd2199b7705fc1448f8fba9c3b74023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SurfaceCollisionVfx: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
-    type: 3}
-  m_VfxScale: 0.03
-  m_Speed: 64
-  m_Gravity: 0
-  m_MaxLifetimeInSec: 5
 --- !u!1001 &1849872319144748977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,11 +72,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3852598939157420671, guid: bbe4d7993384b3a49b3e729e5a2c10d7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 889e76ec4c4cf774781d5bb0af44b7b3, type: 2}
+    - target: {fileID: 356756041265943174, guid: bbe4d7993384b3a49b3e729e5a2c10d7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 889e76ec4c4cf774781d5bb0af44b7b3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbe4d7993384b3a49b3e729e5a2c10d7, type: 3}
---- !u!1 &6199609460778718432 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5739132833334473553, guid: bbe4d7993384b3a49b3e729e5a2c10d7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1849872319144748977}
-  m_PrefabAsset: {fileID: 0}

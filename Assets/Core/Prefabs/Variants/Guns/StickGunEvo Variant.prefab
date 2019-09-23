@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3808142711775932299
+--- !u!1001 &2169420781359218867
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,49 +10,34 @@ PrefabInstance:
     - target: {fileID: 9009076799192741336, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_Name
-      value: CubeGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.x
-      value: 0.3
+      value: StickGunEvo Variant
       objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_GunModelPrefab
       value: 
-      objectReference: {fileID: 8061520891324914738, guid: 066ef0885ec3b9145ba30acd8ff63467,
+      objectReference: {fileID: 7669846122983165699, guid: 61cce08f2c816284da1c8eb662b235a5,
         type: 3}
-    - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
-        type: 3}
-      propertyPath: m_PositionOffset.y
-      value: -0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_BulletModelPrefab
       value: 
-      objectReference: {fileID: 60826944042785791, guid: 675e7bf1bf253124abac2cc42dd329c0,
+      objectReference: {fileID: 1323448132845464024, guid: 81fe7783babc9fa438f82be488682bb1,
         type: 3}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
-      propertyPath: m_FireRate
-      value: 50
+      propertyPath: m_RoundsPerMinute
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
       propertyPath: m_MagazineSize
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 27798500036251959, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
-      propertyPath: m_RoundsPerMinute
-      value: 50
+      propertyPath: m_PositionOffset.x
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6534874803871990342, guid: 289dddbc950e31a44bd6a2d2ac87e056,
         type: 3}
