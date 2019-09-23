@@ -36,10 +36,10 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    public void Fire(Transform spawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
+    public void Fire(Transform bulletSpawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
     {
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
+        transform.position = bulletSpawnPoint.position;
+        transform.rotation = bulletSpawnPoint.rotation;
 
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
 
@@ -72,6 +72,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         // TODO: Reusing spent bullets is an idea
 
+        // TODO: Do this better
         if (other.CompareTag("Enemy"))
         {
             // TODO: Move particles to better place
