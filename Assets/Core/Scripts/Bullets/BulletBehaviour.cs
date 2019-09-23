@@ -7,7 +7,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     #region design vars
     [Header("Bullet Properties")]
-    public GameObject m_VFXPrefab;
+    public GameObject m_SurfaceCollisionVfx;
     public float m_Speed;
     public float m_Gravity;
     public float m_MaxLifetimeInSec;
@@ -17,12 +17,22 @@ public class BulletBehaviour : MonoBehaviour
     
     //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
+    private ParticleSystem m_SurfaceCollisionParticle;
     private Vector3 m_Force;
     private float m_CurrentLifeTime;
 
 
     public void InitBullet()
     {
+        if (m_SurfaceCollisionVfx != null)
+        {
+            m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_SurfaceCollisionParticle.Stop();
+            m_SurfaceCollisionParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_SurfaceCollisionParticle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        }
+
+
         m_CurrentLifeTime = 0.0f;
     }
 
@@ -61,28 +71,26 @@ public class BulletBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             // TODO: Move particles to correct place
-            if (m_VFXPrefab != null)
+            if (m_SurfaceCollisionVfx != null)
             {
-                ParticleSystem instance = Instantiate(m_VFXPrefab.GetComponent<ParticleSystem>(), other.transform.position, Quaternion.identity);
-                instance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                instance.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.Play();
             }
 
 
             Destroy(other.gameObject);
-            Destroy(this);
+            //Destroy(this);
         }
         else if (other.CompareTag("DestroyBullet"))
         {
             // TODO: Move particles to correct place
-            if (m_VFXPrefab != null)
+            if (m_SurfaceCollisionVfx != null)
             {
-                ParticleSystem instance = Instantiate(m_VFXPrefab.GetComponent<ParticleSystem>(), other.transform.position, Quaternion.identity);
-                instance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                instance.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.Play();
             }
 
-            Destroy(this);
+            //Destroy(this);
         }
     }
 
