@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Net.Configuration;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,20 +15,29 @@ public class WaveSpawner : MonoBehaviour
     public class Wave
     {
         public string name;
+        public Set[] sets;
+    }
+
+    [System.Serializable]
+    public class Set
+    {
+        public string name;
         public Transform enemy;
         public int count;
         public float rate;
     }
 
-    public Transform player;
+    private Transform player;
 
     public Wave[] waves;
     private int nextWave = 0;
 
+    public Set[] sets;
+
     public Transform[] spawnPoints;
     public float safeSpawnDistance;
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves;
     private float waveCountdown;
 
     private float searchCountdown = 1f;
@@ -36,6 +46,7 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0);
         waveCountdown = timeBetweenWaves;
     }
 
@@ -88,10 +99,15 @@ public class WaveSpawner : MonoBehaviour
 
         state = SpawnState.SPAWNING;
 
-        for (var i = 0; i < wave.count; i++)
+        foreach (var set in wave.sets)
         {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1f/wave.rate);
+            Debug.Log("Spawning Set: " + set.name);
+
+            for (var j = 0; j < set.count; ++j)
+            {
+                SpawnEnemy(set.enemy);
+                yield return new WaitForSeconds(1f / set.rate);
+            }
         }
 
         state = SpawnState.WAITING;
@@ -99,7 +115,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(Transform enemy)
     {
-        //Debug.Log("Spawning Enemy: " + enemy.name);
+        Debug.Log("Spawning Enemy: " + enemy.name);
 
         if (spawnPoints.Length == 0)
             Debug.LogError("No spawn points referenced");

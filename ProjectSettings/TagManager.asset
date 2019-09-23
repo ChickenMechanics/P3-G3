@@ -20,7 +20,7 @@ TagManager:
   - 
   - 
   - Player
-  - RusherEnemy
+  - Enemy
   - FPS_View
   - Level_Ground
   - Level_Wall
