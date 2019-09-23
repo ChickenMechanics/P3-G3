@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BulletSelfDestruction : MonoBehaviour
+public class VfxSelfDestruct : MonoBehaviour
 {
     private ParticleSystem m_Particle;
     private float m_Duration;
@@ -20,7 +20,7 @@ public class BulletSelfDestruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_Particle.isPlaying == true)
+        if (m_Particle.isPlaying == true)
         {
             m_TimePassed += Time.deltaTime;
             if (m_TimePassed >= m_Duration)
