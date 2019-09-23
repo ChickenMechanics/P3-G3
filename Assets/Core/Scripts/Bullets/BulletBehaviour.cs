@@ -60,15 +60,26 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            // TODO: Move particles to correct place
+            if (m_VFXPrefab != null)
+            {
+                ParticleSystem instance = Instantiate(m_VFXPrefab.GetComponent<ParticleSystem>(), other.transform.position, Quaternion.identity);
+                instance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                instance.transform.position = other.transform.position;
+            }
+
+
             Destroy(other.gameObject);
             Destroy(this);
         }
         else if (other.CompareTag("DestroyBullet"))
         {
-            if(m_VFXPrefab != null)
+            // TODO: Move particles to correct place
+            if (m_VFXPrefab != null)
             {
-                m_VFXPrefab.GetComponent<ParticleSystem>();
-
+                ParticleSystem instance = Instantiate(m_VFXPrefab.GetComponent<ParticleSystem>(), other.transform.position, Quaternion.identity);
+                instance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                instance.transform.position = other.transform.position;
             }
 
             Destroy(this);
