@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4746432713069716148}
   - component: {fileID: 4746432713069716151}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: FX_Spark_something_about to_break
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
