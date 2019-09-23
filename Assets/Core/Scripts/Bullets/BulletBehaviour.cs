@@ -97,11 +97,16 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        m_CurrentLifeTime += Time.deltaTime;
+    }
+
+
     private void FixedUpdate()
     {
-        transform.position += m_Force * Time.fixedDeltaTime;
+        transform.position += m_Force * Time.deltaTime;
 
-        m_CurrentLifeTime += Time.fixedDeltaTime;
         if (m_CurrentLifeTime > m_MaxLifetimeInSec)
         {
             Destroy(this);

@@ -7,10 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2060184527862156963, guid: 066ef0885ec3b9145ba30acd8ff63467,
+        type: 3}
+      propertyPath: m_BulletModelPrefab
+      value: 
+      objectReference: {fileID: 6819690549498726262, guid: 9919921cd237e3d4f866a5dd538c62ca,
+        type: 3}
     - target: {fileID: 8462421435774275824, guid: 066ef0885ec3b9145ba30acd8ff63467,
         type: 3}
       propertyPath: m_Name
-      value: CubeGun
+      value: CubeGun Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3467440173593661422, guid: 066ef0885ec3b9145ba30acd8ff63467,
         type: 3}

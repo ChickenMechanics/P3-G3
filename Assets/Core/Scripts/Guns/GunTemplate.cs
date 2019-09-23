@@ -146,12 +146,7 @@ public class GunTemplate : MonoBehaviour
 
     private void OnEnable()
     {
-        Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
-                            (transform.up * m_PositionOffset.y) +
-                            (transform.forward * m_PositionOffset.z);
-
-        transform.rotation = transform.rotation;
-        transform.position = transform.position + offsetPos;
+        UpdateTransform();
     }
 
 
@@ -163,7 +158,6 @@ public class GunTemplate : MonoBehaviour
 
     private void Update()
     {
-        //UpdateTransform();
         UpdateMagazine();
     }
 }
