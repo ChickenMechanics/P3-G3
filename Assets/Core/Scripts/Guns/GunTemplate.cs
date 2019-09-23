@@ -110,7 +110,7 @@ public class GunTemplate : MonoBehaviour
     }
 
 
-    public void Fire(Vector3 dir)
+    public void Fire(Transform cameraPoint)
     {
 #if DEBUG
         if (m_BulletBehaviourScripts.Count == 0)
@@ -122,8 +122,8 @@ public class GunTemplate : MonoBehaviour
 
         if (m_TimePastSinceLastFire >= m_Rpm)
         {
-            Ray ray = new Ray(transform.position, dir);
-            Vector3 raycastedDir = dir;
+            Ray ray = new Ray(cameraPoint.position, cameraPoint.forward);
+            Vector3 raycastedDir = cameraPoint.forward;
             if (Physics.Raycast(ray, out m_RaycastHit, m_RayMaxDist))
             {
                 raycastedDir = (m_RaycastHit.point - m_BulletSpawnPoint.position).normalized;

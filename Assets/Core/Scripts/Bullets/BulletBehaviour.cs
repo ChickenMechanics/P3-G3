@@ -39,7 +39,9 @@ public class BulletBehaviour : MonoBehaviour
     public void Fire(Transform bulletSpawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
     {
         transform.position = bulletSpawnPoint.position;
-        transform.rotation = bulletSpawnPoint.rotation;
+        //transform.rotation = bulletSpawnPoint.rotation;
+
+        transform.forward = dir;
 
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
 
@@ -78,6 +80,7 @@ public class BulletBehaviour : MonoBehaviour
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
+                m_SurfaceCollisionParticle.transform.position = transform.position;
                 m_SurfaceCollisionParticle.Play();
             }
 
@@ -89,6 +92,7 @@ public class BulletBehaviour : MonoBehaviour
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
+                m_SurfaceCollisionParticle.transform.position = transform.position;
                 m_SurfaceCollisionParticle.Play();
             }
 

@@ -87,8 +87,8 @@ public class GunHandler : MonoBehaviour
     }
 
 
-    public void Fire(Vector3 dir)   // Dir equals player camera transform forward
+    public void Fire(Transform cameraPoint)   // Dir equals player camera transform forward
     {
-        m_ActiveGunScr.Fire(dir);
+        m_ActiveGunScr.Fire(cameraPoint);
     }
 }
