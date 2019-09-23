@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445885, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -67,5 +67,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 501765428380445883, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_ProjectileGunPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 501765428380445883, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_DefaultGun
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 501765428380445883, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_ProjectileGunPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 7142145135694640491, guid: 2d0c9c453d002884596a09ac3aef8f42,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093105622fe22bd49be5210ebe8ea41d, type: 3}
