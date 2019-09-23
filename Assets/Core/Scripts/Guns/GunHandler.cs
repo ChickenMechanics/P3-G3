@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Handler : MonoBehaviour
+
+public class GunHandler : MonoBehaviour
 {
     #region design vars
     [Header("Gun Locker")]
@@ -12,9 +13,10 @@ public class Handler : MonoBehaviour
 
     private GameObject[] m_GunPrefabClone;
     private GameObject m_ActiveGun;
-    private Gun m_ActiveGunScr;
+    private GunTemplate m_ActiveGunScr;
     private int m_ActiveGunIdx;
     private int m_NumOfGuns;
+
 
     //----------------------------------------------------------------------------------------------------
 
@@ -46,7 +48,7 @@ public class Handler : MonoBehaviour
         m_ActiveGunIdx = m_DefaultGun;
         m_ActiveGun = m_GunPrefabClone[m_ActiveGunIdx];
         m_ActiveGun.SetActive(true);
-        m_ActiveGunScr = m_ActiveGun.GetComponent<Gun>();
+        m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
     }
 
 
@@ -59,7 +61,7 @@ public class Handler : MonoBehaviour
             m_ActiveGun.SetActive(false);
             m_ActiveGun = m_GunPrefabClone[m_ActiveGunIdx];
             m_ActiveGun.SetActive(true);
-            m_ActiveGunScr = m_ActiveGun.GetComponent<Gun>();
+            m_ActiveGunScr = m_ActiveGun.GetComponent<GunTemplate>();
         }
     }
 
@@ -78,7 +80,7 @@ public class Handler : MonoBehaviour
             m_GunPrefabClone[i].transform.position = parent.transform.position + tForm.position;
 
             m_GunPrefabClone[i].transform.SetParent(parent);
-            m_GunPrefabClone[i].GetComponent<Gun>().InitGun();
+            m_GunPrefabClone[i].GetComponent<GunTemplate>().InitGun();
 
             ++m_NumOfGuns;
         }

@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private float m_EyePointOffsetZ;
 
     // Lazy gun
-    private Handler m_Gunhandler;
+    private GunHandler m_Gunhandler;
     private int m_CurrentGunIdx;
 
 
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         m_StrafeAccel = m_MoveAcceleration * m_AccelScaler;
 
         // Temp gun
-        m_Gunhandler = GetComponent<Handler>();
+        m_Gunhandler = GetComponent<GunHandler>();
         m_Gunhandler.Init();
         m_CurrentGunIdx = m_Gunhandler.GetActiveGunIdx();
     }

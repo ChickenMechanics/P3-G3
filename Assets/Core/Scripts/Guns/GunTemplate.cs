@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Gun : MonoBehaviour
+public class GunTemplate : MonoBehaviour
 {
     #region design vars
     [Header("Model")]

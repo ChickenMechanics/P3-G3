@@ -351,6 +351,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773d3e4ce931ac340bb2340f864d50b2, type: 3}
+--- !u!1 &193653331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2500178688072809177, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2500178687917086147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &193653332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193653331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e6db92c58200b4fb05124440ee75c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DefaultGun: 0
+  m_GunPrefab:
+  - {fileID: 4695288824835488040, guid: d269fe9f9a62a974d94b7c7afc412d01, type: 3}
+  - {fileID: 4999236839578094142, guid: a8b072711dbd5a24eb0b551c25b6dc5c, type: 3}
+  - {fileID: 2593729530563428278, guid: 95d0b53bbc6dfa74e86fbab9610aa726, type: 3}
+  - {fileID: 348376078618119487, guid: 071e815be5c7fcb49a82ee8fbbaad8d0, type: 3}
 --- !u!1 &378640805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,17 +2868,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
       propertyPath: m_GunPrefab.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
       propertyPath: m_GunPrefab.Array.data[1]
       value: 
-      objectReference: {fileID: 6481470297438029781, guid: 40cf2ee3424ac494c94c7f04137dae59,
+      objectReference: {fileID: 4999236839578094142, guid: a8b072711dbd5a24eb0b551c25b6dc5c,
         type: 3}
     - target: {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
       propertyPath: m_GunPrefab.Array.data[0]
       value: 
-      objectReference: {fileID: 3402069292695691771, guid: b585bd814f6bd31429ef267aa9f92aaf,
+      objectReference: {fileID: 4695288824835488040, guid: d269fe9f9a62a974d94b7c7afc412d01,
         type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
+      propertyPath: m_GunPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 348376078618119487, guid: 071e815be5c7fcb49a82ee8fbbaad8d0,
+        type: 3}
+    - target: {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
+      propertyPath: m_GunPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 2593729530563428278, guid: 95d0b53bbc6dfa74e86fbab9610aa726,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 193653332, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
