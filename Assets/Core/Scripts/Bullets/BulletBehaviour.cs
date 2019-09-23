@@ -6,20 +6,19 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     #region design vars
-    [Header("Bullet Properties")]
+    [Header("Vfx")]
     public GameObject m_SurfaceCollisionVfx;
+    public float m_VfxScale = 1.0f;
+    [Header("Properties")]
     public float m_Speed;
     public float m_Gravity;
     public float m_MaxLifetimeInSec;
-    // bullet
-    // vfx
     #endregion
     
     //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_SurfaceCollisionParticle;
     private Vector3 m_Force;
-    private Vector3 m_VfxSpawnPoint;
     private float m_CurrentLifeTime;
 
 
@@ -30,9 +29,8 @@ public class BulletBehaviour : MonoBehaviour
             m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
             m_SurfaceCollisionParticle.Stop();
             m_SurfaceCollisionParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-            m_SurfaceCollisionParticle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            m_SurfaceCollisionParticle.transform.localScale = new Vector3(m_VfxScale, m_VfxScale, m_VfxScale);
         }
-
 
         m_CurrentLifeTime = 0.0f;
     }
@@ -44,7 +42,9 @@ public class BulletBehaviour : MonoBehaviour
         transform.rotation = spawnPoint.rotation;
 
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
-        m_VfxSpawnPoint = vfxSpawnPoint;
+
+        m_SurfaceCollisionParticle.transform.rotation = Camera.main.transform.rotation;
+        m_SurfaceCollisionParticle.transform.position = vfxSpawnPoint;
 
         gameObject.SetActive(true);
     }
@@ -75,7 +75,6 @@ public class BulletBehaviour : MonoBehaviour
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
-                m_SurfaceCollisionParticle.transform.position = m_VfxSpawnPoint;
                 m_SurfaceCollisionParticle.Play();
             }
 
@@ -88,7 +87,6 @@ public class BulletBehaviour : MonoBehaviour
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
-                m_SurfaceCollisionParticle.transform.position = m_VfxSpawnPoint;
                 m_SurfaceCollisionParticle.Play();
             }
 
