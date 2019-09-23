@@ -19,6 +19,7 @@ public class BulletBehaviour : MonoBehaviour
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_SurfaceCollisionParticle;
     private Vector3 m_Force;
+    private Vector3 m_VfxSpawnPoint;
     private float m_CurrentLifeTime;
 
 
@@ -37,12 +38,13 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    public void Fire(Transform spawnPoint, Vector3 dir)
+    public void Fire(Transform spawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
     {
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
 
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
+        m_VfxSpawnPoint = vfxSpawnPoint;
 
         gameObject.SetActive(true);
     }
@@ -70,10 +72,10 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // TODO: Move particles to correct place
+            // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
-                m_SurfaceCollisionParticle.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.transform.position = m_VfxSpawnPoint;
                 m_SurfaceCollisionParticle.Play();
             }
 
@@ -83,10 +85,10 @@ public class BulletBehaviour : MonoBehaviour
         }
         else if (other.CompareTag("DestroyBullet"))
         {
-            // TODO: Move particles to correct place
+            // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
-                m_SurfaceCollisionParticle.transform.position = other.transform.position;
+                m_SurfaceCollisionParticle.transform.position = m_VfxSpawnPoint;
                 m_SurfaceCollisionParticle.Play();
             }
 

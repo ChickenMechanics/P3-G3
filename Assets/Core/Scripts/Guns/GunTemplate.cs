@@ -129,7 +129,7 @@ public class GunTemplate : MonoBehaviour
             BulletBehaviour bulletScr = m_BulletBehaviourScripts[m_NextFreeBullet];
             GameObject bulletClone = m_BulletPrefabClones[m_NextFreeBullet];
 
-            bulletScr.Fire(m_BulletSpawnPoint, raycastedDir);
+            bulletScr.Fire(m_BulletSpawnPoint, raycastedDir, m_RaycastHit.point);
             m_BulletBehaviourScripts.Remove(bulletScr);
             m_BulletPrefabClones.Remove(bulletClone);
 
