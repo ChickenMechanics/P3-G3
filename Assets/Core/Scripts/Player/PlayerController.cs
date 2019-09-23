@@ -158,6 +158,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        CameraSetup();
+    }
+
+
     void Update()
     {
         Look();
@@ -196,8 +202,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    // TODO: Move this to a better place
+    private void OnCollisionEnter(Collision collision)
     {
-        CameraSetup();
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            LevelManager.Instance.ChangeScene(LevelManager.EScene.MAIN_MENU);
+        }
     }
 }
