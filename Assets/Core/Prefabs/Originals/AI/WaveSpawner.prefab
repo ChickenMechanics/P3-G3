@@ -46,34 +46,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d264d6c745a13948a9e3d8c68a4afab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6173133016675627143, guid: 07f87f20730bc8f47a1ddf8d5e9ae35c, type: 3}
   waves:
   - name: What is this? A wave for ants?!
-    enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5, type: 3}
-    count: 2
-    rate: 1
+    sets:
+    - name: Boomer Set
+      enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5,
+        type: 3}
+      count: 1
+      rate: 2
+    - name: Empty Set
+      enemy: {fileID: 0}
+      count: 0
+      rate: 0
   - name: Toughen up, Buttercup
-    enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5, type: 3}
-    count: 3
-    rate: 1.5
+    sets: []
   - name: You call that a wave? This is a wave!
-    enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5, type: 3}
-    count: 5
-    rate: 2
+    sets: []
   - name: LIKE A BOSS!!!
-    enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5, type: 3}
-    count: 100
-    rate: 10
-  - name: Bossed Around
-    enemy: {fileID: 419494831564983545, guid: 6399d6a577d9e1c45877ba217b1ffdb5, type: 3}
-    count: 2
-    rate: 1
+    sets: []
+  - name: Post Boss Cleanup
+    sets: []
+  sets: []
   spawnPoints:
   - {fileID: 3691301364281987443}
   - {fileID: 24281328111728771}
   - {fileID: 24281327387835910}
-  safeSpawnDistance: 0
-  timeBetweenWaves: 5
+  safeSpawnDistance: 5
+  timeBetweenWaves: 15
 --- !u!1001 &24281329056584664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81,15 +80,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3691301364954643397}
     m_Modifications:
-    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemySpawnPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
@@ -99,7 +93,7 @@ PrefabInstance:
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
@@ -140,6 +134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemySpawnPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80f74f2ed1703646bcb52cb450dffb3, type: 3}
@@ -156,11 +155,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3691301364954643397}
     m_Modifications:
-    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemySpawnPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,7 +168,7 @@ PrefabInstance:
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -45
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
@@ -216,6 +210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80f74f2ed1703646bcb52cb450dffb3, type: 3}
 --- !u!4 &24281328111728771 stripped
@@ -231,15 +230,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3691301364954643397}
     m_Modifications:
-    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemySpawnPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
@@ -249,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3705442927848637099, guid: d80f74f2ed1703646bcb52cb450dffb3,
         type: 3}
@@ -290,6 +284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705442927848637098, guid: d80f74f2ed1703646bcb52cb450dffb3,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemySpawnPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80f74f2ed1703646bcb52cb450dffb3, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419494831564983545}
   m_Layer: 9
-  m_Name: RusherEnemy 1
+  m_Name: BoomerEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,9 +136,9 @@ GameObject:
   - component: {fileID: 419494832638763750}
   - component: {fileID: 419494832638763737}
   - component: {fileID: 419494832638763749}
-  - component: {fileID: 419494832638763746}
+  - component: {fileID: 1308424596646238962}
   m_Layer: 9
-  m_Name: RusherEnemyCapsule
+  m_Name: BoomerEnemyCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &419494832638763746
+--- !u!114 &1308424596646238962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,5 +253,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4bf891a18487742955b770a7cb5309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   agent: {fileID: 419494832638763749}
