@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
     private bool m_ComboAlive;
 
 
-    public void AddPoints(int value)
+    public void AddComboPoints(int value)    //  Call this from wherever to add any points that is part of combo kills
     {
         ++m_ComboCounter;
         if (m_ComboCounter == 1)
@@ -34,6 +34,13 @@ public class ScoreManager : MonoBehaviour
         }
 
         m_PointsCollector.Add(value);
+        ComboEvaluator();
+    }
+
+
+    public void AddBonusPoints(int value)
+    {
+        m_PointsCollector.Add(value);
     }
 
 
@@ -41,43 +48,46 @@ public class ScoreManager : MonoBehaviour
     {
         if (m_ComboAlive == true)
         {
-            ComboEvaluator();
+            m_PassedComboTime += Time.deltaTime;
         }
     }
 
 
     private void ComboEvaluator()
     {
-        m_PassedComboTime += Time.deltaTime;
+        if (m_ComboCounter < 2)     // Normalize multiplier if it's the first enemy killed
+        {
+            m_ComboMultiplier /= m_ComboMultiplier;
+        }
+
+        for (int i = 0; i < m_PointsCollector.Count; ++i)
+        {
+            m_PlayerScore += m_PointsCollector[i] * m_ComboMultiplier;
+        }
+        m_PointsCollector.Clear();
 
         // Combo alive
         if (m_PassedComboTime <= m_ComboTimeMax)
         {
-            // Normalize multi if it's the first enemy killed
-            if (m_ComboCounter < 2)
-            {
-                m_ComboMultiplier /= m_ComboMultiplier;
-            }
-
-            for (int i = 0; i < m_PointsCollector.Count; ++i)
-            {
-                m_PlayerScore += m_PointsCollector[i] * m_ComboMultiplier;
-            }
-            m_PointsCollector.Clear();
-
             m_PassedComboTime = 0.0f;
+            return;
         }
 
         // Combo dead
-        for (int i = 0; i < m_PointsCollector.Count; ++i)
+        m_PassedComboTime = 0.0f;
+        m_ComboCounter = 0;
+        m_ComboAlive = false;
+    }
+
+
+    // TODO: Implement bonus points from waves or similar here if/when the time comes
+    public void BonusEvaluator()
+    {
+        for(int i = 0; i < m_PointsCollector.Count; ++i)
         {
             m_PlayerScore += m_PointsCollector[i];
         }
         m_PointsCollector.Clear();
-
-        m_PassedComboTime = 0.0f;
-        m_ComboCounter = 0;
-        m_ComboAlive = false;
     }
 
 
