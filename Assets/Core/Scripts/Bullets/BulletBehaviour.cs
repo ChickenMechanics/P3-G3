@@ -41,11 +41,13 @@ public class BulletBehaviour : MonoBehaviour
         //transform.rotation = bulletSpawnPoint.rotation;
 
         transform.forward = dir;
-
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
 
-        m_SurfaceCollisionParticle.transform.rotation = Camera.main.transform.rotation;
-        m_SurfaceCollisionParticle.transform.position = vfxSpawnPoint;
+        if(m_SurfaceCollisionParticle != null)
+        {
+            m_SurfaceCollisionParticle.transform.rotation = Camera.main.transform.rotation;
+            m_SurfaceCollisionParticle.transform.position = vfxSpawnPoint;
+        }
 
         gameObject.SetActive(true);
     }
@@ -73,28 +75,20 @@ public class BulletBehaviour : MonoBehaviour
     {
         // TODO: Reusing spent bullets is an idea
 
+        if (m_SurfaceCollisionVfx != null)
+        {
+            m_SurfaceCollisionParticle.transform.position = transform.position;
+            m_SurfaceCollisionParticle.Play();
+        }
+
         // TODO: Do this better
         if (other.CompareTag("Enemy"))
         {
-            // TODO: Move particles to better place
-            if (m_SurfaceCollisionVfx != null)
-            {
-                m_SurfaceCollisionParticle.transform.position = transform.position;
-                m_SurfaceCollisionParticle.Play();
-            }
-
             Destroy(other.gameObject);
             Destroy(this);
         }
         else if (other.CompareTag("DestroyBullet"))
         {
-            // TODO: Move particles to better place
-            if (m_SurfaceCollisionVfx != null)
-            {
-                m_SurfaceCollisionParticle.transform.position = transform.position;
-                m_SurfaceCollisionParticle.Play();
-            }
-
             Destroy(this);
         }
     }

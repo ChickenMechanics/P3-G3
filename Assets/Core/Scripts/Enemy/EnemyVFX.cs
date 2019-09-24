@@ -29,10 +29,10 @@ public class EnemyVFX : MonoBehaviour
 
         if (m_SelfExplosionSmokeVfx != null)
         {
-            m_SelfExplosionSmokeParticle = Instantiate(m_SelfExplosionFireVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_SelfExplosionSmokeParticle = Instantiate(m_SelfExplosionSmokeVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
             m_SelfExplosionSmokeParticle.Stop();
             m_SelfExplosionSmokeParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-            m_SelfExplosionSmokeParticle.transform.localScale = new Vector3(m_SelfExplosionFireScale, m_SelfExplosionFireScale, m_SelfExplosionFireScale);
+            m_SelfExplosionSmokeParticle.transform.localScale = new Vector3(m_SelfExplosionSmokeScale, m_SelfExplosionSmokeScale, m_SelfExplosionSmokeScale);
         }
     }
 
