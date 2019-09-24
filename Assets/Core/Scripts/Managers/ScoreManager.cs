@@ -8,36 +8,49 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     #region design vars
-    public float m_ComboTimeMax = 1.0f;
+    public float m_ComboTimeInSecMax = 1.0f;
     public float m_ComboBaseMultiplier = 1.5f;
     public float m_ComboScaler = 1.15f;
     #endregion
 
-    #region get set
+    #region get / set
     [HideInInspector]
     public float m_PassedComboTime { get; private set; }
     [HideInInspector]
     public float m_PlayerScore { get; private set; }
     [HideInInspector]
     public int m_ComboCounter { get; private set; }
+    [HideInInspector]
+    public int m_TotalCombos { get; private set; }
+    [HideInInspector]
+    public int m_LongestCombo { get; private set; }
     #endregion
 
-    private List<float> m_PointsCollector;      // I suspect this is unnecessary but perhaps necessary if it's used by something threaded, like Unity job system
     private float m_CurrentComboMultiplier;
     private bool m_ComboAlive;
 
 
+    public float GetComboTimeMax()
+    {
+        return m_ComboTimeInSecMax;
+    }
+
+
+    public float GetCurrentComboMultiplier()
+    {
+        return m_CurrentComboMultiplier;
+    }
+
+
     public void AddComboPoints(float value)    //  Call this for everything included in the combo points system
     {
-        m_PointsCollector.Add(value);
-
         ++m_ComboCounter;
         if (m_ComboCounter == 1)
         {
             m_ComboAlive = true;
         }
 
-        ComboEvaluator();
+        ComboEvaluator(value);
     }
 
 
@@ -56,7 +69,7 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    private void ComboEvaluator()
+    private void ComboEvaluator(float value)
     {
         if(m_ComboCounter > 1)  // Each kill that is chained in a combo is worth more then the one before
         {
@@ -68,50 +81,37 @@ public class ScoreManager : MonoBehaviour
             m_CurrentComboMultiplier /= m_CurrentComboMultiplier;
         }
 
-        for (int i = 0; i < m_PointsCollector.Count; ++i)
-        {
-            m_PlayerScore += m_PointsCollector[i] * m_ComboBaseMultiplier;  // TODO: If time bonus or whatever, implement here
-        }
-        m_PointsCollector.Clear();
+        m_PlayerScore += value * m_ComboBaseMultiplier;  // TODO: If time bonus or whatever, implement here
 
         // Combo alive
-        if (m_PassedComboTime <= m_ComboTimeMax)
+        if (m_PassedComboTime <= m_ComboTimeInSecMax)
         {
             m_PassedComboTime = 0.0f;
             return;
         }
 
         // Combo dead
+        if(m_ComboCounter > m_LongestCombo)
+        {
+            m_LongestCombo = m_ComboCounter;
+        }
+
         m_PassedComboTime = 0.0f;
         m_CurrentComboMultiplier = m_ComboBaseMultiplier;
         m_ComboCounter = 0;
+        ++m_TotalCombos;
         m_ComboAlive = false;
-    }
-
-
-    // TODO: Evaluate bonus points from waves or similar here if/when the time comes
-    private void BonusEvaluator()
-    {
-        for(int i = 0; i < m_PointsCollector.Count; ++i)
-        {
-            m_PlayerScore += m_PointsCollector[i];
-        }
-        m_PointsCollector.Clear();
     }
 
 
     public void ResetPlayer()
     {
-        if(m_PointsCollector != null)
-        {
-            m_PointsCollector.Clear();
-        }
-        m_PointsCollector = new List<float>();
-
         m_PassedComboTime = 0.0f;  
         m_PlayerScore = 0.0f;
         m_CurrentComboMultiplier = m_ComboBaseMultiplier;
         m_ComboCounter = 0;
+        m_TotalCombos = 0;
+        m_LongestCombo = 0;
         m_ComboAlive = false;
     }
 
