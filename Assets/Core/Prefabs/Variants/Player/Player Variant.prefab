@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -67,5 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 501765428380445882, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_MoveAcceleration
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093669475063879485, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_GunPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 1051214323070342385, guid: 48fd59eb5485ef644ae1b19eba9f7a0c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093105622fe22bd49be5210ebe8ea41d, type: 3}

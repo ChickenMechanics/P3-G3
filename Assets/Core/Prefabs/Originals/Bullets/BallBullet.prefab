@@ -133,7 +133,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7501741284955987674}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 1.5
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -157,6 +157,6 @@ MonoBehaviour:
     type: 3}
   m_VfxScale: 0.5
   m_IsPhysicsBased: 1
-  m_Speed: 25
+  m_Speed: 22
   m_DropOff: 0
   m_MaxLifetimeInSec: 5

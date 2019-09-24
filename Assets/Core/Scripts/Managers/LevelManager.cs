@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+// Should be called SceneManager, but Unity uses that. Perhaps change this to something more descriptive like SceneLoaderManager or equally exciting
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set;}
+
     private int m_NextSceneIdx;
     private int m_CurrentSceneIdx;
 
@@ -41,7 +43,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    private void Awake()
+    private void Init()
     {
         if (Instance != null && Instance != this)
         {
@@ -53,5 +55,11 @@ public class LevelManager : MonoBehaviour
 
         m_NextSceneIdx = -1;
         m_CurrentSceneIdx = -1;
+    }
+
+
+    private void Awake()
+    {
+        Init();
     }
 }
