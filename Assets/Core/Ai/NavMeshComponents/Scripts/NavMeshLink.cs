@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UnityEngine.AI
 {
@@ -9,33 +10,32 @@ namespace UnityEngine.AI
     public class NavMeshLink : MonoBehaviour
     {
         [SerializeField] private int m_AgentTypeID;
-        public int agentTypeID { get => m_AgentTypeID;
-            set { m_AgentTypeID = value; UpdateLink(); } }
+        public int agentTypeID
+        { get => m_AgentTypeID; set { m_AgentTypeID = value; UpdateLink(); } }
 
         [SerializeField] private Vector3 m_StartPoint = new Vector3(0.0f, 0.0f, -2.5f);
-        public Vector3 startPoint { get => m_StartPoint;
-            set { m_StartPoint = value; UpdateLink(); } }
+        public Vector3 startPoint
+        { get => m_StartPoint; set { m_StartPoint = value; UpdateLink(); } }
 
         [SerializeField] private Vector3 m_EndPoint = new Vector3(0.0f, 0.0f, 2.5f);
-        public Vector3 endPoint { get => m_EndPoint;
-            set { m_EndPoint = value; UpdateLink(); } }
+        public Vector3 endPoint
+        { get => m_EndPoint; set { m_EndPoint = value; UpdateLink(); } }
 
         [SerializeField] private float m_Width;
-        public float width { get => m_Width;
-            set { m_Width = value; UpdateLink(); } }
+        public float width
+        { get => m_Width; set { m_Width = value; UpdateLink(); } }
 
         [SerializeField] private int m_CostModifier = -1;
-        public int costModifier { get => m_CostModifier;
-            set { m_CostModifier = value; UpdateLink(); } }
+        public int costModifier
+        { get => m_CostModifier; set { m_CostModifier = value; UpdateLink(); } }
 
         [SerializeField] private bool m_Bidirectional = true;
-        public bool bidirectional { get => m_Bidirectional;
-            set { m_Bidirectional = value; UpdateLink(); } }
+        public bool bidirectional
+        { get => m_Bidirectional; set { m_Bidirectional = value; UpdateLink(); } }
 
         [SerializeField] private bool m_AutoUpdatePosition;
-        public bool autoUpdate { get => m_AutoUpdatePosition;
-            set => SetAutoUpdate(value);
-        }
+        public bool autoUpdate
+        { get => m_AutoUpdatePosition; set => SetAutoUpdate(value); }
 
         [SerializeField] private int m_Area;
         public int area { get => m_Area;
@@ -122,7 +122,8 @@ namespace UnityEngine.AI
                 area = m_Area,
                 agentTypeID = m_AgentTypeID
             };
-            m_LinkInstance = NavMesh.AddLink(link, transform.position, transform.rotation);
+            m_LinkInstance = 
+                NavMesh.AddLink(link, transform.position, transform.rotation);
             if (m_LinkInstance.valid)
                 m_LinkInstance.owner = this;
 
@@ -143,11 +144,8 @@ namespace UnityEngine.AI
 
         private static void UpdateTrackedInstances()
         {
-            foreach (var instance in s_Tracked)
-            {
-                if (instance.HasTransformChanged())
-                    instance.UpdateLink();
-            }
+            foreach (var instance in s_Tracked.Where(instance => instance.HasTransformChanged()))
+                instance.UpdateLink();
         }
 
 #if UNITY_EDITOR

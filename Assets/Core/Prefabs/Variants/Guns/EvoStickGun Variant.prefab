@@ -7,15 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9004334808628690, guid: aa03059557fe99e47b69d6280483de51, type: 3}
-      propertyPath: m_PositionOffset.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004334808628690, guid: aa03059557fe99e47b69d6280483de51, type: 3}
-      propertyPath: m_BulletModelPrefab
-      value: 
-      objectReference: {fileID: 6584163281405718720, guid: 37bfa1476479a0d46bf6d2523cbe0b1a,
-        type: 3}
     - target: {fileID: 6192063897319996972, guid: aa03059557fe99e47b69d6280483de51,
         type: 3}
       propertyPath: m_Name
@@ -76,5 +67,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9004334808628690, guid: aa03059557fe99e47b69d6280483de51, type: 3}
+      propertyPath: m_PositionOffset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004334808628690, guid: aa03059557fe99e47b69d6280483de51, type: 3}
+      propertyPath: m_BulletModelPrefab
+      value: 
+      objectReference: {fileID: 4713237985465307603, guid: 37bfa1476479a0d46bf6d2523cbe0b1a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa03059557fe99e47b69d6280483de51, type: 3}

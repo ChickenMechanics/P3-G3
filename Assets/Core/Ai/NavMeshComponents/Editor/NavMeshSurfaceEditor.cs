@@ -133,12 +133,14 @@ namespace UnityEditor.AI
             if (navSurface == null) return navSurface.navMeshData;
 
             var prefabType = GetPrefabType(navSurface);
-            if (prefabType != PrefabType.PrefabInstance && prefabType != PrefabType.DisconnectedPrefabInstance)
+            if (prefabType != PrefabType.PrefabInstance &&
+                prefabType != PrefabType.DisconnectedPrefabInstance)
                 return navSurface.navMeshData;
             // Don't allow deleting the asset belonging to the prefab parent
             var parentSurface =
                 GetCorrespondingObjectFromSource(navSurface) as NavMeshSurface;
-            if (parentSurface && navSurface.navMeshData == parentSurface.navMeshData)
+            if (parentSurface &&
+                navSurface.navMeshData == parentSurface.navMeshData)
                 return null;
 
             return navSurface.navMeshData;
@@ -179,14 +181,17 @@ namespace UnityEditor.AI
                 var agentDiagramRect =
                     EditorGUILayout.GetControlRect(false, diagramHeight);
                 NavMeshEditorHelpers.DrawAgentDiagram(
-                    agentDiagramRect, bs.agentRadius, bs.agentHeight, bs.agentClimb, bs.agentSlope);
+                    agentDiagramRect, bs.agentRadius, bs.agentHeight,
+                    bs.agentClimb, bs.agentSlope);
             }
-            NavMeshComponentsGUIUtility.AgentTypePopup("Agent Type", m_AgentTypeID);
+            NavMeshComponentsGUIUtility.AgentTypePopup(
+                "Agent Type", m_AgentTypeID);
 
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(m_CollectObjects);
-            if ((CollectObjects)m_CollectObjects.enumValueIndex == CollectObjects.Volume)
+            if ((CollectObjects)m_CollectObjects.enumValueIndex ==
+                CollectObjects.Volume)
             {
                 EditorGUI.indentLevel++;
 
@@ -247,6 +252,7 @@ namespace UnityEditor.AI
                                     " voxels per agent radius",
                                 EditorStyles.miniLabel);
                         }
+
                         if (m_OverrideVoxelSize.boolValue)
                             EditorGUILayout.HelpBox(
                                 "Voxel size controls how accurately the" +
@@ -277,7 +283,8 @@ namespace UnityEditor.AI
                             m_TileSize.intValue * m_VoxelSize.floatValue;
                         EditorGUILayout.LabelField(
                             " ",
-                            tileWorldSize.ToString("0.00") + " world units",
+                            tileWorldSize.ToString("0.00") +
+                                " world units",
                             EditorStyles.miniLabel);
                     }
 
@@ -368,13 +375,17 @@ namespace UnityEditor.AI
                     foreach (var o in targets)
                     {
                         var surf = (NavMeshSurface) o;
-                        var oper =
-                            new AsyncBakeOperation {bakeData = InitializeBakeData(surf)};
+                        var operation =
+                            new AsyncBakeOperation
+                            {
+                                bakeData = InitializeBakeData(surf)
+                            };
 
-                        oper.bakeOperation = surf.UpdateNavMesh(oper.bakeData);
-                        oper.surface = surf;
+                        operation.bakeOperation =
+                            surf.UpdateNavMesh(operation.bakeData);
+                        operation.surface = surf;
 
-                        s_BakeOperations.Add(oper);
+                        s_BakeOperations.Add(operation);
                     }
                 }
 
@@ -387,12 +398,12 @@ namespace UnityEditor.AI
                 if (!targets.Contains(s_BakeOperations[i].surface))
                     continue;
 
-                var oper = s_BakeOperations[i].bakeOperation;
-                if (oper == null)
+                var operation = s_BakeOperations[i].bakeOperation;
+                if (operation == null)
                     continue;
 
-                var p = oper.progress;
-                if (oper.isDone)
+                var p = operation.progress;
+                if (operation.isDone)
                 {
                     SceneView.RepaintAll();
                     continue;
@@ -520,7 +531,9 @@ namespace UnityEditor.AI
             Gizmos.color = oldColor;
 
             Gizmos.DrawIcon(
-                navSurface.transform.position, "NavMeshSurface Icon", true);
+                navSurface.transform.position,
+                "NavMeshSurface Icon",
+                true);
         }
 
         private void OnSceneGUI()
