@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7501741284955987674, guid: 556d1e4eb921d2947adc7f2eb55819aa,
         type: 3}
       propertyPath: m_Name
-      value: BallBullet
+      value: BallBullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1558441186874148445, guid: 556d1e4eb921d2947adc7f2eb55819aa,
         type: 3}
@@ -67,5 +67,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7743741494050624357, guid: 556d1e4eb921d2947adc7f2eb55819aa,
+        type: 3}
+      propertyPath: m_SurfaceCollisionVfx
+      value: 
+      objectReference: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 556d1e4eb921d2947adc7f2eb55819aa, type: 3}
