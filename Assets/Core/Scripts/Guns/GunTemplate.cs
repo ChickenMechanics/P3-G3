@@ -95,11 +95,14 @@ public class GunTemplate : MonoBehaviour
 
     private void UpdateTransform()
     {
-        Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
-                            (transform.up * m_PositionOffset.y) +
-                            (transform.forward * m_PositionOffset.z);
+        if(transform.parent != null)
+        {
+            Vector3 offsetPos = (transform.right * m_PositionOffset.x) +
+                    (transform.up * m_PositionOffset.y) +
+                    (transform.forward * m_PositionOffset.z);
 
-        transform.position = transform.position + offsetPos;
+            transform.position = transform.parent.transform.position + offsetPos;
+        }
     }
 
 
