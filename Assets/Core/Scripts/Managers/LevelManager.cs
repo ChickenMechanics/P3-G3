@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     private int m_NextSceneIdx;
     private int m_CurrentSceneIdx;
 
+
     public enum EScene
     {
         MAIN_MENU = 0,
@@ -49,12 +50,12 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         m_NextSceneIdx = -1;
         m_CurrentSceneIdx = -1;
+
+        DontDestroyOnLoad(gameObject);
     }
 
 

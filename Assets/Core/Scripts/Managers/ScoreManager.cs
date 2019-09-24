@@ -102,10 +102,11 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         Instance = this;
 
         ResetPlayer();
+
+        DontDestroyOnLoad(gameObject);
     }
 
 
