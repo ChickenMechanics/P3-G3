@@ -156,6 +156,7 @@ MonoBehaviour:
   m_SurfaceCollisionVfx: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
     type: 3}
   m_VfxScale: 0.5
-  m_Speed: 15
+  m_IsPhysicsBased: 1
+  m_Speed: 20
   m_Gravity: 0
   m_MaxLifetimeInSec: 5
