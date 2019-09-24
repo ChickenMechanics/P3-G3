@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
         // Temp gun
         float wheelDir = Input.GetAxisRaw("Mouse ScrollWheel");
-        if(wheelDir != 0.0f)
+        if (wheelDir != 0.0f)
         {
             if (wheelDir != -0.1f)
             {
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
             m_Gunhandler.SetActiveGun(m_CurrentGunIdx);
         }
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             m_Gunhandler.Fire(m_PlayerEyePoint.transform);
         }
