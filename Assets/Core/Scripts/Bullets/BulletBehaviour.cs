@@ -15,7 +15,6 @@ public class BulletBehaviour : MonoBehaviour
     public float m_MaxLifetimeInSec;
     #endregion
     
-    //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_SurfaceCollisionParticle;
     private Vector3 m_Force;
@@ -36,10 +35,12 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    public void Fire(Transform spawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
+    public void Fire(Transform bulletSpawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
     {
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
+        transform.position = bulletSpawnPoint.position;
+        //transform.rotation = bulletSpawnPoint.rotation;
+
+        transform.forward = dir;
 
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
 
@@ -70,14 +71,17 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // TODO: Reusing spent bullets is an idea
+
+        // TODO: Do this better
         if (other.CompareTag("Enemy"))
         {
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
+                m_SurfaceCollisionParticle.transform.position = transform.position;
                 m_SurfaceCollisionParticle.Play();
             }
-
 
             Destroy(other.gameObject);
             Destroy(this);
@@ -87,6 +91,7 @@ public class BulletBehaviour : MonoBehaviour
             // TODO: Move particles to better place
             if (m_SurfaceCollisionVfx != null)
             {
+                m_SurfaceCollisionParticle.transform.position = transform.position;
                 m_SurfaceCollisionParticle.Play();
             }
 
@@ -95,11 +100,15 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        m_CurrentLifeTime += Time.deltaTime;
+    }
+
+
     private void FixedUpdate()
     {
-        transform.position += m_Force * Time.fixedDeltaTime;
-
-        m_CurrentLifeTime += Time.fixedDeltaTime;
+        transform.position += m_Force * Time.deltaTime;
         if (m_CurrentLifeTime > m_MaxLifetimeInSec)
         {
             Destroy(this);

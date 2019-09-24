@@ -17,8 +17,8 @@ public class VfxSelfDestruct : MonoBehaviour
         m_TimePassed = 0.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         if (m_Particle.isPlaying == true)
         {

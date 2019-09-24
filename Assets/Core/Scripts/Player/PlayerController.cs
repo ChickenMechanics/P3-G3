@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
         if(m_MainCam == null)
         {
             m_MainCam = Camera.main;
+            m_MainCam.nearClipPlane = 0.01f;
+            m_MainCam.farClipPlane = 800.0f;
+            m_MainCam.depth = -1.0f;
+
             m_MainCam.transform.rotation = m_PlayerEyePoint.transform.rotation;
             m_MainCam.transform.position = m_PlayerEyePoint.transform.position;
             m_MainCam.transform.SetParent(m_PlayerEyePoint.transform);
@@ -173,7 +177,7 @@ public class PlayerController : MonoBehaviour
         float wheelDir = Input.GetAxisRaw("Mouse ScrollWheel");
         if(wheelDir != 0.0f)
         {
-            if (wheelDir != 0.1f)
+            if (wheelDir != -0.1f)
             {
                 ++m_CurrentGunIdx;
                 if (m_CurrentGunIdx > m_Gunhandler.GetNumOfGuns() - 1)
@@ -191,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButton(0))
         {
-            m_Gunhandler.Fire(m_PlayerEyePoint.transform.forward);
+            m_Gunhandler.Fire(m_PlayerEyePoint.transform);
         }
     }
 
