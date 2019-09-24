@@ -9,23 +9,25 @@ public class ScoreManager : MonoBehaviour
 
     #region design vars
     public float m_ComboTimeMax = 1.0f;
-    public int m_ComboMultiplier = 2;
+    public float m_ComboBaseMultiplier = 1.5f;
+    public float m_ComboScaler = 1.15f;
     #endregion
 
     #region get set
     [HideInInspector]
     public float m_PassedComboTime { get; private set; }
     [HideInInspector]
-    public int m_PlayerScore { get; private set; }
+    public float m_PlayerScore { get; private set; }
     [HideInInspector]
     public int m_ComboCounter { get; private set; }
     #endregion
 
-    private List<int> m_PointsCollector;
+    private List<float> m_PointsCollector;
+    private float m_CurrentComboMultiplier;
     private bool m_ComboAlive;
 
 
-    public void AddComboPoints(int value)    //  Call this from wherever to add any points that is part of combo kills
+    public void AddComboPoints(float value)    //  Call this to add any points that is part of combos
     {
         ++m_ComboCounter;
         if (m_ComboCounter == 1)
@@ -38,7 +40,7 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    public void AddBonusPoints(int value)
+    public void AddBonusPoints(float value)   //  Call this for vanilla points
     {
         m_PointsCollector.Add(value);
     }
@@ -55,14 +57,19 @@ public class ScoreManager : MonoBehaviour
 
     private void ComboEvaluator()
     {
+        if(m_ComboCounter > 1)  // Each kill that is chained in a combo is worth more then the one before
+        {
+            m_CurrentComboMultiplier *= m_ComboScaler;
+        }
+
         if (m_ComboCounter < 2)     // Normalize multiplier if it's the first enemy killed
         {
-            m_ComboMultiplier /= m_ComboMultiplier;
+            m_CurrentComboMultiplier /= m_CurrentComboMultiplier;
         }
 
         for (int i = 0; i < m_PointsCollector.Count; ++i)
         {
-            m_PlayerScore += m_PointsCollector[i] * m_ComboMultiplier;
+            m_PlayerScore += m_PointsCollector[i] * m_ComboBaseMultiplier;  // TODO: If time bonus or whatever, implement here
         }
         m_PointsCollector.Clear();
 
@@ -75,6 +82,7 @@ public class ScoreManager : MonoBehaviour
 
         // Combo dead
         m_PassedComboTime = 0.0f;
+        m_CurrentComboMultiplier = m_ComboBaseMultiplier;
         m_ComboCounter = 0;
         m_ComboAlive = false;
     }
@@ -97,10 +105,11 @@ public class ScoreManager : MonoBehaviour
         {
             m_PointsCollector.Clear();
         }
-        m_PointsCollector = new List<int>();
+        m_PointsCollector = new List<float>();
 
         m_PassedComboTime = 0.0f;  
-        m_PlayerScore = 0;
+        m_PlayerScore = 0.0f;
+        m_CurrentComboMultiplier = m_ComboBaseMultiplier;
         m_ComboCounter = 0;
         m_ComboAlive = false;
     }
@@ -113,6 +122,11 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+
+        if (m_ComboScaler < 0.0f)
+        {
+            m_ComboScaler = 0.0f;
+        }
 
         ResetPlayer();
 
