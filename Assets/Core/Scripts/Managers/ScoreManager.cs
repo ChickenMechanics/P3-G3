@@ -22,27 +22,28 @@ public class ScoreManager : MonoBehaviour
     public int m_ComboCounter { get; private set; }
     #endregion
 
-    private List<float> m_PointsCollector;
+    private List<float> m_PointsCollector;      // I suspect this is unnecessary but perhaps necessary if it's used by something threaded, like Unity job system
     private float m_CurrentComboMultiplier;
     private bool m_ComboAlive;
 
 
-    public void AddComboPoints(float value)    //  Call this to add any points that is part of combos
+    public void AddComboPoints(float value)    //  Call this for everything included in the combo points system
     {
+        m_PointsCollector.Add(value);
+
         ++m_ComboCounter;
         if (m_ComboCounter == 1)
         {
             m_ComboAlive = true;
         }
 
-        m_PointsCollector.Add(value);
         ComboEvaluator();
     }
 
 
-    public void AddBonusPoints(float value)   //  Call this for vanilla points
+    public void AddVanillaPoints(float value)   //  Call this for vanilla points
     {
-        m_PointsCollector.Add(value);
+        m_PlayerScore += value;
     }
 
 
@@ -88,8 +89,8 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    // TODO: Implement bonus points from waves or similar here if/when the time comes
-    public void BonusEvaluator()
+    // TODO: Evaluate bonus points from waves or similar here if/when the time comes
+    private void BonusEvaluator()
     {
         for(int i = 0; i < m_PointsCollector.Count; ++i)
         {
