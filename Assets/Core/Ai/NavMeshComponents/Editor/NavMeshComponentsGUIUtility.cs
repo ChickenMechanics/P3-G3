@@ -99,10 +99,8 @@ namespace Assets.Core.Ai.NavMeshComponents.Editor
             // Contents of the dropdown box.
             var popupContent = "";
 
-            if (agentMask.hasMultipleDifferentValues)
-                popupContent = "\u2014";
-            else
-                popupContent = GetAgentMaskLabelName(agentMask);
+            popupContent = agentMask.hasMultipleDifferentValues ?
+                "\u2014" : GetAgentMaskLabelName(agentMask);
 
             var content = new GUIContent(popupContent);
             var popupRect =
@@ -204,14 +202,14 @@ namespace Assets.Core.Ai.NavMeshComponents.Editor
                 agentMask.DeleteArrayElementAtIndex(0);
 
             // Toggle value.
-            if (value && idx == -1)
+            if (idx != -1)
+                agentMask.DeleteArrayElementAtIndex(idx);
+            else if (value)
             {
                 agentMask.InsertArrayElementAtIndex(agentMask.arraySize);
                 agentMask.GetArrayElementAtIndex(agentMask.arraySize - 1).intValue = agentTypeID;
             }
-            else if (idx != -1)
-                agentMask.DeleteArrayElementAtIndex(idx);
-            
+
             agentMask.serializedObject.ApplyModifiedProperties();
         }
 
@@ -239,27 +237,26 @@ namespace Assets.Core.Ai.NavMeshComponents.Editor
             if (IsAll(agentMask))
                 return "All";
 
-            if (agentMask.arraySize <= 3)
+            if (agentMask.arraySize > 3) return "Mixed...";
+
+            var labelName = "";
+            for (var j = 0; j < agentMask.arraySize; j++)
             {
-                var labelName = "";
-                for (var j = 0; j < agentMask.arraySize; j++)
-                {
-                    var elem = agentMask.GetArrayElementAtIndex(j);
-                    var settingsName = NavMesh.GetSettingsNameFromID(elem.intValue);
-                    if (string.IsNullOrEmpty(settingsName))
-                        continue;
+                var elem = agentMask.GetArrayElementAtIndex(j);
+                var settingsName = NavMesh.GetSettingsNameFromID(elem.intValue);
+                if (string.IsNullOrEmpty(settingsName))
+                    continue;
 
-                    if (labelName.Length > 0)
-                        labelName += ", ";
-                    labelName += settingsName;
-                }
-                return labelName;
+                if (labelName.Length > 0)
+                    labelName += ", ";
+                labelName += settingsName;
             }
+            return labelName;
 
-            return "Mixed...";
         }
 
-        private static bool AgentMaskHasSelectedAgentTypeID(SerializedProperty agentMask, int agentTypeID)
+        private static bool AgentMaskHasSelectedAgentTypeID(
+            SerializedProperty agentMask, int agentTypeID)
         {
             for (var j = 0; j < agentMask.arraySize; j++)
             {

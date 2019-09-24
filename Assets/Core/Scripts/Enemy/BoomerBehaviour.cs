@@ -4,14 +4,12 @@ using UnityEngine.AI;
 public class BoomerBehaviour : MonoBehaviour
 {
     public NavMeshAgent agent;
-
     private DefaultGroundEnemyBehaviour m_DefaultGroundEnemyBehaviour;
 
     // Start is called before the first frame update
     private void Start()
     {
-        // m_DefaultGroundEnemyBehaviour = GetComponent<DefaultGroundEnemyBehaviour>();
-        m_DefaultGroundEnemyBehaviour = gameObject.AddComponent<DefaultGroundEnemyBehaviour>();
+        m_DefaultGroundEnemyBehaviour = GetComponent<DefaultGroundEnemyBehaviour>();
     }
 
     // Update is called once per frame
