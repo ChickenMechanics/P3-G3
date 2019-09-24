@@ -216,10 +216,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &-1768267483214138816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   m_SurfaceCollisionVfx: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
     type: 3}
   m_VfxScale: 0.1
+  m_IsPhysicsBased: 0
   m_Speed: 50
-  m_Gravity: 0
+  m_DropOff: 0
   m_MaxLifetimeInSec: 5

@@ -10,19 +10,35 @@ public class BulletBehaviour : MonoBehaviour
     public GameObject m_SurfaceCollisionVfx;
     public float m_VfxScale = 1.0f;
     [Header("Properties")]
+    public bool m_IsPhysicsBased;
     public float m_Speed;
-    public float m_Gravity;
+    public float m_DropOff;
     public float m_MaxLifetimeInSec;
     #endregion
     
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_SurfaceCollisionParticle;
+    private Rigidbody m_Rb;
+
     private Vector3 m_Force;
     private float m_CurrentLifeTime;
 
 
     public void InitBullet()
     {
+        m_Rb = GetComponent<Rigidbody>();
+        if (m_IsPhysicsBased == true)
+        {
+            m_Rb.useGravity = true;
+            m_Rb.isKinematic = false;
+            m_Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
+        else
+        {
+            m_Rb.isKinematic = true;
+            m_Rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        }
+
         if (m_SurfaceCollisionVfx != null)
         {
             m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
@@ -40,7 +56,7 @@ public class BulletBehaviour : MonoBehaviour
         transform.position = bulletSpawnPoint.position;
 
         transform.forward = dir;
-        m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
+        m_Force = (dir * m_Speed) + new Vector3(0.0f, m_DropOff, 0.0f);
 
         if(m_SurfaceCollisionParticle != null)
         {
@@ -95,15 +111,27 @@ public class BulletBehaviour : MonoBehaviour
     private void Update()
     {
         m_CurrentLifeTime += Time.deltaTime;
+
+        if (m_IsPhysicsBased == false)
+        {
+            transform.position += m_Force * Time.deltaTime;
+            if (m_CurrentLifeTime > m_MaxLifetimeInSec)
+            {
+                Destroy(this);
+            }
+        }
     }
 
 
     private void FixedUpdate()
     {
-        transform.position += m_Force * Time.deltaTime;
-        if (m_CurrentLifeTime > m_MaxLifetimeInSec)
+        if (m_IsPhysicsBased == true)
         {
-            Destroy(this);
+            transform.position += m_Force * Time.deltaTime;
+            if (m_CurrentLifeTime > m_MaxLifetimeInSec)
+            {
+                Destroy(this);
+            }
         }
     }
 }
