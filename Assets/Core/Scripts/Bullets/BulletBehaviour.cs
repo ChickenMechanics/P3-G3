@@ -15,7 +15,6 @@ public class BulletBehaviour : MonoBehaviour
     public float m_MaxLifetimeInSec;
     #endregion
     
-    //private GameObject m_BulletModel;
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_SurfaceCollisionParticle;
     private Vector3 m_Force;
@@ -110,7 +109,6 @@ public class BulletBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position += m_Force * Time.deltaTime;
-
         if (m_CurrentLifeTime > m_MaxLifetimeInSec)
         {
             Destroy(this);
