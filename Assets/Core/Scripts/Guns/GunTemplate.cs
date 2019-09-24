@@ -50,15 +50,7 @@ public class GunTemplate : MonoBehaviour
         m_Rpm = 60.0f / m_RoundsPerMinute;
         m_TimePastSinceLastFire = m_Rpm;
 
-        //transform.position = m_PositionOffset;
-        //transform.rotation = Quaternion.identity;
-
         m_BulletSpawnPoint = transform.GetChild(0);
-
-        //m_GunModel = Instantiate(m_GunModelPrefab, m_PositionOffset, Quaternion.identity);
-        //m_GunModel.transform.position = transform.position;
-        //m_GunModel.transform.SetParent(transform);
-        //m_BulletSpawnPoint = m_GunModel.transform.GetChild(0);
 
         InitMagazine();
     }
@@ -66,6 +58,8 @@ public class GunTemplate : MonoBehaviour
 
     private void InitMagazine()
     {
+        // TODO: Reusing spent bullets is an idea
+
         if (m_BulletBehaviourScripts.Count > 0) m_BulletBehaviourScripts.Clear();
         if (m_BulletPrefabClones.Count > 0) m_BulletPrefabClones.Clear();
 
@@ -106,7 +100,6 @@ public class GunTemplate : MonoBehaviour
                             (transform.forward * m_PositionOffset.z);
 
         transform.position = transform.position + offsetPos;
-        //m_GunModel.transform.position = transform.position + offsetPos;
     }
 
 

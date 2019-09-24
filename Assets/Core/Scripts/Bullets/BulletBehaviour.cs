@@ -38,7 +38,6 @@ public class BulletBehaviour : MonoBehaviour
     public void Fire(Transform bulletSpawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
     {
         transform.position = bulletSpawnPoint.position;
-        //transform.rotation = bulletSpawnPoint.rotation;
 
         transform.forward = dir;
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_Gravity, 0.0f);
@@ -73,8 +72,7 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO: Reusing spent bullets is an idea
-
+        // TODO: If time, move vfx things to it's own script
         if (m_SurfaceCollisionVfx != null)
         {
             m_SurfaceCollisionParticle.transform.position = transform.position;

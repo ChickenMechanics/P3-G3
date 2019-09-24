@@ -13,7 +13,7 @@ public class EnemyVFX : MonoBehaviour
     public float m_SelfExplosionSmokeScale = 1.0f;
     #endregion
 
-    private ParticleSystem m_SelfExplaosionFireParticle;
+    private ParticleSystem m_SelfExplosionFireParticle;
     private ParticleSystem m_SelfExplosionSmokeParticle;
 
 
@@ -21,10 +21,10 @@ public class EnemyVFX : MonoBehaviour
     {
         if (m_SelfExplosionFireVfx != null)
         {
-            m_SelfExplaosionFireParticle = Instantiate(m_SelfExplosionFireVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
-            m_SelfExplaosionFireParticle.Stop();
-            m_SelfExplaosionFireParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-            m_SelfExplaosionFireParticle.transform.localScale = new Vector3(m_SelfExplosionFireScale, m_SelfExplosionFireScale, m_SelfExplosionFireScale);
+            m_SelfExplosionFireParticle = Instantiate(m_SelfExplosionFireVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_SelfExplosionFireParticle.Stop();
+            m_SelfExplosionFireParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_SelfExplosionFireParticle.transform.localScale = new Vector3(m_SelfExplosionFireScale, m_SelfExplosionFireScale, m_SelfExplosionFireScale);
         }
 
         if (m_SelfExplosionSmokeVfx != null)
@@ -39,10 +39,10 @@ public class EnemyVFX : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(m_SelfExplaosionFireParticle != null)
+        if (m_SelfExplosionFireParticle != null)
         {
-            m_SelfExplaosionFireParticle.transform.position = transform.position;
-            m_SelfExplaosionFireParticle.Play();
+            m_SelfExplosionFireParticle.transform.position = transform.position;
+            m_SelfExplosionFireParticle.Play();
         }
 
         if (m_SelfExplosionSmokeParticle != null)
