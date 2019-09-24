@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: -7743741494050624357}
   m_Layer: 13
   m_Name: BallBullet
-  m_TagString: Untagged
+  m_TagString: BulletBasic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

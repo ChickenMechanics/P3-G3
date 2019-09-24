@@ -65,42 +65,50 @@ public class ScoreManager : MonoBehaviour
         if (m_ComboAlive == true)
         {
             m_PassedComboTime += Time.deltaTime;
+
+            ComboUpdater();
         }
     }
 
 
     private void ComboEvaluator(float value)
     {
-        if(m_CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the one before
+        if (m_CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the previous
         {
             m_CurrentComboMultiplier *= m_ComboScaler;
         }
 
-        if (m_CurrentComboChain < 2)     // Normalize multiplier if it's the first enemy killed
+        if (m_CurrentComboChain < 2)     // Normalizes the multiplier if it's the first enemy killed
         {
             m_CurrentComboMultiplier /= m_CurrentComboMultiplier;
         }
 
-        m_PlayerScore += value * m_ComboBaseMultiplier;  // TODO: If time bonus or whatever, implement here
+        m_PlayerScore += value * m_CurrentComboMultiplier;  // TODO: If time bonus or whatever exists, implement here
 
         // Combo alive
-        if (m_PassedComboTime <= m_ComboTimeInSecMax)
+        if (m_PassedComboTime <= m_ComboTimeInSecMax)    
         {
             m_PassedComboTime = 0.0f;
-            return;
         }
+    }
 
+
+    private void ComboUpdater()
+    {
         // Combo dead
-        if(m_CurrentComboChain > m_LongestCombo)
+        if (m_PassedComboTime > m_ComboTimeInSecMax)
         {
-            m_LongestCombo = m_CurrentComboChain;
-        }
+            if (m_CurrentComboChain > m_LongestCombo)
+            {
+                m_LongestCombo = m_CurrentComboChain;
+            }
 
-        m_PassedComboTime = 0.0f;
-        m_CurrentComboMultiplier = m_ComboBaseMultiplier;
-        m_CurrentComboChain = 0;
-        ++m_TotalCombos;
-        m_ComboAlive = false;
+            m_PassedComboTime = 0.0f;
+            m_CurrentComboMultiplier = m_ComboBaseMultiplier;
+            m_CurrentComboChain = 0;
+            ++m_TotalCombos;
+            m_ComboAlive = false;
+        }
     }
 
 
