@@ -7,31 +7,48 @@ public class EnemyVFX : MonoBehaviour
 {
     #region design vars
     [Header("Vfx")]
-    public GameObject m_SurfaceCollisionVfx;
-    public float m_VfxScale = 1.0f;
+    public GameObject m_SelfExplosionFireVfx;
+    public GameObject m_SelfExplosionSmokeVfx;
+    public float m_SelfExplosionFireScale= 1.0f;
+    public float m_SelfExplosionSmokeScale = 1.0f;
     #endregion
 
-    private ParticleSystem m_SurfaceCollisionParticle;
+    private ParticleSystem m_SelfExplaosionFireParticle;
+    private ParticleSystem m_SelfExplosionSmokeParticle;
 
 
     private void Awake()
     {
-        if (m_SurfaceCollisionVfx != null)
+        if (m_SelfExplosionFireVfx != null)
         {
-            m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
-            m_SurfaceCollisionParticle.Stop();
-            m_SurfaceCollisionParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-            m_SurfaceCollisionParticle.transform.localScale = new Vector3(m_VfxScale, m_VfxScale, m_VfxScale);
+            m_SelfExplaosionFireParticle = Instantiate(m_SelfExplosionFireVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_SelfExplaosionFireParticle.Stop();
+            m_SelfExplaosionFireParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_SelfExplaosionFireParticle.transform.localScale = new Vector3(m_SelfExplosionFireScale, m_SelfExplosionFireScale, m_SelfExplosionFireScale);
+        }
+
+        if (m_SelfExplosionSmokeVfx != null)
+        {
+            m_SelfExplosionSmokeParticle = Instantiate(m_SelfExplosionFireVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_SelfExplosionSmokeParticle.Stop();
+            m_SelfExplosionSmokeParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_SelfExplosionSmokeParticle.transform.localScale = new Vector3(m_SelfExplosionFireScale, m_SelfExplosionFireScale, m_SelfExplosionFireScale);
         }
     }
 
 
     private void OnDestroy()
     {
-        if(m_SurfaceCollisionParticle != null)
+        if(m_SelfExplaosionFireParticle != null)
         {
-            m_SurfaceCollisionParticle.transform.position = transform.position;
-            m_SurfaceCollisionParticle.Play();
+            m_SelfExplaosionFireParticle.transform.position = transform.position;
+            m_SelfExplaosionFireParticle.Play();
+        }
+
+        if (m_SelfExplosionSmokeParticle != null)
+        {
+            m_SelfExplosionSmokeParticle.transform.position = transform.position;
+            m_SelfExplosionSmokeParticle.Play();
         }
     }
 }
