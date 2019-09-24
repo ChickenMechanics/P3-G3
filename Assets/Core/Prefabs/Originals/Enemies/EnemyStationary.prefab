@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1439883124adc4ca39bcfb8ee3f29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SelfExplosionFireVfx: {fileID: 699867813213670086, guid: 559949de2bbaa8f4c968b5a56c385f30,
+  m_SelfExplosionFireVfx: {fileID: 4160680326183258552, guid: b43ab0cce5cd77c4a8e6969b1f59bb7c,
     type: 3}
-  m_SelfExplosionSmokeVfx: {fileID: 6421271631706242931, guid: 1f4d9668ef84e8046898c5291309d8a6,
+  m_SelfExplosionSmokeVfx: {fileID: 33209854485882976, guid: 54b003731e6e78a4995e1f69273226b9,
     type: 3}
-  m_SelfExplosionFireScale: 1
-  m_SelfExplosionSmokeScale: 1
+  m_SelfExplosionFireScale: 0.7
+  m_SelfExplosionSmokeScale: 0.5
