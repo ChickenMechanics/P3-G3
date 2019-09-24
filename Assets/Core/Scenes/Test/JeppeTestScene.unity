@@ -2917,37 +2917,5 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 500200625893714853, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 500200625893714854, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_MoveAcceleration
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 7094990082877444129, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_GunPrefab.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7094990082877444129, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_GunPrefab.Array.data[4]
-      value: 
-      objectReference: {fileID: 1051214323070342385, guid: 48fd59eb5485ef644ae1b19eba9f7a0c,
-        type: 3}
-    - target: {fileID: 7094990082877444129, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_DefaultGun
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7094990082877444129, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
-        type: 3}
-      propertyPath: m_GunPrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 1051214323070342385, guid: 48fd59eb5485ef644ae1b19eba9f7a0c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}

@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
     [HideInInspector]
     public float m_PlayerScore { get; private set; }
     [HideInInspector]
-    public int m_ComboCounter { get; private set; }
+    public int m_CurrentComboChain { get; private set; }
     [HideInInspector]
     public int m_TotalCombos { get; private set; }
     [HideInInspector]
@@ -44,8 +44,8 @@ public class ScoreManager : MonoBehaviour
 
     public void AddComboPoints(float value)    //  Call this for everything included in the combo points system
     {
-        ++m_ComboCounter;
-        if (m_ComboCounter == 1)
+        ++m_CurrentComboChain;
+        if (m_CurrentComboChain == 1)
         {
             m_ComboAlive = true;
         }
@@ -71,12 +71,12 @@ public class ScoreManager : MonoBehaviour
 
     private void ComboEvaluator(float value)
     {
-        if(m_ComboCounter > 1)  // Each kill that is chained in a combo is worth more then the one before
+        if(m_CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the one before
         {
             m_CurrentComboMultiplier *= m_ComboScaler;
         }
 
-        if (m_ComboCounter < 2)     // Normalize multiplier if it's the first enemy killed
+        if (m_CurrentComboChain < 2)     // Normalize multiplier if it's the first enemy killed
         {
             m_CurrentComboMultiplier /= m_CurrentComboMultiplier;
         }
@@ -91,14 +91,14 @@ public class ScoreManager : MonoBehaviour
         }
 
         // Combo dead
-        if(m_ComboCounter > m_LongestCombo)
+        if(m_CurrentComboChain > m_LongestCombo)
         {
-            m_LongestCombo = m_ComboCounter;
+            m_LongestCombo = m_CurrentComboChain;
         }
 
         m_PassedComboTime = 0.0f;
         m_CurrentComboMultiplier = m_ComboBaseMultiplier;
-        m_ComboCounter = 0;
+        m_CurrentComboChain = 0;
         ++m_TotalCombos;
         m_ComboAlive = false;
     }
@@ -109,7 +109,7 @@ public class ScoreManager : MonoBehaviour
         m_PassedComboTime = 0.0f;  
         m_PlayerScore = 0.0f;
         m_CurrentComboMultiplier = m_ComboBaseMultiplier;
-        m_ComboCounter = 0;
+        m_CurrentComboChain = 0;
         m_TotalCombos = 0;
         m_LongestCombo = 0;
         m_ComboAlive = false;
