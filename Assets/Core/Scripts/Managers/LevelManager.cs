@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Should be called SceneManager, but Unity uses that. Perhaps change this to something more descriptive like SceneLoaderManager or equally exciting
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance { get; private set;}
+    public static LevelManager GetInstance { get; private set;}
 
     private int m_NextSceneIdx;
     private int m_CurrentSceneIdx;
@@ -46,16 +46,16 @@ public class LevelManager : MonoBehaviour
 
     private void Init()
     {
-        if (Instance != null && Instance != this)
+        if (GetInstance != null && GetInstance != this)
         {
             Destroy(gameObject);
         }
-        Instance = this;
+        GetInstance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         m_NextSceneIdx = -1;
         m_CurrentSceneIdx = -1;
-
-        DontDestroyOnLoad(gameObject);
     }
 
 

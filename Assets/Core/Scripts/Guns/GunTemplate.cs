@@ -51,7 +51,7 @@ public class GunTemplate : MonoBehaviour
         m_TimePastSinceLastFire = m_Rpm;
 
         m_BulletSpawnPoint = transform.GetChild(0);
-
+        
         InitMagazine();
     }
 
@@ -79,7 +79,7 @@ public class GunTemplate : MonoBehaviour
             m_BulletPrefabClones.Add(bulletClone);
             m_BulletBehaviourScripts.Add(bulletScr);
         }
-
+        
         m_NextFreeBullet = m_MagazineSize - 1;
     }
 

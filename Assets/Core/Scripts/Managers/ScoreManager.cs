@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance { get; private set; }
+    public static ScoreManager GetInstance { get; private set; }
 
     #region design vars
     public float m_ComboTimeInSecMax = 1.0f;
@@ -126,11 +126,13 @@ public class ScoreManager : MonoBehaviour
 
     private void Init()
     {
-        if (Instance != null && Instance != this)
+        if (GetInstance != null && GetInstance != this)
         {
             Destroy(gameObject);
         }
-        Instance = this;
+        GetInstance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         if (m_ComboScaler < 0.0f)
         {
@@ -138,8 +140,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         ResetPlayer();
-
-        DontDestroyOnLoad(gameObject);
     }
 
 

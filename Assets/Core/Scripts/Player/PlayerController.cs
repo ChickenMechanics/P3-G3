@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            LevelManager.Instance.ChangeScene(LevelManager.EScene.MAIN_MENU);
+            LevelManager.GetInstance.ChangeScene(LevelManager.EScene.MAIN_MENU);
         }
     }
 }
