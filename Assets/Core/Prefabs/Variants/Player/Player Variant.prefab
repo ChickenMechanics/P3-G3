@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -71,6 +71,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MoveAcceleration
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093669475063879485, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
+      propertyPath: m_DefaultGun
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7093669475063879485, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}

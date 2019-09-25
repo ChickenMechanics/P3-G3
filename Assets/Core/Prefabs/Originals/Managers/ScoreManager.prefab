@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51d3a8147ba9c94f95509e200c5df46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComboTimeInSecMax: 3
+  m_ComboTimeInSecMax: 1.5
   m_ComboBaseMultiplier: 1.5
   m_ComboScaler: 1.15
