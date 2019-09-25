@@ -13,21 +13,34 @@ public class ScoreManager : MonoBehaviour
     public float m_ComboScaler = 1.15f;
     #endregion
 
+    // TODO: Changed all that is named combo to chain
     #region get / set
     [HideInInspector]
-    public float m_PassedComboTime { get; private set; }
+    public float PassedComboTime { get; private set; }
     [HideInInspector]
-    public float m_PlayerScore { get; private set; }
+    public float PlayerScore { get; private set; }
     [HideInInspector]
-    public int m_CurrentComboChain { get; private set; }
+    public int CurrentComboChain { get; private set; }
     [HideInInspector]
-    public int m_TotalCombos { get; private set; }
+    public float CurrentComboMultiplier { get; private set; }
     [HideInInspector]
-    public int m_LongestCombo { get; private set; }
+    public int TotalCombos { get; private set; }
+    [HideInInspector]
+    public int LongestCombo { get; private set; }
     #endregion
 
-    private float m_CurrentComboMultiplier;
     private bool m_ComboAlive;
+
+    public enum EText
+    {
+        SCORE = 0,
+        TOTAL_CHAINS,
+        LONGEST_CHAIN,
+        CHAIN_TIME_LEFT,
+        CURRENT_CHAIN,
+        CURRENT_MULTI,
+        SIZE
+    }
 
 
     public float GetComboTimeMax()
@@ -36,16 +49,10 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    public float GetCurrentComboMultiplier()
-    {
-        return m_CurrentComboMultiplier;
-    }
-
-
     public void AddComboPoints(float value)    //  Call this for everything included in the combo points system
     {
-        ++m_CurrentComboChain;
-        if (m_CurrentComboChain == 1)
+        ++CurrentComboChain;
+        if (CurrentComboChain == 1)
         {
             m_ComboAlive = true;
         }
@@ -56,7 +63,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddVanillaPoints(float value)   //  Call this for vanilla points
     {
-        m_PlayerScore += value;
+        PlayerScore += value;
     }
 
 
@@ -64,7 +71,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (m_ComboAlive == true)
         {
-            m_PassedComboTime += Time.deltaTime;
+            PassedComboTime += Time.deltaTime;
 
             ComboUpdater();
         }
@@ -73,22 +80,22 @@ public class ScoreManager : MonoBehaviour
 
     private void ComboEvaluator(float value)
     {
-        if (m_CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the previous
+        if (CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the previous
         {
-            m_CurrentComboMultiplier *= m_ComboScaler;
+            CurrentComboMultiplier *= m_ComboScaler;
         }
 
-        if (m_CurrentComboChain < 2)     // Normalizes the multiplier if it's the first enemy killed
+        if (CurrentComboChain < 2)     // Normalizes the multiplier if it's the first enemy killed
         {
-            m_CurrentComboMultiplier /= m_CurrentComboMultiplier;
+            CurrentComboMultiplier /= CurrentComboMultiplier;
         }
 
-        m_PlayerScore += value * m_CurrentComboMultiplier;  // TODO: If time bonus or whatever exists, implement here
+        PlayerScore += value * CurrentComboMultiplier;  // TODO: If time bonus or whatever exists, implement here
 
         // Combo alive
-        if (m_PassedComboTime <= m_ComboTimeInSecMax)    
+        if (PassedComboTime <= m_ComboTimeInSecMax)    
         {
-            m_PassedComboTime = 0.0f;
+            PassedComboTime = 0.0f;
         }
     }
 
@@ -96,17 +103,17 @@ public class ScoreManager : MonoBehaviour
     private void ComboUpdater()
     {
         // Combo dead
-        if (m_PassedComboTime > m_ComboTimeInSecMax)
+        if (PassedComboTime > m_ComboTimeInSecMax)
         {
-            if (m_CurrentComboChain > m_LongestCombo)
+            if (CurrentComboChain > LongestCombo)
             {
-                m_LongestCombo = m_CurrentComboChain;
+                LongestCombo = CurrentComboChain;
             }
 
-            m_PassedComboTime = 0.0f;
-            m_CurrentComboMultiplier = m_ComboBaseMultiplier;
-            m_CurrentComboChain = 0;
-            ++m_TotalCombos;
+            PassedComboTime = 0.0f;
+            CurrentComboMultiplier = 1.0f;
+            CurrentComboChain = 0;
+            ++TotalCombos;
             m_ComboAlive = false;
         }
     }
@@ -114,12 +121,12 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetPlayer()
     {
-        m_PassedComboTime = 0.0f;  
-        m_PlayerScore = 0.0f;
-        m_CurrentComboMultiplier = m_ComboBaseMultiplier;
-        m_CurrentComboChain = 0;
-        m_TotalCombos = 0;
-        m_LongestCombo = 0;
+        PassedComboTime = 0.0f;  
+        PlayerScore = 0.0f;
+        CurrentComboMultiplier = 1.0f;
+        CurrentComboChain = 0;
+        TotalCombos = 0;
+        LongestCombo = 0;
         m_ComboAlive = false;
     }
 

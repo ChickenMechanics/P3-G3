@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("LevelManager::ChangeScene(): Next scene index and current scene index are the same. No scene change made!");
             return;
         }
-
+        
         m_NextSceneIdx = (int)scene;
         //GameObject.FindGameObjectWithTag("SceneTransitionFade").GetComponent<Animator>().SetTrigger("FadeOut");
 

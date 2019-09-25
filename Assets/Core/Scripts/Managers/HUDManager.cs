@@ -1,10 +1,34 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 
 public class HUDManager : MonoBehaviour
 {
     public static HUDManager GetInstance { get; private set; }
+
+    private ScoreManager m_ScoreMan;
+
+    // Temp
+    private Text[] m_arrText;
+    private Text m_Score;
+    // Temp
+
+
+    private void Init()
+    {
+        m_ScoreMan = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+
+        // Temp score text
+        int size = (int)ScoreManager.EText.SIZE;
+        m_arrText = new Text[size];
+        for (int i = 0; i < size; ++i)
+        {
+            m_arrText[i] = transform.GetChild(0).transform.GetChild(1).transform.GetChild(i).GetComponent<Text>();
+        }
+        // Temp
+    }
 
 
     private void Awake()
@@ -14,5 +38,20 @@ public class HUDManager : MonoBehaviour
             Destroy(gameObject);
         }
         GetInstance = this;
+
+        Init();
+    }
+
+
+    private void Update()
+    {
+        int score = (int)m_ScoreMan.PlayerScore;    // Truncuate
+        m_arrText[(int)ScoreManager.EText.SCORE].text = score.ToString();
+        m_arrText[(int)ScoreManager.EText.TOTAL_CHAINS].text = m_ScoreMan.TotalCombos.ToString();
+        m_arrText[(int)ScoreManager.EText.LONGEST_CHAIN].text = m_ScoreMan.LongestCombo.ToString();
+
+        m_arrText[(int)ScoreManager.EText.CURRENT_CHAIN].text = m_ScoreMan.PassedComboTime.ToString();
+        m_arrText[(int)ScoreManager.EText.CURRENT_CHAIN].text = m_ScoreMan.CurrentComboChain.ToString();
+        m_arrText[(int)ScoreManager.EText.CURRENT_MULTI].text = m_ScoreMan.CurrentComboMultiplier.ToString();
     }
 }
