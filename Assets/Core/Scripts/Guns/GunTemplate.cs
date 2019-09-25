@@ -111,7 +111,7 @@ public class GunTemplate : MonoBehaviour
 #if DEBUG
         if (m_BulletBehaviourScripts.Count == 0)
         {
-            Debug.LogError("GunTemplate::Fire(): No bollit in clip!");
+            Debug.LogWarning("GunTemplate::Fire(): No bollit in clip!");
             return;
         }
 #endif
