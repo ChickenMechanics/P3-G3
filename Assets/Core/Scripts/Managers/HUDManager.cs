@@ -50,7 +50,7 @@ public class HUDManager : MonoBehaviour
         m_arrText[(int)ScoreManager.EText.TOTAL_CHAINS].text = m_ScoreMan.TotalCombos.ToString();
         m_arrText[(int)ScoreManager.EText.LONGEST_CHAIN].text = m_ScoreMan.LongestCombo.ToString();
 
-        m_arrText[(int)ScoreManager.EText.CURRENT_CHAIN].text = m_ScoreMan.PassedComboTime.ToString();
+        m_arrText[(int)ScoreManager.EText.CHAIN_TIME_LEFT].text = m_ScoreMan.PassedComboTime.ToString();
         m_arrText[(int)ScoreManager.EText.CURRENT_CHAIN].text = m_ScoreMan.CurrentComboChain.ToString();
         m_arrText[(int)ScoreManager.EText.CURRENT_MULTI].text = m_ScoreMan.CurrentComboMultiplier.ToString();
     }

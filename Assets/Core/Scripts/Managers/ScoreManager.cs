@@ -71,7 +71,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (m_ComboAlive == true)
         {
-            PassedComboTime += Time.deltaTime;
+            PassedComboTime -= Time.deltaTime;
 
             ComboUpdater();
         }
@@ -93,24 +93,21 @@ public class ScoreManager : MonoBehaviour
         PlayerScore += value * CurrentComboMultiplier;  // TODO: If time bonus or whatever exists, implement here
 
         // Combo alive
-        if (PassedComboTime <= m_ComboTimeInSecMax)    
-        {
-            PassedComboTime = 0.0f;
-        }
+        PassedComboTime = m_ComboTimeInSecMax;
     }
 
 
     private void ComboUpdater()
     {
         // Combo dead
-        if (PassedComboTime > m_ComboTimeInSecMax)
+        if (PassedComboTime < 0.0f)
         {
             if (CurrentComboChain > LongestCombo)
             {
                 LongestCombo = CurrentComboChain;
             }
 
-            PassedComboTime = 0.0f;
+            PassedComboTime = m_ComboTimeInSecMax;
             CurrentComboMultiplier = 1.0f;
             CurrentComboChain = 0;
             ++TotalCombos;
@@ -121,7 +118,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetPlayer()
     {
-        PassedComboTime = 0.0f;  
+        PassedComboTime = m_ComboTimeInSecMax;  
         PlayerScore = 0.0f;
         CurrentComboMultiplier = 1.0f;
         CurrentComboChain = 0;
