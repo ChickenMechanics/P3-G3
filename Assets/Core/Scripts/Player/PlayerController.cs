@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private float m_AccelScaler;
     private float m_EyePointOffsetZ;
 
+    private float m_CurrentAccel;
+
     // Lazy gun
     private GunHandler m_Gunhandler;
     private int m_CurrentGunIdx;
@@ -129,6 +131,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void FixedMove()
+    {
+        if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
+        {
+            if (m_Rb.velocity.magnitude < m_MaxMoveSpeed)
+            {
+                m_Rb.AddForce((m_ForwardForce + m_StrafeForce), ForceMode.Force);
+            }
+        }
+    }
+
+
     private void  Move()
     {
         m_MoveDir.x = Input.GetAxisRaw("Horizontal");
@@ -146,18 +160,6 @@ public class PlayerController : MonoBehaviour
 
             m_StrafeForce = transform.right;
             m_StrafeForce *= m_StrafeAccel * m_MoveDir.x * Time.deltaTime;
-        }
-    }
-
-
-    private void FixedMove()
-    {
-        if (m_MoveDir.x != 0.0f || m_MoveDir.z != 0.0f)
-        {
-            if (m_Rb.velocity.magnitude < m_MaxMoveSpeed)
-            {
-                m_Rb.AddForce((m_ForwardForce + m_StrafeForce), ForceMode.Force);
-            }
         }
     }
 
