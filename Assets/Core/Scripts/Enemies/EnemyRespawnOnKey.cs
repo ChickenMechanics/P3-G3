@@ -9,11 +9,15 @@ public class EnemyRespawnOnKey : MonoBehaviour
 
     public GameObject m_EnemyToSpawn;
 
+    private MeshRenderer m_MeshRenderer;
     private GameObject m_EnemyInstance;
 
 
     private void Awake()
     {
+        Destroy(GetComponent<MeshRenderer>());
+        Destroy(GetComponent<MeshFilter>());
+
         m_EnemyInstance = Instantiate(m_EnemyToSpawn, transform.position, transform.rotation, transform);
     }
 
@@ -24,7 +28,6 @@ public class EnemyRespawnOnKey : MonoBehaviour
         {
             if (m_EnemyInstance != null)
             {
-                Debug.LogWarning("EnemyRespawnOnKeyPress::Update(): Enemy is already spawned.");
                 return;
             }
 
