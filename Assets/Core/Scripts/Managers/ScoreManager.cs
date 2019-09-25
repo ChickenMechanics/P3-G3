@@ -16,17 +16,19 @@ public class ScoreManager : MonoBehaviour
     // TODO: Changed all that is named combo to chain
     #region get / set
     [HideInInspector]
-    public float PassedComboTime { get; private set; }
+    public float ChainTimeLeft { get; private set; }
+    [HideInInspector]
+    public float SpareChainTime{ get; private set; }
     [HideInInspector]
     public float PlayerScore { get; private set; }
     [HideInInspector]
-    public int CurrentComboChain { get; private set; }
+    public int CurrentChain { get; private set; }
     [HideInInspector]
     public float CurrentComboMultiplier { get; private set; }
     [HideInInspector]
-    public int TotalCombos { get; private set; }
+    public int TotalChains { get; private set; }
     [HideInInspector]
-    public int LongestCombo { get; private set; }
+    public int LongestChain { get; private set; }
     #endregion
 
     private bool m_ComboAlive;
@@ -37,6 +39,7 @@ public class ScoreManager : MonoBehaviour
         TOTAL_CHAINS,
         LONGEST_CHAIN,
         CHAIN_TIME_LEFT,
+        SPARE_CHAIN_TIME,
         CURRENT_CHAIN,
         CURRENT_MULTI,
         SIZE
@@ -51,8 +54,8 @@ public class ScoreManager : MonoBehaviour
 
     public void AddComboPoints(float value)    //  Call this for everything included in the combo points system
     {
-        ++CurrentComboChain;
-        if (CurrentComboChain == 1)
+        ++CurrentChain;
+        if (CurrentChain == 1)
         {
             m_ComboAlive = true;
         }
@@ -71,7 +74,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (m_ComboAlive == true)
         {
-            PassedComboTime -= Time.deltaTime;
+            ChainTimeLeft -= Time.deltaTime;
 
             ComboUpdater();
         }
@@ -80,12 +83,13 @@ public class ScoreManager : MonoBehaviour
 
     private void ComboEvaluator(float value)
     {
-        if (CurrentComboChain > 1)  // Each kill that is chained in a combo is worth more then the previous
+        if (CurrentChain > 1)  // Each kill that is chained in a combo is worth more then the previous
         {
+            SpareChainTime = ChainTimeLeft;
             CurrentComboMultiplier *= m_ComboScaler;
         }
 
-        if (CurrentComboChain < 2)     // Normalizes the multiplier if it's the first enemy killed
+        if (CurrentChain < 2)     // Normalizes the multiplier if it's the first enemy killed
         {
             CurrentComboMultiplier /= CurrentComboMultiplier;
         }
@@ -93,24 +97,29 @@ public class ScoreManager : MonoBehaviour
         PlayerScore += value * CurrentComboMultiplier;  // TODO: If time bonus or whatever exists, implement here
 
         // Combo alive
-        PassedComboTime = m_ComboTimeInSecMax;
+        ChainTimeLeft = m_ComboTimeInSecMax;
     }
 
 
     private void ComboUpdater()
     {
         // Combo dead
-        if (PassedComboTime < 0.0f)
+        if (ChainTimeLeft < 0.0f)
         {
-            if (CurrentComboChain > LongestCombo)
+            if (CurrentChain > LongestChain)
             {
-                LongestCombo = CurrentComboChain;
+                LongestChain = CurrentChain;
             }
 
-            PassedComboTime = m_ComboTimeInSecMax;
+            if(CurrentChain > 1)
+            {
+                ++TotalChains;
+            }
+
+            ChainTimeLeft = 0.0f;
+            SpareChainTime = 0.0f;
             CurrentComboMultiplier = 1.0f;
-            CurrentComboChain = 0;
-            ++TotalCombos;
+            CurrentChain = 0;
             m_ComboAlive = false;
         }
     }
@@ -118,12 +127,13 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetPlayer()
     {
-        PassedComboTime = m_ComboTimeInSecMax;  
+        ChainTimeLeft = 0.0f;
+        SpareChainTime = 0.0f;
         PlayerScore = 0.0f;
         CurrentComboMultiplier = 1.0f;
-        CurrentComboChain = 0;
-        TotalCombos = 0;
-        LongestCombo = 0;
+        CurrentChain = 0;
+        TotalChains = 0;
+        LongestChain = 0;
         m_ComboAlive = false;
     }
 
