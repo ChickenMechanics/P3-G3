@@ -41,10 +41,16 @@ public class BulletBehaviour : MonoBehaviour
 
         if (m_SurfaceCollisionVfx != null)
         {
+            GameObject obj = new GameObject("VfxBulletFolder");
+            obj.transform.rotation = transform.rotation;
+            obj.transform.position = transform.position;
+            obj.transform.parent = transform;
+
             m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
             m_SurfaceCollisionParticle.Stop();
             m_SurfaceCollisionParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
             m_SurfaceCollisionParticle.transform.localScale = new Vector3(m_VfxScale, m_VfxScale, m_VfxScale);
+            m_SurfaceCollisionParticle.transform.parent = obj.transform;
         }
 
         m_CurrentLifeTime = 0.0f;
