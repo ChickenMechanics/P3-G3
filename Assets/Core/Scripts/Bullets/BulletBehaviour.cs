@@ -57,6 +57,7 @@ public class BulletBehaviour : MonoBehaviour
             m_WallClash.Stop();
             m_WallClash.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
             m_WallClash.transform.localScale = new Vector3(m_WallClashScale, m_WallClashScale, m_WallClashScale);
+            m_WallClash.transform.parent = transform;
         }
 
         if (m_GlowParticle != null)
@@ -149,6 +150,7 @@ public class BulletBehaviour : MonoBehaviour
         // TODO: If time, move vfx things to it's own script
         if (m_WallClashParticle != null)
         {
+            m_WallClash.transform.parent = null;
             m_WallClash.transform.position = transform.position;
             m_WallClash.Play();
         }
