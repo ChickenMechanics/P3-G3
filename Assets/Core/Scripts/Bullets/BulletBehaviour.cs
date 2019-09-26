@@ -88,7 +88,7 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    public void Fire(Transform bulletSpawnPoint, Vector3 dir, Vector3 vfxSpawnPoint)
+    public void Fire(Transform bulletSpawnPoint, Vector3 dir)
     {
         transform.position = bulletSpawnPoint.position;
 
@@ -99,10 +99,10 @@ public class BulletBehaviour : MonoBehaviour
         if(m_WallClash != null)
         {
             m_WallClash.transform.rotation = Camera.main.transform.rotation;
-            m_WallClash.transform.position = vfxSpawnPoint;
+            //m_WallClash.transform.position = vfxSpawnPoint;
         }
 
-        if(m_Glow != null)
+        if (m_Glow != null)
         {
             m_Glow.transform.position = transform.position;
             m_Glow.Play();
@@ -147,6 +147,7 @@ public class BulletBehaviour : MonoBehaviour
         // TODO: If time, move vfx things to it's own script
         if (m_WallClashParticle != null)
         {
+            m_WallClash.transform.position = transform.position;
             m_WallClash.Play();
         }
 
