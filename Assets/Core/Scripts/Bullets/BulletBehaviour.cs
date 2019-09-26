@@ -7,8 +7,14 @@ public class BulletBehaviour : MonoBehaviour
 {
     #region design vars
     [Header("Vfx")]
-    public GameObject m_SurfaceCollisionVfx;
-    public float m_VfxScale = 1.0f;
+    public GameObject m_WallClashParticle;
+    public float m_WallClashScale = 1.0f;
+    public GameObject m_GlowParticle;
+    public float m_GlowScale = 1.0f;
+    public GameObject m_BodyParticle;
+    public float m_BodyScale = 1.0f;
+    public GameObject m_TrailRender;
+    public float m_TrailScale = 1.0f;
     [Header("Properties")]
     public bool m_IsPhysicsBased;
     public float m_Speed;
@@ -17,7 +23,10 @@ public class BulletBehaviour : MonoBehaviour
     #endregion
     
     private BulletBehaviour m_BulletBehaviour;
-    private ParticleSystem m_SurfaceCollisionParticle;
+    private ParticleSystem m_WallClash;
+    private ParticleSystem m_Glow;
+    private ParticleSystem m_Body;
+    private TrailRenderer m_Trail;
     private Rigidbody m_Rb;
 
     private Vector3 m_Force;
@@ -39,19 +48,41 @@ public class BulletBehaviour : MonoBehaviour
             m_Rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         }
 
-        if (m_SurfaceCollisionVfx != null)
+        #region vfx
+        if (m_WallClashParticle != null)
         {
-            GameObject obj = new GameObject("VfxBulletFolder");
-            obj.transform.rotation = transform.rotation;
-            obj.transform.position = transform.position;
-            obj.transform.parent = transform;
-
-            m_SurfaceCollisionParticle = Instantiate(m_SurfaceCollisionVfx.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
-            m_SurfaceCollisionParticle.Stop();
-            m_SurfaceCollisionParticle.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-            m_SurfaceCollisionParticle.transform.localScale = new Vector3(m_VfxScale, m_VfxScale, m_VfxScale);
-            m_SurfaceCollisionParticle.transform.parent = obj.transform;
+            m_WallClash = Instantiate(m_WallClashParticle.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_WallClash.Stop();
+            m_WallClash.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_WallClash.transform.localScale = new Vector3(m_WallClashScale, m_WallClashScale, m_WallClashScale);
         }
+
+        if (m_GlowParticle != null)
+        {
+            m_Glow = Instantiate(m_GlowParticle.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_Glow.Stop();
+            m_Glow.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_Glow.transform.localScale = new Vector3(m_GlowScale, m_GlowScale, m_GlowScale);
+            m_Glow.transform.parent = transform;
+        }
+
+        if (m_BodyParticle != null)
+        {
+            m_Body = Instantiate(m_BodyParticle.GetComponent<ParticleSystem>(), transform.position, Quaternion.identity);
+            m_Body.Stop();
+            m_Body.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_Body.transform.localScale = new Vector3(m_BodyScale, m_BodyScale, m_BodyScale);
+            m_Body.transform.parent = transform;
+        }
+
+        if (m_TrailRender != null)
+        {
+            m_Trail = Instantiate(m_TrailRender.GetComponent<TrailRenderer>(), transform.position, Quaternion.identity);
+            m_Trail.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+            m_Trail.transform.localScale = new Vector3(m_TrailScale, m_TrailScale, m_TrailScale);
+            m_Trail.transform.parent = transform;
+        }
+        #endregion
 
         m_CurrentLifeTime = 0.0f;
     }
@@ -64,11 +95,30 @@ public class BulletBehaviour : MonoBehaviour
         transform.forward = dir;
         m_Force = (dir * m_Speed) + new Vector3(0.0f, m_DropOff, 0.0f);
 
-        if(m_SurfaceCollisionParticle != null)
+        #region vfx
+        if(m_WallClash != null)
         {
-            m_SurfaceCollisionParticle.transform.rotation = Camera.main.transform.rotation;
-            m_SurfaceCollisionParticle.transform.position = vfxSpawnPoint;
+            m_WallClash.transform.rotation = Camera.main.transform.rotation;
+            m_WallClash.transform.position = vfxSpawnPoint;
         }
+
+        if(m_Glow != null)
+        {
+            m_Glow.transform.position = transform.position;
+            m_Glow.Play();
+        }
+
+        if (m_Body != null)
+        {
+            m_Body.transform.position = transform.position;
+            m_Body.Play();
+        }
+
+        if (m_Trail != null)
+        {
+            m_Trail.transform.position = transform.position;
+        }
+        #endregion vfx
 
         gameObject.SetActive(true);
     }
@@ -95,10 +145,9 @@ public class BulletBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // TODO: If time, move vfx things to it's own script
-        if (m_SurfaceCollisionVfx != null)
+        if (m_WallClashParticle != null)
         {
-            m_SurfaceCollisionParticle.transform.position = transform.position;
-            m_SurfaceCollisionParticle.Play();
+            m_WallClash.Play();
         }
 
         // TODO: Do this better

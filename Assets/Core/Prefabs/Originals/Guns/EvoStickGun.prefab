@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_PositionOffset: {x: 4, y: -0.35, z: 0.5}
   m_RoundsPerMinute: 600
   m_MagazineSize: 1000
-  m_BulletModelPrefab: {fileID: 7935401623685007322, guid: f0497473567d0ce4687f482b2c76e522,
+  m_BulletModelPrefab: {fileID: 1258812700453301312, guid: db95fa4050e9ea14ab8510d4dff6aba3,
     type: 3}
 --- !u!1 &6765981322706080711
 GameObject:

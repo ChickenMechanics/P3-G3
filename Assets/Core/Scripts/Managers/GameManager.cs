@@ -15,5 +15,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         GetInstance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 }
