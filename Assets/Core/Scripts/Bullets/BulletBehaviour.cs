@@ -127,7 +127,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (m_IsPhysicsBased == true)
         {
-            transform.position += m_Force * Time.deltaTime;
+            transform.position += m_Force * Time.fixedTime;
             if (m_CurrentLifeTime > m_MaxLifetimeInSec)
             {
                 Destroy(this);
