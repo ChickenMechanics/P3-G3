@@ -21,14 +21,16 @@ public class BulletBehaviour : MonoBehaviour
     public float m_DropOff;
     public float m_MaxLifetimeInSec;
     #endregion
-    
+
+    #region vfx
     private BulletBehaviour m_BulletBehaviour;
     private ParticleSystem m_WallClash;
     private ParticleSystem m_Glow;
     private ParticleSystem m_Body;
     private TrailRenderer m_Trail;
-    private Rigidbody m_Rb;
+    #endregion
 
+    private Rigidbody m_Rb;
     private Vector3 m_Force;
     private float m_CurrentLifeTime;
 
@@ -118,7 +120,7 @@ public class BulletBehaviour : MonoBehaviour
         {
             m_Trail.transform.position = transform.position;
         }
-        #endregion vfx
+        #endregion
 
         gameObject.SetActive(true);
     }
