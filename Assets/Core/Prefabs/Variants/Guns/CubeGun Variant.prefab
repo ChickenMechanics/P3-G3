@@ -7,12 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2060184527862156963, guid: 066ef0885ec3b9145ba30acd8ff63467,
-        type: 3}
-      propertyPath: m_BulletModelPrefab
-      value: 
-      objectReference: {fileID: 4159199067348915687, guid: e4c319741c4e4ae44a40099270abf590,
-        type: 3}
     - target: {fileID: 8462421435774275824, guid: 066ef0885ec3b9145ba30acd8ff63467,
         type: 3}
       propertyPath: m_Name
@@ -73,6 +67,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2060184527862156963, guid: 066ef0885ec3b9145ba30acd8ff63467,
+        type: 3}
+      propertyPath: m_BulletModelPrefab
+      value: 
+      objectReference: {fileID: 7388011565343040296, guid: e4c319741c4e4ae44a40099270abf590,
+        type: 3}
     - target: {fileID: 3962037936633706724, guid: 066ef0885ec3b9145ba30acd8ff63467,
         type: 3}
       propertyPath: m_LocalPosition.z

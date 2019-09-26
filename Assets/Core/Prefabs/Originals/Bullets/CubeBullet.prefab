@@ -153,10 +153,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd2199b7705fc1448f8fba9c3b74023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SurfaceCollisionVfx: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
+  m_WallClashParticle: {fileID: 4786501476409834013, guid: fb76fe54ab20ef14bbbf6969d20b68a0,
     type: 3}
-  m_VfxScale: 1
+  m_WallClashScale: 0.5
+  m_GlowParticle: {fileID: 8851218480842971301, guid: c23ff6348bf4428489ce37dcb990ef04,
+    type: 3}
+  m_GlowScale: 0.1
+  m_BodyParticle: {fileID: 3298290040741281021, guid: dd471264bc6b31a4fa4f42f4c1f7041f,
+    type: 3}
+  m_BodyScale: 1
+  m_TrailRender: {fileID: 5295617487119369753, guid: 4643d40c538014c4e97f27f635d2889a,
+    type: 3}
+  m_TrailScale: 1
   m_IsPhysicsBased: 0
-  m_Speed: 10
+  m_Speed: 15
   m_DropOff: 0
   m_MaxLifetimeInSec: 5

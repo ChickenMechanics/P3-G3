@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1439883124adc4ca39bcfb8ee3f29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ExplosionFireVfx: {fileID: 5940595538905619775, guid: 63282be2d59a5c54697346e600f14aed,
+  m_ExplosionFireVfx: {fileID: 4160680326183258552, guid: b43ab0cce5cd77c4a8e6969b1f59bb7c,
     type: 3}
   m_ExplosionSmokeVfx: {fileID: 33209854485882976, guid: 54b003731e6e78a4995e1f69273226b9,
     type: 3}
-  m_ExplosionFireScale: 0.1
+  m_ExplosionFireScale: 1
   m_ExplosionSmokeScale: 0.2

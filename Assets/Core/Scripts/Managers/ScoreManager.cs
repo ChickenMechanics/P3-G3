@@ -9,8 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     #region design vars
     public float m_ComboTimeInSecMax = 1.0f;
-    public float m_ComboBaseMultiplier = 1.5f;
-    public float m_ComboScaler = 1.15f;
+    public float m_ComboScaler = 1.5f;
     #endregion
 
     // TODO: Changed all that is named combo to chain

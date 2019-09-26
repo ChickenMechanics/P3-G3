@@ -39,6 +39,8 @@ public class HUDManager : MonoBehaviour
         }
         GetInstance = this;
 
+        DontDestroyOnLoad(gameObject);
+
         Init();
     }
 
