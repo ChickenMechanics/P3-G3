@@ -414,11 +414,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2903065523992410137}
   - component: {fileID: 8528153998370455507}
-  - component: {fileID: 234640826556036029}
   - component: {fileID: 4952833160740097927}
   - component: {fileID: 2068464013362975696}
+  - component: {fileID: -5653370464728495488}
   m_Layer: 9
-  m_Name: SK_Crawler
+  m_Name: CrawlereEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,19 +460,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &234640826556036029
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2166965269259799050}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.28, z: 1}
-  m_Center: {x: 0, y: 0.615, z: 0}
 --- !u!65 &4952833160740097927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -504,6 +491,19 @@ MonoBehaviour:
     type: 3}
   m_ExplosionFireScale: 1
   m_ExplosionSmokeScale: 0.2
+--- !u!114 &-5653370464728495488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166965269259799050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533c0da48a45dcb47ae45949e7099d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScoreValue: 100
 --- !u!1 &2355447214489581697
 GameObject:
   m_ObjectHideFlags: 0

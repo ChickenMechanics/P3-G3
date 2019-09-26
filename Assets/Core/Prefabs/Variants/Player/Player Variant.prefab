@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7093669475063879485, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
+      propertyPath: m_DefaultGun
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093669475063879485, guid: 093105622fe22bd49be5210ebe8ea41d,
+        type: 3}
       propertyPath: m_GunPrefab.Array.data[0]
       value: 
       objectReference: {fileID: 1482335385195718745, guid: b3e0a8b2064f0b140aab74c8d682d608,
