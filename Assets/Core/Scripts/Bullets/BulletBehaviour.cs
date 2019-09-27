@@ -16,10 +16,10 @@ public class BulletBehaviour : MonoBehaviour
     public GameObject m_TrailRender;
     public float m_TrailScale = 1.0f;
     [Header("Properties")]
-    public bool m_IsPhysicsBased;
-    public float m_Speed;
-    public float m_DropOff;
-    public float m_MaxLifetimeInSec;
+    public float m_DamageValue = 25.0f;
+    public float m_Speed = 50.0f;
+    public float m_DropOff = 0.0f;
+    public float m_MaxLifetimeInSec = 5.0f;
     #endregion
 
     #region vfx
@@ -38,13 +38,13 @@ public class BulletBehaviour : MonoBehaviour
     public void InitBullet()
     {
         m_Rb = GetComponent<Rigidbody>();
-        if (m_IsPhysicsBased == true)
-        {
-            m_Rb.useGravity = true;
-            m_Rb.isKinematic = false;
-            m_Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        }
-        else
+        //if (m_IsPhysicsBased == true)
+        //{
+        //    m_Rb.useGravity = true;
+        //    m_Rb.isKinematic = false;
+        //    m_Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        //}
+        //else
         {
             m_Rb.isKinematic = true;
             m_Rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
@@ -155,16 +155,32 @@ public class BulletBehaviour : MonoBehaviour
             m_WallClash.Play();
         }
 
+
         // TODO: Do this better
         if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
-            Destroy(this);
+            other.GetComponent<ScoreEnemyBasic>().TakeDmg(m_DamageValue);
+            Destroy(this);  // Change this to gameObject as I'm unsure if this destroys the whole object orjust the script component
         }
         else if (other.CompareTag("DestroyBullet"))
         {
             Destroy(this);
         }
+
+
+
+        //// TODO: Do this better
+        //if (other.CompareTag("Enemy"))
+        //{
+        //    other.GetComponent<ScoreEnemyBasic>().TakeDmg(m_DamageValue);
+
+        //    Destroy(other.gameObject);
+        //    Destroy(this);
+        //}
+        //else if (other.CompareTag("DestroyBullet"))
+        //{
+        //    Destroy(this);
+        //}
     }
 
 
@@ -172,7 +188,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         m_CurrentLifeTime += Time.deltaTime;
 
-        if (m_IsPhysicsBased == false)
+        //if (m_IsPhysicsBased == false)
         {
             transform.position += m_Force * Time.deltaTime;
             if (m_CurrentLifeTime > m_MaxLifetimeInSec)
@@ -183,15 +199,15 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-        if (m_IsPhysicsBased == true)
-        {
-            transform.position += m_Force * Time.fixedTime;
-            if (m_CurrentLifeTime > m_MaxLifetimeInSec)
-            {
-                Destroy(this);
-            }
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    if (m_IsPhysicsBased == true)
+    //    {
+    //        transform.position += m_Force * Time.fixedTime;
+    //        if (m_CurrentLifeTime > m_MaxLifetimeInSec)
+    //        {
+    //            Destroy(this);
+    //        }
+    //    }
+    //}
 }
