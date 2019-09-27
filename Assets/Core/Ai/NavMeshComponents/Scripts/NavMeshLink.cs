@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace UnityEngine.AI
 {
@@ -9,53 +8,53 @@ namespace UnityEngine.AI
     [HelpURL("https://github.com/Unity-Technologies/NavMeshComponents#documentation-draft")]
     public class NavMeshLink : MonoBehaviour
     {
-        [SerializeField] private int m_AgentTypeID;
-        public int agentTypeID
-        { get => m_AgentTypeID; set { m_AgentTypeID = value; UpdateLink(); } }
+        [SerializeField]
+        int m_AgentTypeID;
+        public int agentTypeID { get { return m_AgentTypeID; } set { m_AgentTypeID = value; UpdateLink(); } }
 
-        [SerializeField] private Vector3 m_StartPoint = new Vector3(0.0f, 0.0f, -2.5f);
-        public Vector3 startPoint
-        { get => m_StartPoint; set { m_StartPoint = value; UpdateLink(); } }
+        [SerializeField]
+        Vector3 m_StartPoint = new Vector3(0.0f, 0.0f, -2.5f);
+        public Vector3 startPoint { get { return m_StartPoint; } set { m_StartPoint = value; UpdateLink(); } }
 
-        [SerializeField] private Vector3 m_EndPoint = new Vector3(0.0f, 0.0f, 2.5f);
-        public Vector3 endPoint
-        { get => m_EndPoint; set { m_EndPoint = value; UpdateLink(); } }
+        [SerializeField]
+        Vector3 m_EndPoint = new Vector3(0.0f, 0.0f, 2.5f);
+        public Vector3 endPoint { get { return m_EndPoint; } set { m_EndPoint = value; UpdateLink(); } }
 
-        [SerializeField] private float m_Width;
-        public float width
-        { get => m_Width; set { m_Width = value; UpdateLink(); } }
+        [SerializeField]
+        float m_Width;
+        public float width { get { return m_Width; } set { m_Width = value; UpdateLink(); } }
 
-        [SerializeField] private int m_CostModifier = -1;
-        public int costModifier
-        { get => m_CostModifier; set { m_CostModifier = value; UpdateLink(); } }
+        [SerializeField]
+        int m_CostModifier = -1;
+        public int costModifier { get { return m_CostModifier; } set { m_CostModifier = value; UpdateLink(); } }
 
-        [SerializeField] private bool m_Bidirectional = true;
-        public bool bidirectional
-        { get => m_Bidirectional; set { m_Bidirectional = value; UpdateLink(); } }
+        [SerializeField]
+        bool m_Bidirectional = true;
+        public bool bidirectional { get { return m_Bidirectional; } set { m_Bidirectional = value; UpdateLink(); } }
 
-        [SerializeField] private bool m_AutoUpdatePosition;
-        public bool autoUpdate
-        { get => m_AutoUpdatePosition; set => SetAutoUpdate(value); }
+        [SerializeField]
+        bool m_AutoUpdatePosition;
+        public bool autoUpdate { get { return m_AutoUpdatePosition; } set { SetAutoUpdate(value); } }
 
-        [SerializeField] private int m_Area;
-        public int area { get => m_Area;
-            set { m_Area = value; UpdateLink(); } }
+        [SerializeField]
+        int m_Area;
+        public int area { get { return m_Area; } set { m_Area = value; UpdateLink(); } }
 
-        private NavMeshLinkInstance m_LinkInstance = new NavMeshLinkInstance();
+        NavMeshLinkInstance m_LinkInstance = new NavMeshLinkInstance();
 
-        private Vector3 m_LastPosition = Vector3.zero;
-        private Quaternion m_LastRotation = Quaternion.identity;
+        Vector3 m_LastPosition = Vector3.zero;
+        Quaternion m_LastRotation = Quaternion.identity;
 
-        private static readonly List<NavMeshLink> s_Tracked = new List<NavMeshLink>();
+        static readonly List<NavMeshLink> s_Tracked = new List<NavMeshLink>();
 
-        private void OnEnable()
+        void OnEnable()
         {
             AddLink();
             if (m_AutoUpdatePosition && m_LinkInstance.valid)
                 AddTracking(this);
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             RemoveTracking(this);
             m_LinkInstance.Remove();
@@ -67,7 +66,7 @@ namespace UnityEngine.AI
             AddLink();
         }
 
-        private static void AddTracking(NavMeshLink link)
+        static void AddTracking(NavMeshLink link)
         {
 #if UNITY_EDITOR
             if (s_Tracked.Contains(link))
@@ -83,7 +82,7 @@ namespace UnityEngine.AI
             s_Tracked.Add(link);
         }
 
-        private static void RemoveTracking(NavMeshLink link)
+        static void RemoveTracking(NavMeshLink link)
         {
             s_Tracked.Remove(link);
 
@@ -91,7 +90,7 @@ namespace UnityEngine.AI
                 NavMesh.onPreUpdate -= UpdateTrackedInstances;
         }
 
-        private void SetAutoUpdate(bool value)
+        void SetAutoUpdate(bool value)
         {
             if (m_AutoUpdatePosition == value)
                 return;
@@ -102,7 +101,7 @@ namespace UnityEngine.AI
                 RemoveTracking(this);
         }
 
-        private void AddLink()
+        void AddLink()
         {
 #if UNITY_EDITOR
             if (m_LinkInstance.valid)
@@ -112,18 +111,15 @@ namespace UnityEngine.AI
             }
 #endif
 
-            var link = new NavMeshLinkData
-            {
-                startPosition = m_StartPoint,
-                endPosition = m_EndPoint,
-                width = m_Width,
-                costModifier = m_CostModifier,
-                bidirectional = m_Bidirectional,
-                area = m_Area,
-                agentTypeID = m_AgentTypeID
-            };
-            m_LinkInstance = 
-                NavMesh.AddLink(link, transform.position, transform.rotation);
+            var link = new NavMeshLinkData();
+            link.startPosition = m_StartPoint;
+            link.endPosition = m_EndPoint;
+            link.width = m_Width;
+            link.costModifier = m_CostModifier;
+            link.bidirectional = m_Bidirectional;
+            link.area = m_Area;
+            link.agentTypeID = m_AgentTypeID;
+            m_LinkInstance = NavMesh.AddLink(link, transform.position, transform.rotation);
             if (m_LinkInstance.valid)
                 m_LinkInstance.owner = this;
 
@@ -131,25 +127,29 @@ namespace UnityEngine.AI
             m_LastRotation = transform.rotation;
         }
 
-        private bool HasTransformChanged()
+        bool HasTransformChanged()
         {
             if (m_LastPosition != transform.position) return true;
-            return m_LastRotation != transform.rotation;
+            if (m_LastRotation != transform.rotation) return true;
+            return false;
         }
 
-        private void OnDidApplyAnimationProperties()
+        void OnDidApplyAnimationProperties()
         {
             UpdateLink();
         }
 
-        private static void UpdateTrackedInstances()
+        static void UpdateTrackedInstances()
         {
-            foreach (var instance in s_Tracked.Where(instance => instance.HasTransformChanged()))
-                instance.UpdateLink();
+            foreach (var instance in s_Tracked)
+            {
+                if (instance.HasTransformChanged())
+                    instance.UpdateLink();
+            }
         }
 
 #if UNITY_EDITOR
-        private void OnValidate()
+        void OnValidate()
         {
             m_Width = Mathf.Max(0.0f, m_Width);
 
@@ -159,9 +159,13 @@ namespace UnityEngine.AI
             UpdateLink();
 
             if (!m_AutoUpdatePosition)
+            {
                 RemoveTracking(this);
+            }
             else if (!s_Tracked.Contains(this))
+            {
                 AddTracking(this);
+            }
         }
 #endif
     }
