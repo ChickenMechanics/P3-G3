@@ -17,7 +17,6 @@ public class PlayerLook : MonoBehaviour
 
     private Camera m_MainCam;
     private Camera m_FPSCam;
-    private Rigidbody m_Rb;
     private GameObject m_PlayerEyePoint;
     private GameObject m_EyePoint;
 
@@ -101,13 +100,7 @@ public class PlayerLook : MonoBehaviour
     }
 
 
-    private void OnEnable()
-    {
-        CameraSetup();
-    }
-
-
-    private void Update()
+    private void LateUpdate()
     {
         Look();
     }
