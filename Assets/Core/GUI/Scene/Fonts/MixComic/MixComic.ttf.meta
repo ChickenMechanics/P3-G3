@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d88b2c112fac80e428daa3e58c6681ab
+guid: b5a4e70f0444d71498a8208ccce25f4a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,8 +11,7 @@ TrueTypeFontImporter:
   fontName: MixComic
   fontNames:
   - MixComic
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: b5a4e70f0444d71498a8208ccce25f4a, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
