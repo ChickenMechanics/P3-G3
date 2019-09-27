@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour, IController
 {
+    #region player states
+    private IState[] m_States;
+    private IState m_IdleState;
+    private IState m_WalkState;
+    private FSM m_FSM;
+    #endregion
+
     public enum EP_State
     {
         IDLE = 0,
@@ -13,11 +20,6 @@ public class PlayerCtrl : MonoBehaviour, IController
         DEAD,
         SIZE
     }
-
-    private IState[] m_States;
-    private FSM m_FSM;
-    private IState m_IdleState;
-    private IState m_WalkState;
 
 
     private void Awake()
