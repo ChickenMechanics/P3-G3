@@ -17,9 +17,16 @@ public class ScoreEnemyBasic : MonoBehaviour
         return m_Health;
     }
 
+
     public void TakeDmg(float value)
     {
         m_Health -= value;
+    }
+
+
+    private void FlipMaterialColorOnDmgTaken()
+    {
+
     }
 
 
