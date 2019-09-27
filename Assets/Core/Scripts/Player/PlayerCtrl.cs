@@ -12,7 +12,11 @@ public class PlayerCtrl : MonoBehaviour, IController
     private FSM m_FSM;
     #endregion
 
-    private PlayerLook m_PlayerLook;
+
+    private Vector2 m_MouseInput;
+    private Vector2 m_MoveInput;
+    [HideInInspector]
+    public PlayerLook m_PlayerLook { get; private set; }
 
     public enum EP_State
     {
@@ -36,6 +40,32 @@ public class PlayerCtrl : MonoBehaviour, IController
     }
 
 
+    public Vector2 GetMouseInput()
+    {
+        return m_MouseInput;
+    }
+
+
+    public Vector2 GetMoveInput()
+    {
+        return m_MoveInput;
+    }
+
+
+    private void UpdateMouseInput()
+    {
+        m_MouseInput.x = Input.GetAxisRaw("Mouse X");
+        m_MouseInput.y = Input.GetAxisRaw("Mouse Y");
+    }
+
+
+    private void UpdateMoveInput()
+    {
+        m_MoveInput.x = Input.GetAxisRaw("Horizontal");
+        m_MoveInput.y = Input.GetAxisRaw("Vertical");
+    }
+
+
     private void Awake()
     {
         m_States = new IState[(int)EP_State.SIZE];
@@ -44,21 +74,17 @@ public class PlayerCtrl : MonoBehaviour, IController
 
         m_FSM = new FSM(m_States[(int)EP_State.IDLE]);
 
+        m_MouseInput = new Vector2();
+        m_MoveInput = new Vector2();
+
         m_PlayerLook = GetComponent<PlayerLook>();
     }
 
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    m_FSM = new FSM(m_States[(int)EP_State.IDLE]);
-        //}
-        //if (Input.GetKeyDown(KeyCode.X))
-        //{
-        //    m_FSM = new FSM(m_States[(int)EP_State.WALK]);
-        //}
-
+        UpdateMouseInput();
+        UpdateMoveInput();
         m_FSM.Update();
     }
 
