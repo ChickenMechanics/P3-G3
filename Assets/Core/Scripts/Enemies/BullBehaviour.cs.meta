@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:Assets/Core/Scripts/Enemy/BullBehaviour.cs.meta
 guid: 1c846db753fce8e40863a5bac2b921fe
-=======
-guid: e252c2b04aa8a9440b51afbec868bc6a
->>>>>>> Stashed changes:Assets/Core/Scripts/Enemy/BoomerBehaviour.cs.meta
-=======
-guid: 1c846db753fce8e40863a5bac2b921fe
->>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -27,7 +27,7 @@ public class ScoreEnemyBasic : MonoBehaviour
     private void FlipMaterialColorOnDmgTaken()
     {
 
-    }
+    }   
 
 
     private void Awake()
@@ -54,8 +54,11 @@ public class ScoreEnemyBasic : MonoBehaviour
     {
         if (m_Health <= 0.0f)
         {
-            m_ScoreManager.AddComboPoints(m_ScoreValue);
-            Destroy(gameObject);
+            if(m_ScoreManager != null)
+            {
+                m_ScoreManager.AddComboPoints(m_ScoreValue);
+                Destroy(gameObject);
+            }
         }
     }
 }
