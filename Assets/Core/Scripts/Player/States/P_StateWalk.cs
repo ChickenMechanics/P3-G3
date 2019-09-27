@@ -16,19 +16,19 @@ public class P_StateWalk : IState
     }
 
 
-    public void Enter(float dT)
+    public void Enter()
     {
 
     }
 
 
-    public void FixedUpdate(float dT)
+    public void FixedUpdate()
     {
         //m_Owner.FixedUpdatePos(0.0f, ForceMode.Force);
     }
 
 
-    public void Update(float dT)
+    public void Update()
     {
         Debug.Log("Walk");
 
@@ -40,7 +40,7 @@ public class P_StateWalk : IState
     }
 
 
-    public void Exit(float dT)
+    public void Exit()
     {
 
     }
