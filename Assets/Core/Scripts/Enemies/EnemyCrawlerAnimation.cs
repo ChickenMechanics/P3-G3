@@ -20,6 +20,7 @@ public class EnemyCrawlerAnimation : MonoBehaviour
         {
             m_Animator.SetBool("Attack", false);
             m_Animator.SetBool("Walk", false);
+
             m_Animator.SetBool("Idle", true);
         }
 
@@ -27,6 +28,7 @@ public class EnemyCrawlerAnimation : MonoBehaviour
         {
             m_Animator.SetBool("Attack", false);
             m_Animator.SetBool("Idle", false);
+
             m_Animator.SetBool("Walk", true);
         }
 
@@ -34,6 +36,7 @@ public class EnemyCrawlerAnimation : MonoBehaviour
         {
             m_Animator.SetBool("Attack", false);
             m_Animator.SetBool("Idle", false);
+
             m_Animator.SetBool("Attack", true);
         }
     }
