@@ -3328,7 +3328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1637453886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4157,7 +4157,7 @@ PrefabInstance:
     - target: {fileID: 500200625893714849, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 500200625893714848, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
         type: 3}
@@ -4218,7 +4218,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_GunPrefab.Array.data[2]
       value: 
-      objectReference: {fileID: 6569281171245638249, guid: d1e94c1327b60f944bd392eec87e1499,
+      objectReference: {fileID: 348376078618119487, guid: 455a6d48e3668e3459b59093cde4e3b2,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
