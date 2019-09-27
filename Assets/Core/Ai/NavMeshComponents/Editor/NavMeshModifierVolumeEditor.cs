@@ -1,4 +1,3 @@
-using Assets.Core.Ai.NavMeshComponents.Editor;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
 using UnityEngine.AI;
@@ -8,21 +7,24 @@ namespace UnityEditor.AI
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshModifierVolume))]
-    internal class NavMeshModifierVolumeEditor : Editor
+    class NavMeshModifierVolumeEditor : Editor
     {
-        private SerializedProperty m_AffectedAgents;
-        private SerializedProperty m_Area;
-        private SerializedProperty m_Center;
-        private SerializedProperty m_Size;
+        SerializedProperty m_AffectedAgents;
+        SerializedProperty m_Area;
+        SerializedProperty m_Center;
+        SerializedProperty m_Size;
 
-        private static Color s_HandleColor = new Color(187f, 138f, 240f, 210f) / 255;
-        private static Color s_HandleColorDisabled = new Color(187f * 0.75f, 138f * 0.75f, 240f * 0.75f, 100f) / 255;
+        static Color s_HandleColor = new Color(187f, 138f, 240f, 210f) / 255;
+        static Color s_HandleColorDisabled = new Color(187f * 0.75f, 138f * 0.75f, 240f * 0.75f, 100f) / 255;
 
-        private BoxBoundsHandle m_BoundsHandle = new BoxBoundsHandle();
+        BoxBoundsHandle m_BoundsHandle = new BoxBoundsHandle();
 
-        private bool editingCollider => EditMode.editMode == EditMode.SceneViewEditMode.Collider && EditMode.IsOwner(this);
+        bool editingCollider
+        {
+            get { return EditMode.editMode == EditMode.SceneViewEditMode.Collider && EditMode.IsOwner(this); }
+        }
 
-        private void OnEnable()
+        void OnEnable()
         {
             m_AffectedAgents = serializedObject.FindProperty("m_AffectedAgents");
             m_Area = serializedObject.FindProperty("m_Area");
@@ -32,12 +34,12 @@ namespace UnityEditor.AI
             NavMeshVisualizationSettings.showNavigation++;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             NavMeshVisualizationSettings.showNavigation--;
         }
 
-        private Bounds GetBounds()
+        Bounds GetBounds()
         {
             var navModifier = (NavMeshModifierVolume)target;
             return new Bounds(navModifier.transform.position, navModifier.size);
@@ -61,7 +63,7 @@ namespace UnityEditor.AI
         }
 
         [DrawGizmo(GizmoType.Selected | GizmoType.Active)]
-        private static void RenderBoxGizmo(NavMeshModifierVolume navModifier, GizmoType gizmoType)
+        static void RenderBoxGizmo(NavMeshModifierVolume navModifier, GizmoType gizmoType)
         {
             var color = navModifier.enabled ? s_HandleColor : s_HandleColorDisabled;
             var colorTrans = new Color(color.r * 0.75f, color.g * 0.75f, color.b * 0.75f, color.a * 0.15f);
@@ -84,7 +86,7 @@ namespace UnityEditor.AI
         }
 
         [DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable)]
-        private static void RenderBoxGizmoNotSelected(NavMeshModifierVolume navModifier, GizmoType gizmoType)
+        static void RenderBoxGizmoNotSelected(NavMeshModifierVolume navModifier, GizmoType gizmoType)
         {
             if (NavMeshVisualizationSettings.showNavigation > 0)
             {
@@ -104,7 +106,7 @@ namespace UnityEditor.AI
             Gizmos.DrawIcon(navModifier.transform.position, "NavMeshModifierVolume Icon", true);
         }
 
-        private void OnSceneGUI()
+        void OnSceneGUI()
         {
             if (!editingCollider)
                 return;
@@ -121,8 +123,8 @@ namespace UnityEditor.AI
                 if (EditorGUI.EndChangeCheck())
                 {
                     Undo.RecordObject(vol, "Modified NavMesh Modifier Volume");
-                    var center = m_BoundsHandle.center;
-                    var size = m_BoundsHandle.size;
+                    Vector3 center = m_BoundsHandle.center;
+                    Vector3 size = m_BoundsHandle.size;
                     vol.center = center;
                     vol.size = size;
                     EditorUtility.SetDirty(target);

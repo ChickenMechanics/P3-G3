@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: e252c2b04aa8a9440b51afbec868bc6a
-=======
-<<<<<<< Updated upstream:Assets/Core/Scripts/Enemy/BullBehaviour.cs.meta
-guid: 1c846db753fce8e40863a5bac2b921fe
-=======
-guid: e252c2b04aa8a9440b51afbec868bc6a
->>>>>>> Stashed changes:Assets/Core/Scripts/Enemy/BoomerBehaviour.cs.meta
->>>>>>> Stashed changes
+guid: 6a4bf891a18487742955b770a7cb5309
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-<<<<<<< Updated upstream
   executionOrder: 500
-=======
-  executionOrder: 0
->>>>>>> Stashed changes
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
