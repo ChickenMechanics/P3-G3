@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445885, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player Variant
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 501765428380445884, guid: 093105622fe22bd49be5210ebe8ea41d,
         type: 3}
@@ -87,7 +87,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_GunPrefab.Array.data[2]
       value: 
-      objectReference: {fileID: 6326108177425522790, guid: 95d0b53bbc6dfa74e86fbab9610aa726,
+      objectReference: {fileID: 348376078618119487, guid: 455a6d48e3668e3459b59093cde4e3b2,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 093105622fe22bd49be5210ebe8ea41d, type: 3}
