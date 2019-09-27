@@ -6,13 +6,11 @@ using UnityEngine;
 public class P_StateIdle : IState
 {
     private PlayerCtrl m_Owner;
-    //private PlayerStatus m_PlayerStatus;
 
 
     public P_StateIdle(IController controller)
     {
         m_Owner = (PlayerCtrl)controller;
-        //m_PlayerStatus = m_Owner.GetPlayerStatus();
     }
 
 

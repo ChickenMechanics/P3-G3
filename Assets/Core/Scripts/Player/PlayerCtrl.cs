@@ -12,6 +12,8 @@ public class PlayerCtrl : MonoBehaviour, IController
     private FSM m_FSM;
     #endregion
 
+    private PlayerLook m_PlayerLook;
+
     public enum EP_State
     {
         IDLE = 0,
@@ -29,6 +31,8 @@ public class PlayerCtrl : MonoBehaviour, IController
         m_States[(int)EP_State.WALK] = new P_StateWalk((IController)this);
 
         m_FSM = new FSM(m_States[(int)EP_State.IDLE]);
+
+        m_PlayerLook = GetComponent<PlayerLook>();
     }
 
 
