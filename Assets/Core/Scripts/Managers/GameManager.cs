@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         }
         GetInstance = this;
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Update()

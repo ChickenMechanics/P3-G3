@@ -1,18 +1,17 @@
-using Assets.Core.Ai.NavMeshComponents.Editor;
 using UnityEngine.AI;
 
 namespace UnityEditor.AI
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshModifier))]
-    internal class NavMeshModifierEditor : Editor
+    class NavMeshModifierEditor : Editor
     {
-        private SerializedProperty m_AffectedAgents;
-        private SerializedProperty m_Area;
-        private SerializedProperty m_IgnoreFromBuild;
-        private SerializedProperty m_OverrideArea;
+        SerializedProperty m_AffectedAgents;
+        SerializedProperty m_Area;
+        SerializedProperty m_IgnoreFromBuild;
+        SerializedProperty m_OverrideArea;
 
-        private void OnEnable()
+        void OnEnable()
         {
             m_AffectedAgents = serializedObject.FindProperty("m_AffectedAgents");
             m_Area = serializedObject.FindProperty("m_Area");
@@ -22,7 +21,7 @@ namespace UnityEditor.AI
             NavMeshVisualizationSettings.showNavigation++;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             NavMeshVisualizationSettings.showNavigation--;
         }
@@ -41,8 +40,7 @@ namespace UnityEditor.AI
                 EditorGUI.indentLevel--;
             }
 
-            NavMeshComponentsGUIUtility.AgentMaskPopup(
-                "Affected Agents", m_AffectedAgents);
+            NavMeshComponentsGUIUtility.AgentMaskPopup("Affected Agents", m_AffectedAgents);
             EditorGUILayout.Space();
 
             serializedObject.ApplyModifiedProperties();
