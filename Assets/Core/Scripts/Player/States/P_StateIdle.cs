@@ -7,6 +7,8 @@ public class P_StateIdle : IState
 {
     private PlayerCtrl m_Owner;
 
+    private Vector3 m_MoveInput;
+
 
     public P_StateIdle(IController controller)
     {
@@ -14,21 +16,30 @@ public class P_StateIdle : IState
     }
 
 
-    public void Enter(float dT)
+    public void Enter()
     {
-
+        Debug.Log("Idle");
     }
 
 
-    public void FixedUpdate(float dT)
+    public void FixedUpdate()
     {
         //m_Owner.FixedUpdatePos(0.0f, ForceMode.Force);
     }
 
 
-    public void Update(float dT)
+    public void Update()
     {
-        Debug.Log("Idle");
+        if (Input.GetAxisRaw("Horizontal") != 0.0f ||
+            Input.GetAxisRaw("Vertical") != 0.0f)
+        {
+            IState state = m_Owner.GetState(PlayerCtrl.EP_State.WALK);
+            m_Owner.GetFsm().ChangeState(state);
+        }
+
+
+
+        
 
         //UpdateIdle(dT);
 
@@ -38,7 +49,7 @@ public class P_StateIdle : IState
     }
 
 
-    public void Exit(float dT)
+    public void Exit()
     {
 
     }

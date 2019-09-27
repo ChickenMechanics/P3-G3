@@ -75,7 +75,6 @@ public class GunHandler : MonoBehaviour
             m_GunPrefabClone[i] = Instantiate(m_GunPrefab[i], Vector3.zero, Quaternion.identity);
             m_GunPrefabClone[i].SetActive(false);
 
-
             Transform tForm = m_GunPrefabClone[i].transform;
             m_GunPrefabClone[i].transform.position = parent.transform.position + tForm.position;
 
