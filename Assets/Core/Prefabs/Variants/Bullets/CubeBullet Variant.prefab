@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6819690549498726262, guid: 9919921cd237e3d4f866a5dd538c62ca,
         type: 3}
       propertyPath: m_Name
-      value: CubeBullet
+      value: CubeBullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2210735704486178555, guid: 9919921cd237e3d4f866a5dd538c62ca,
         type: 3}
@@ -66,6 +66,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430651200224610585, guid: 9919921cd237e3d4f866a5dd538c62ca,
+        type: 3}
+      propertyPath: m_DamageValue
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430651200224610585, guid: 9919921cd237e3d4f866a5dd538c62ca,
+        type: 3}
+      propertyPath: m_Speed
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9919921cd237e3d4f866a5dd538c62ca, type: 3}

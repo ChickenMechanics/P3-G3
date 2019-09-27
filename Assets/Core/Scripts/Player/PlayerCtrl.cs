@@ -24,6 +24,18 @@ public class PlayerCtrl : MonoBehaviour, IController
     }
 
 
+    public FSM GetFsm()
+    {
+        return m_FSM;
+    }
+
+
+    public IState GetState(EP_State state)
+    {
+        return m_States[(int)state];
+    }
+
+
     private void Awake()
     {
         m_States = new IState[(int)EP_State.SIZE];
@@ -38,16 +50,16 @@ public class PlayerCtrl : MonoBehaviour, IController
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            m_FSM = new FSM(m_States[(int)EP_State.IDLE]);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            m_FSM = new FSM(m_States[(int)EP_State.WALK]);
-        }
+        //if(Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    m_FSM = new FSM(m_States[(int)EP_State.IDLE]);
+        //}
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    m_FSM = new FSM(m_States[(int)EP_State.WALK]);
+        //}
 
-        m_FSM.Update(Time.deltaTime);
+        m_FSM.Update();
     }
 
 }
