@@ -27,11 +27,11 @@ public class DefaultGroundEnemyBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void MoveTowardsPlayer(Transform transform_TODO_RENAME, NavMeshAgent agent)
+    public void MoveTowardsPlayer(Transform agentTransform, NavMeshAgent agent)
     {
         var playerPos = player.position;
-        m_Position = transform_TODO_RENAME.position;
-        var rotation = transform_TODO_RENAME.rotation;
+        m_Position = agentTransform.position;
+        var rotation = agentTransform.rotation;
 
         var lookPosition = playerPos - m_Position;
 
@@ -41,7 +41,7 @@ public class DefaultGroundEnemyBehaviour : MonoBehaviour
 
         m_DistanceToPlayer = lookPosition.magnitude;
 
-        transform_TODO_RENAME.rotation = Quaternion.Slerp(rotation, m_LookRotation, 0.1f);
+        agentTransform.rotation = Quaternion.Slerp(rotation, m_LookRotation, 0.1f);
 
         agent.SetDestination(playerPos);
     }
