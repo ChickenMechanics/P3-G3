@@ -156,7 +156,7 @@ public class BulletBehaviour : MonoBehaviour
         }
 
 
-        // TODO: Do this better
+        // Projectiles might pass thru some type of force fileds or whatever so some conditional are needed
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<ScoreEnemyBasic>().TakeDmg(m_DamageValue);
@@ -166,21 +166,6 @@ public class BulletBehaviour : MonoBehaviour
         {
             Destroy(this);
         }
-
-
-
-        //// TODO: Do this better
-        //if (other.CompareTag("Enemy"))
-        //{
-        //    other.GetComponent<ScoreEnemyBasic>().TakeDmg(m_DamageValue);
-
-        //    Destroy(other.gameObject);
-        //    Destroy(this);
-        //}
-        //else if (other.CompareTag("DestroyBullet"))
-        //{
-        //    Destroy(this);
-        //}
     }
 
 
@@ -199,6 +184,7 @@ public class BulletBehaviour : MonoBehaviour
     }
 
 
+    // Saved if we wan't physics based projectiles
     //private void FixedUpdate()
     //{
     //    if (m_IsPhysicsBased == true)
