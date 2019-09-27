@@ -34669,6 +34669,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5703191146630640327, guid: c836386f6488ccf4fbb4d80b9b04bf1e,
+        type: 3}
+      propertyPath: m_Name
+      value: ScoreManager
+      objectReference: {fileID: 0}
     - target: {fileID: 5338190056652198965, guid: c836386f6488ccf4fbb4d80b9b04bf1e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34723,11 +34728,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5703191146630640327, guid: c836386f6488ccf4fbb4d80b9b04bf1e,
-        type: 3}
-      propertyPath: m_Name
-      value: ScoreManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c836386f6488ccf4fbb4d80b9b04bf1e, type: 3}
@@ -35244,7 +35244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803906298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
@@ -35358,6 +35358,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5467546465831032349, guid: 9981ed4f40be37e41b8ebe8c7327b3d0,
+        type: 3}
+      propertyPath: m_Name
+      value: HUDManager
+      objectReference: {fileID: 0}
     - target: {fileID: 1484938972225058272, guid: 9981ed4f40be37e41b8ebe8c7327b3d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35412,11 +35417,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467546465831032349, guid: 9981ed4f40be37e41b8ebe8c7327b3d0,
-        type: 3}
-      propertyPath: m_Name
-      value: HUDManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9981ed4f40be37e41b8ebe8c7327b3d0, type: 3}
@@ -36284,10 +36284,6 @@ PrefabInstance:
     - target: {fileID: 500200625893714848, guid: 3bccd7374e14f4447b0f6b5c461b2edc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2165136429179244, guid: 3bccd7374e14f4447b0f6b5c461b2edc, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
