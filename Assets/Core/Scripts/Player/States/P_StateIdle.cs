@@ -14,28 +14,21 @@ public class P_StateIdle : IState
     }
 
 
-    public void Enter()
+    public void Enter(float dT)
     {
-        //Debug.Log("Idle");
 
-        //Debug.Log(m_Owner.GetMoveInput());
     }
 
 
-    public void FixedUpdate()
+    public void FixedUpdate(float dT)
     {
         //m_Owner.FixedUpdatePos(0.0f, ForceMode.Force);
     }
 
 
-    public void Update()
+    public void Update(float dT)
     {
-        if (m_Owner.GetMoveInput().x != 0.0f ||
-            m_Owner.GetMoveInput().y != 0.0f)
-        {
-            IState state = m_Owner.GetState(PlayerCtrl.EP_State.WALK);
-            m_Owner.GetFsm().ChangeState(state);
-        }
+        Debug.Log("Idle");
 
         //UpdateIdle(dT);
 
@@ -45,7 +38,7 @@ public class P_StateIdle : IState
     }
 
 
-    public void Exit()
+    public void Exit(float dT)
     {
 
     }

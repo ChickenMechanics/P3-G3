@@ -6,36 +6,31 @@ using UnityEngine;
 public class P_StateWalk : IState
 {
     private PlayerCtrl m_Owner;
+    //private PlayerStatus m_PlayerStatus;
 
 
     public P_StateWalk(IController controller)
     {
         m_Owner = (PlayerCtrl)controller;
+        //m_PlayerStatus = m_Owner.GetPlayerStatus();
     }
 
 
-    public void Enter()
+    public void Enter(float dT)
     {
-        //Debug.Log("Walk");
 
-        //Debug.Log(m_Owner.GetMoveInput());
     }
 
 
-    public void FixedUpdate()
+    public void FixedUpdate(float dT)
     {
         //m_Owner.FixedUpdatePos(0.0f, ForceMode.Force);
     }
 
 
-    public void Update()
+    public void Update(float dT)
     {
-        if (m_Owner.GetMoveInput().x == 0.0f &&
-            m_Owner.GetMoveInput().y == 0.0f)
-        {
-            IState state = m_Owner.GetState(PlayerCtrl.EP_State.IDLE);
-            m_Owner.GetFsm().ChangeState(state);
-        }
+        Debug.Log("Walk");
 
         //UpdateIdle(dT);
 
@@ -45,7 +40,7 @@ public class P_StateWalk : IState
     }
 
 
-    public void Exit()
+    public void Exit(float dT)
     {
 
     }
