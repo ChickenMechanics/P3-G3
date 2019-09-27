@@ -17,6 +17,8 @@ public class PlayerCtrl : MonoBehaviour, IController
     private Vector2 m_MoveInput;
     [HideInInspector]
     public PlayerLook m_PlayerLook { get; private set; }
+    [HideInInspector]
+    public PlayerMove m_PlayerMove { get; private set; }
 
     public enum EP_State
     {
@@ -68,6 +70,9 @@ public class PlayerCtrl : MonoBehaviour, IController
 
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         m_States = new IState[(int)EP_State.SIZE];
         m_States[(int)EP_State.IDLE] = new P_StateIdle((IController)this);
         m_States[(int)EP_State.WALK] = new P_StateWalk((IController)this);
@@ -78,6 +83,7 @@ public class PlayerCtrl : MonoBehaviour, IController
         m_MoveInput = new Vector2();
 
         m_PlayerLook = GetComponent<PlayerLook>();
+        m_PlayerMove = GetComponent<PlayerMove>();
     }
 
 

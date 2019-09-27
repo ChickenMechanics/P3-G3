@@ -88,11 +88,6 @@ public class PlayerLook : MonoBehaviour
 
     private void Awake()
     {
-        // Cursor
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        // Camera
         CameraSetup();
 
         m_NextLookRotation = Vector2.zero;
