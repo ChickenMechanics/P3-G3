@@ -1678,7 +1678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7184922104436984895}
   - component: {fileID: 9004334808628690}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EvoStickGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1743,10 +1743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0b181a1dcebbc49a656434bf8b5ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionOffset: {x: 4, y: -0.35, z: 0.5}
+  m_PositionOffset: {x: 0.7, y: -0.35, z: 0.5}
   m_RoundsPerMinute: 600
   m_MagazineSize: 1000
-  m_BulletModelPrefab: {fileID: 7935401623685007322, guid: f0497473567d0ce4687f482b2c76e522,
+  m_BulletModelPrefab: {fileID: 1258812700453301312, guid: db95fa4050e9ea14ab8510d4dff6aba3,
     type: 3}
 --- !u!1 &6765981322706080711
 GameObject:

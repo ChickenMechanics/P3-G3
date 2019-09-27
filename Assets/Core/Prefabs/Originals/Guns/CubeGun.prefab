@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 252814982367789299}
   - component: {fileID: 6315777117306210230}
   - component: {fileID: 2060184527862156963}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CubeGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
