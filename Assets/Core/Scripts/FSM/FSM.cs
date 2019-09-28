@@ -11,32 +11,32 @@ public class FSM
     public FSM(IState initState)
     {
         m_CurrentState = initState;
-        m_CurrentState.Enter(Time.deltaTime);
+        m_CurrentState.Enter();
     }
 
 
-    public void ChangeState(IState state, float dT)
+    public void ChangeState(IState state)
     {
-        m_CurrentState.Exit(dT);
+        m_CurrentState.Exit();
         m_CurrentState = state;
-        m_CurrentState.Enter(dT);
+        m_CurrentState.Enter();
     }
 
 
-    public void Update(float dT)
+    public void Update()
     {
         if(m_CurrentState != null)
         {
-            m_CurrentState.Update(dT);
+            m_CurrentState.Update();
         }
     }
 
 
-    public void FixedUpdate(float dT)
+    public void FixedUpdate()
     {
         if (m_CurrentState != null)
         {
-            m_CurrentState.FixedUpdate(dT);
+            m_CurrentState.FixedUpdate();
         }
     }
 }
